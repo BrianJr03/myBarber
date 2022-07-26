@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-
         <variable
             name="viewModel"
             type="jr.brian.mybarber.viewmodel.SignUpViewModel" />
@@ -70,7 +68,6 @@
             android:hint="@string/cc"
             android:inputType="number"
             android:maxLines="1"
-            android:text="@={viewModel.mobileNo}"
             app:layout_constraintBottom_toTopOf="@id/password_et"
             app:layout_constraintStart_toStartOf="@id/fullName_et"
  />

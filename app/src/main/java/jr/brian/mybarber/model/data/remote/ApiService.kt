@@ -31,6 +31,4 @@ interface ApiService {
     companion object {
         val INSTANCE: ApiService = ApiClient.retrofit.create(ApiService::class.java)
     }
-
-
 }

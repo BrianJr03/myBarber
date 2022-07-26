@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityMainBinding
 import jr.brian.mybarber.model.util.replaceFragment
+import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.auth_fragments.SignUpFragment
 
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
         setContentView(binding.root)
         initListeners()
         replaceFragment(R.id.container, SignInFragment())
+        binding.apply {
+            skip.setOnClickListener {
+                startHomeActivity(this@MainActivity, this@MainActivity)
+            }
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup, checkId: Int) {
@@ -33,7 +39,7 @@ class MainActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
     }
 
     private fun initListeners() {
-        val group = findViewById<RadioGroup>(R.id.radio_group) as RadioGroup
+        val group = findViewById<RadioGroup>(R.id.radio_group)
         group.setOnCheckedChangeListener(this)
     }
 

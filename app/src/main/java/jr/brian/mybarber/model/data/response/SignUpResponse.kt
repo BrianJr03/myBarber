@@ -10,6 +10,9 @@ data class SignUpResponse(
     @SerializedName("message")
     val message: String,
 
-    @SerializedName("user")
-    val user: User
+    @SerializedName("otp")
+    val otp: String,
+
+    @SerializedName("userId")
+    val userId: String
 )
