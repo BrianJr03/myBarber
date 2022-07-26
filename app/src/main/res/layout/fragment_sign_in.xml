@@ -22,14 +22,14 @@
         app:lottie_rawRes="@raw/barber_lottie" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/email_et_signIn"
+        android:id="@+id/phone_et_signIn"
         android:layout_width="@dimen/_250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10dp"
         android:autofillHints=""
         android:backgroundTint="@color/blueish_idk"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
+        android:hint="@string/mobile_phone_hint"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@id/password_et_signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

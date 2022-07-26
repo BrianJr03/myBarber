@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initListeners()
+        replaceFragment(R.id.container, SignInFragment())
     }
 
     override fun onCheckedChanged(group: RadioGroup, checkId: Int) {

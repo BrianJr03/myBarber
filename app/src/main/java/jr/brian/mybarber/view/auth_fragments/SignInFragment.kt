@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentSignInBinding
+import jr.brian.mybarber.model.util.validatePassword
+import jr.brian.mybarber.model.util.validatePhone
+import jr.brian.mybarber.view.activities.HomeActivity
 import jr.brian.mybarber.view.activities.MainActivity
 
 class SignInFragment : Fragment() {
@@ -31,16 +32,28 @@ class SignInFragment : Fragment() {
     }
 
     private fun initView(view: View) {
-        val email = binding.emailEtSignIn.text
+//        val email = binding.emailEtSignIn.text
 
-        val password = binding.passwordEtSignIn.text
-        view.findViewById<Button>(R.id.signInBTN).setOnClickListener {
-            if (email?.isEmpty() == true || password?.isEmpty() == true) {
-                showEmptyFieldsMsg()
-            } else {
-                // TODO - Sign in user
-                startHomeActivity()
-            }
+//        val password = binding.passwordEtSignIn.text
+        binding.signInBTN.setOnClickListener {
+            validateForm()
+//            if (email?.isEmpty() == true || password?.isEmpty() == true) {
+//                showEmptyFieldsMsg()
+//            } else {
+//                // TODO - Sign in user
+//                startHomeActivity()
+//            }
+        }
+    }
+
+    private fun validateForm() {
+        var validated: Boolean
+        binding.apply {
+            validated = validatePhone(phoneEtSignIn)
+            validated = validatePassword(passwordEtSignIn)
+        }
+        if (validated) {
+            startHomeActivity()
         }
     }
 
@@ -60,8 +73,9 @@ class SignInFragment : Fragment() {
     private fun startHomeActivity() {
         ContextCompat.startActivity(
             requireContext(),
-            Intent(context, MainActivity::class.java),
+            Intent(context, HomeActivity::class.java),
             null
         )
+        activity?.finish()
     }
 }
