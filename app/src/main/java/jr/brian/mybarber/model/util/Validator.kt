@@ -11,22 +11,36 @@ private fun validateLength(et: EditText): Boolean {
 }
 
 fun validateName(et: EditText): Boolean {
-    if (!validateLength(et)) {
+    val pattern = Regex("^[a-zA-Z\\s]+\$")
+    if(!pattern.containsMatchIn(et.text)) {
+        et.error = "Please enter a valid name"
         return false
     }
-    val pattern = Regex("^[a-zA-Z\\s]+\$")
-    return pattern.containsMatchIn(et.text)
+    return validateLength(et)
 }
 
 fun validatePhone(et: EditText): Boolean {
-    if (!validateLength(et)) {
+    val pattern = Regex("^[0-9]{10}\$")
+    if(!pattern.containsMatchIn(et.text)) {
+        et.error = "Please enter a 10 digit phone number"
         return false
     }
-    val pattern =
-        Regex("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$")
-    return pattern.containsMatchIn(et.text)
+    return validateLength(et)
+}
+
+fun validateCountryCode(et: EditText): Boolean {
+    val pattern = Regex("^(\\+?\\d{1,3}|\\d{1,4})\$")
+    if(!pattern.containsMatchIn(et.text)) {
+        et.error = "Please enter a valid country code"
+        return false
+    }
+    return validateLength(et)
 }
 
 fun validatePassword(et: EditText): Boolean {
+    if (et.text.length < 8) {
+        et.error = "Minimum 8 characters"
+        return false
+    }
     return validateLength(et)
 }

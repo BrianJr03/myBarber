@@ -9,18 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import jr.brian.mybarber.view.sign_up.SignUpVMFactory
-import jr.brian.mybarber.view.sign_up.SignUpViewModel
 import com.google.firebase.messaging.FirebaseMessaging
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentSignUpBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.remote.ApiService
-import jr.brian.mybarber.model.util.showSnackbar
+import jr.brian.mybarber.model.util.*
 import jr.brian.mybarber.view.activities.HomeActivity
-import jr.brian.mybarber.model.util.validateName
-import jr.brian.mybarber.model.util.validatePassword
-import jr.brian.mybarber.model.util.validatePhone
+import jr.brian.mybarber.viewmodel.SignUpVMFactory
+import jr.brian.mybarber.viewmodel.SignUpViewModel
 
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
@@ -41,7 +38,7 @@ class SignUpFragment : Fragment() {
         setupViewModel()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if(it.isSuccessful) {
+            if (it.isSuccessful) {
                 viewModel.fcmToken.postValue(it.result)
                 Log.d("FCM_Token", "FCM_TOKEN: ${it.result}")
             }
@@ -52,41 +49,32 @@ class SignUpFragment : Fragment() {
 
     private fun initView(view: View) {
         binding.apply {
-            val signUpBtn = signUpBtn
-            val fullName = fullNameEt.text
-            val mobileNo = mobileNoEt.text
-            val password = passwordEt.text
-            val cPassword = cPasswordEt.text
-
             signUpBtn.setOnClickListener {
-                validateForm()
-//                if (password.toString().isNotEmpty()
-//                    || cPassword.toString().isNotEmpty()
-//                    || fullName.toString().isNotEmpty()
-//                    || mobileNo.toString().isNotEmpty()
-//                ) {
-//                    if (password.toString() == cPassword.toString()) {
-//                        // TODO - Sign up user
-//                    } else {
-//                        showSnackbar("Passwords do not match", view, R.id.sign_up_root)
-//                    }
-//                } else {
-//                    showSnackbar("Ensure fields are not empty", view, R.id.sign_up_root)
-//                }
+                validateForm(view)
             }
         }
     }
 
-    private fun validateForm() {
-        var validated: Boolean
+    private fun validateForm(view: View) {
         binding.apply {
-            validated = validateName(fullNameEt)
-            validated = validatePhone(mobileNoEt)
-            validated = validatePassword(passwordEt)
-            validated = validatePassword(cPasswordEt)
-        }
-        if (validated) {
-            viewModel.signUp()
+            val isNameValid = validateName(fullNameEt)
+            val isPhoneValid = validatePhone(mobileNoEt)
+            val isCountryCodeValid = validateCountryCode(countryCodeEt)
+            val isPasswordValid = validatePassword(passwordEt)
+            val isCPasswordValid = validatePassword(cPasswordEt)
+            if (
+                isNameValid
+                && isPhoneValid
+                && isCountryCodeValid
+                && isPasswordValid
+                && isCPasswordValid
+            ) {
+                if (passwordEt.text.toString() == cPasswordEt.text.toString()) {
+                    viewModel?.signUp()
+                } else {
+                    showSnackbar("Passwords do not match", view, R.id.sign_up_root)
+                }
+            }
         }
     }
 

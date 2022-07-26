@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="viewModel"
-            type="jr.brian.mybarber.view.sign_up.SignUpViewModel" />
+            type="jr.brian.mybarber.viewmodel.SignUpViewModel" />
+
         <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sign_up_root"
@@ -44,18 +48,32 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/mobileNo_et"
-            android:layout_width="@dimen/_250dp"
+            android:layout_width="@dimen/_165dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20dp"
             android:autofillHints=""
             android:backgroundTint="@color/blueish_idk"
             android:hint="@string/mobile_phone_hint"
-            android:text="@={viewModel.mobileNo}"
             android:inputType="number"
             android:maxLines="1"
+            android:text="@={viewModel.mobileNo}"
             app:layout_constraintBottom_toTopOf="@id/password_et"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/fullName_et" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/country_code_et"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/blueish_idk"
+            android:hint="@string/cc"
+            android:inputType="number"
+            android:maxLines="1"
+            android:text="@={viewModel.mobileNo}"
+            app:layout_constraintBottom_toTopOf="@id/password_et"
+            app:layout_constraintStart_toStartOf="@id/fullName_et"
+ />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/password_et"
@@ -63,10 +81,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20dp"
             android:autofillHints=""
-            android:text="@={viewModel.password}"
             android:backgroundTint="@color/blueish_idk"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:text="@={viewModel.password}"
             app:layout_constraintBottom_toTopOf="@id/cPassword_et"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -38,4 +38,6 @@
     <dimen name="_15dp">15dp</dimen>
     <dimen name="_350dp">350dp</dimen>
     <dimen name="_50sp">50sp</dimen>
+    <dimen name="_84dp">84dp</dimen>
+    <dimen name="_165dp">165dp</dimen>
 </resources>

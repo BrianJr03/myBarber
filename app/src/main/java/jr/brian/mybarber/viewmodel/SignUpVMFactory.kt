@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.sign_up
+package jr.brian.mybarber.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
