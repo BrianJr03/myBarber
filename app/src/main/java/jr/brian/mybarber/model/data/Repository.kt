@@ -2,6 +2,7 @@ package jr.brian.mybarber.model.data
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import jr.brian.mybarber.model.data.remote.ApiClient.retrofit
 import jr.brian.mybarber.model.data.remote.ApiService
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
@@ -11,8 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Repository(private val apiService: ApiService) {
+class Repository() {
 
+    private val apiService = retrofit.create(ApiService::class.java)
     val signUpResponse = MutableLiveData<SignUpResponse>()
     val signInResponse = MutableLiveData<SignInResponse>()
     val isProcessing = ObservableField<Boolean>()
@@ -72,12 +74,10 @@ class Repository(private val apiService: ApiService) {
                 }
 
                 val apiResponse = response.body()
-
                 if (apiResponse == null) {
                     error.postValue("Empty response. Please retry.")
                     return
                 }
-
                 if (apiResponse.status == 0) {
                     signUpResponse.postValue(apiResponse)
                 } else {
@@ -92,5 +92,4 @@ class Repository(private val apiService: ApiService) {
             }
         })
     }
-
 }

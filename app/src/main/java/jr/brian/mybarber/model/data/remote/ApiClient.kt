@@ -9,6 +9,7 @@ object ApiClient {
 
     val retrofit: Retrofit by lazy {
         val logInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+
         val client = OkHttpClient.Builder().apply {
             addInterceptor(logInterceptor)
         }.build()

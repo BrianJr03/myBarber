@@ -19,11 +19,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
     val fcmToken = MutableLiveData<String>()
 
     fun signUp() {
-        val mobileNo = mobileNo.value!!
-        val password = password.value!!
-        val fcmToken = fcmToken.value!!
-
-        val signUpRequest = SignUpRequest(mobileNo, password, fcmToken)
+        val signUpRequest = SignUpRequest(fcmToken.value!!, mobileNo.value!!, password.value!!)
         Log.i("TAG", signUpRequest.toString())
         repository.signUp(signUpRequest)
     }

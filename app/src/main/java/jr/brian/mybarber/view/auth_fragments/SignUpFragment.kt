@@ -28,23 +28,20 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView(view)
-
-        setupViewModel()
-
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             if (it.isSuccessful) {
                 viewModel.fcmToken.postValue(it.result)
                 Log.d("FCM_Token", "FCM_TOKEN: ${it.result}")
             }
         }
-
+        setupViewModel()
         setupObservers()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view)
     }
 
     private fun initView(view: View) {
@@ -96,7 +93,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        val factory = SignUpVMFactory(Repository(ApiService.INSTANCE))
+        val factory = SignUpVMFactory(Repository())
         viewModel = ViewModelProvider(this, factory)[SignUpViewModel::class.java]
         binding.viewModel = viewModel
     }
