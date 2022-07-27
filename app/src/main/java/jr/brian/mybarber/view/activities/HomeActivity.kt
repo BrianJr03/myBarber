@@ -1,5 +1,6 @@
 package jr.brian.mybarber.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -103,6 +104,7 @@ class HomeActivity : AppCompatActivity() {
         initDrawerHeader()
     }
 
+
     private fun initDrawerHeader() {
         val navView = binding.navView.inflateHeaderView(R.layout.nav_header)
         val pfp = navView.findViewById<AppCompatImageView>(R.id.pfp)
@@ -113,5 +115,22 @@ class HomeActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        binding.apply {
+            if (fabGroup.isVisible) {
+                fabBookAppt.hide()
+                fabServices.hide()
+                fabGroup.visibility = View.GONE
+                fabMain.setIconResource(R.drawable.arrow_up_24)
+            } else {
+                val a = Intent(Intent.ACTION_MAIN).apply {
+                    addCategory(Intent.CATEGORY_HOME)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(a)
+            }
+        }
     }
 }

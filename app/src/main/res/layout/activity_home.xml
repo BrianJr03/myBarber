@@ -132,6 +132,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemIconTint="@color/blueish_idk"
+        app:itemTextColor="@color/blueish_idk"
+        app:itemBackground="@color/transparent_bg_color"
         android:fitsSystemWindows="true"
         app:menu="@menu/nav_drawer_menu" />
 
