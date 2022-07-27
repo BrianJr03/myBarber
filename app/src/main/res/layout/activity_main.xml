@@ -21,8 +21,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="@dimen/_0dp"
+        android:layout_width="@dimen/_300dp"
+        android:layout_height="@dimen/_200dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:backgroundTint="@color/transparent_bg_color"
-        android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintDimensionRatio="1:1"
@@ -85,11 +84,11 @@
         android:layout_height="wrap_content"
         android:text="@string/skip"
         android:textColor="@color/blueish_idk"
-        app:layout_constraintTop_toTopOf="@id/guideline2"
         app:layout_constraintBottom_toTopOf="@id/radio_group"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="20sp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:textStyle="bold"/>
 
     <androidx.constraintlayout.widget.Guideline
