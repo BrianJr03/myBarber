@@ -2,10 +2,12 @@ package jr.brian.mybarber.view.activities
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 
@@ -17,7 +19,30 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        init()
+    }
+
+    private fun init() {
+        initFAB()
         initDrawer()
+    }
+
+    private fun initFAB() {
+        binding.apply {
+            fabMain.setOnClickListener {
+                if (!fabGroup.isVisible) {
+                    fabBookAppt.show()
+                    fabServices.show()
+                    fabGroup.visibility = View.VISIBLE
+                    fabMain.setIconResource(R.drawable.arrow_down_24)
+                } else {
+                    fabBookAppt.hide()
+                    fabServices.hide()
+                    fabGroup.visibility = View.GONE
+                    fabMain.setIconResource(R.drawable.arrow_up_24)
+                }
+            }
+        }
     }
 
     private fun initDrawer() {
@@ -29,6 +54,12 @@ class HomeActivity : AppCompatActivity() {
         binding.apply {
             drawerLayout.addDrawerListener(toggle)
             menu.setOnClickListener {
+                if (fabGroup.isVisible) {
+                    fabBookAppt.hide()
+                    fabServices.hide()
+                    fabGroup.visibility = View.GONE
+                    fabMain.setIconResource(R.drawable.arrow_up_24)
+                }
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }

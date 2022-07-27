@@ -58,6 +58,70 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/fab_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="fab_book_appt,fab_services, tv_book_appt, tv_services" />
+
+        <TextView
+            android:id="@+id/tv_book_appt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:text="@string/book_appt"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_book_appt"
+            app:layout_constraintEnd_toStartOf="@id/fab_book_appt"
+            app:layout_constraintTop_toTopOf="@id/fab_book_appt" />
+
+        <TextView
+            android:id="@+id/tv_services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:text="@string/view_services"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_services"
+            app:layout_constraintEnd_toStartOf="@id/fab_services"
+            app:layout_constraintTop_toTopOf="@id/fab_services" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_book_appt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/calendar_24"
+            app:layout_constraintBottom_toTopOf="@id/fab_services"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/cut_24"
+            app:layout_constraintBottom_toTopOf="@id/fab_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/arrow_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/teal_200" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

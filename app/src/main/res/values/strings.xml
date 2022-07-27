@@ -14,15 +14,15 @@
 
     // Nav Drawer
     <string name="book_appt">Book Appointment</string>
-    <string name="our_services">Our Services</string>
     <string name="showcase">Showcase</string>
     <string name="offers">Offers</string>
     <string name="home_care_products">Home Care Products</string>
-    <string name="how_to_reach">How To Reach</string>
-    <string name="working_hours">Working Hours</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="working_hours">Business Hours</string>
     <string name="user_ratings">User Ratings</string>
     <string name="share">Share</string>
     <string name="about">About</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="view_services">View Services</string>
 </resources>

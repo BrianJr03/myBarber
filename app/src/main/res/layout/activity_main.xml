@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/_40dp"
         android:text="@string/app_name"
         android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/app_name_text_size"
+        android:textSize="@dimen/_40sp"
         app:layout_constraintBottom_toTopOf="@id/animation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
