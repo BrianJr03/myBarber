@@ -38,14 +38,34 @@ class HomeActivity : AppCompatActivity() {
                 if (!fabGroup.isVisible) {
                     fabBookAppt.show()
                     fabServices.show()
+                    fabOptions.show()
                     fabGroup.visibility = View.VISIBLE
                     fabMain.setIconResource(R.drawable.arrow_down_24)
                 } else {
                     fabBookAppt.hide()
                     fabServices.hide()
+                    fabOptions.hide()
                     fabGroup.visibility = View.GONE
                     fabMain.setIconResource(R.drawable.arrow_up_24)
                 }
+            }
+            fabOptions.setOnClickListener {
+                if (!drawerLayout.isOpen) {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                    hideFabGroup()
+                }
+            }
+        }
+    }
+
+    private fun hideFabGroup() {
+        binding.apply {
+            if (fabGroup.isVisible) {
+                fabBookAppt.hide()
+                fabServices.hide()
+                fabOptions.hide()
+                fabGroup.visibility = View.GONE
+                fabMain.setIconResource(R.drawable.arrow_up_24)
             }
         }
     }
@@ -59,12 +79,7 @@ class HomeActivity : AppCompatActivity() {
         binding.apply {
             drawerLayout.addDrawerListener(toggle)
             menu.setOnClickListener {
-                if (fabGroup.isVisible) {
-                    fabBookAppt.hide()
-                    fabServices.hide()
-                    fabGroup.visibility = View.GONE
-                    fabMain.setIconResource(R.drawable.arrow_up_24)
-                }
+                hideFabGroup()
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
@@ -134,6 +149,7 @@ class HomeActivity : AppCompatActivity() {
             if (fabGroup.isVisible) {
                 fabBookAppt.hide()
                 fabServices.hide()
+                fabOptions.hide()
                 fabGroup.visibility = View.GONE
                 fabMain.setIconResource(R.drawable.arrow_up_24)
             } else {
