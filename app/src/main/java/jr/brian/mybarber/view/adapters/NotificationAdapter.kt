@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.NotificationBinding
@@ -31,9 +32,7 @@ class NotificationAdapter(
             val notification = notifications[position]
             bind(notification)
             itemView.setOnClickListener {
-//                val intent = Intent(context, ContactInfoActivity::class.java)
-//                intent.putExtra(CONTACT_DATA, contact)
-//                context.startActivity(intent)
+                openDialog(notification)
             }
         }
     }
@@ -47,7 +46,11 @@ class NotificationAdapter(
         }
     }
 
-    companion object {
-        const val NOTIFICATION_DATA = "notification"
+    private fun openDialog(notification: Notification) {
+        AlertDialog.Builder(context)
+            .setTitle("Notification")
+            .setIcon(R.drawable.notifications_36)
+            .setMessage("${notification.body}\n\n${notification.date}")
+            .show()
     }
 }

@@ -1,6 +1,7 @@
 package jr.brian.mybarber.view.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -23,6 +24,11 @@ class NotificationsActivity : AppCompatActivity() {
         setContentView(binding.root)
         initDummyData()
         setAdapter()
+        if (notifications.isEmpty()) {
+            binding.apply {
+                noNotiMsgGroup.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setAdapter() {
@@ -90,7 +96,7 @@ class NotificationsActivity : AppCompatActivity() {
     private fun initDummyData() {
         notifications = ArrayList()
         notifications.apply {
-            for (i in 1..15) {
+            for (i in 1..7) {
                 add(
                     Notification(
                         body = "Notification $i",

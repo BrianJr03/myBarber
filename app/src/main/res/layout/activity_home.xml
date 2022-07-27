@@ -71,7 +71,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text="@string/single_line_text_view_that_scrolls_automatically_if_the_text_is_too_long_to_fit_in_the_widget"
+            android:text="@string/home_scrolling_text"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_20sp"
             app:layout_constraintBottom_toBottomOf="@id/guideline_homeTv"
