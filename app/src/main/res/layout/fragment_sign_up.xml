@@ -69,8 +69,7 @@
             android:inputType="number"
             android:maxLines="1"
             app:layout_constraintBottom_toTopOf="@id/password_et"
-            app:layout_constraintStart_toStartOf="@id/fullName_et"
- />
+            app:layout_constraintStart_toStartOf="@id/fullName_et" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/password_et"

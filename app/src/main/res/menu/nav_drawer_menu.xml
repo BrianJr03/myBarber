@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/nav_gr"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/book_appt"
+            android:icon="@drawable/calendar_24"
+            android:title="@string/book_appt" />
+    </group>
+
+    <group
+        android:id="@+id/nav_g1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/our_services"
+            android:icon="@drawable/drawer_icon_pl_24"
+            android:title="@string/our_services" />
+
+        <item
+            android:id="@+id/showcase"
+            android:icon="@drawable/drawer_icon_pl_24"
+            android:title="@string/showcase" />
+
+        <item
+            android:id="@+id/offers"
+            android:icon="@drawable/offer_24"
+            android:title="@string/offers" />
+
+        <item
+            android:id="@+id/home_care_products"
+            android:icon="@drawable/drawer_icon_pl_24"
+            android:title="@string/home_care_products" />
+    </group>
+
+    <item
+        android:id="@+id/how_to_reach"
+        android:icon="@drawable/location_24"
+        android:title="@string/how_to_reach" />
+
+    <item
+        android:id="@+id/working_hours"
+        android:icon="@drawable/working_hours_24"
+        android:title="@string/working_hours" />
+
+    <item
+        android:id="@+id/user_ratings"
+        android:icon="@drawable/user_rating_24"
+        android:title="@string/user_ratings" />
+
+    <group
+        android:id="@+id/nav_g4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/share_24"
+            android:title="@string/share" />
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/info_24"
+            android:title="@string/about" />
+    </group>
+</menu>
