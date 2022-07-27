@@ -9,14 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
-import jr.brian.mybarber.model.data.HaircutHomeImage
 import jr.brian.mybarber.model.util.replaceFragment
-import jr.brian.mybarber.view.adapters.HaircutHomeImageAdapter
-import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 
 class HomeActivity : AppCompatActivity() {
@@ -106,16 +101,24 @@ class HomeActivity : AppCompatActivity() {
                 R.id.about -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
+                R.id.sign_out_drawer -> {
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    signOut()
+                }
             }
             true
         }
         initDrawerHeader()
     }
 
-
     private fun initDrawerHeader() {
         val navView = binding.navView.inflateHeaderView(R.layout.nav_header)
         val pfp = navView.findViewById<AppCompatImageView>(R.id.pfp)
+    }
+
+    private fun signOut() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
