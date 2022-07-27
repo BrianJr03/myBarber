@@ -29,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
         replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
         initDrawer()
+        binding.homeTv.isSelected = true
     }
 
     private fun initFAB() {

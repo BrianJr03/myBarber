@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/search"
+            android:id="@+id/notifications"
             android:layout_width="@dimen/_40dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10dp"
@@ -58,6 +58,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/menu" />
+
+        <TextView
+            android:id="@+id/home_tv"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="@string/single_line_text_view_that_scrolls_automatically_if_the_text_is_too_long_to_fit_in_the_widget"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_homeTv"
+            app:layout_constraintEnd_toStartOf="@id/notifications"
+            app:layout_constraintStart_toEndOf="@id/menu"
+            app:layout_constraintTop_toTopOf="@id/guideline_grid" />
 
         <FrameLayout
             android:id="@+id/container_home"
@@ -137,6 +155,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/teal_200" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_homeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="213dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
