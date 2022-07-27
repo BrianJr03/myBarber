@@ -30,4 +30,6 @@
     <string name="sign_out">Sign Out</string>
     <string name="single_line_text_view_that_scrolls_automatically_if_the_text_is_too_long_to_fit_in_the_widget">Welcome to myBarber! \u0020\u0020\u0020 Today\'s specials include 15% off boys haircuts. \u0020\u0020\u0020 Our business hours are 9am - 6pm. \u0020\u0020\u0020 Please remember to schedule an appointment as we are no longer taking walk-ins. \u0020\u0020\u0020 Thank You!</string>
     <string name="more_options">More Options</string>
+    <string name="pl_date">7/27/2022</string>
+    <string name="pl_notification">Notification</string>
 </resources>

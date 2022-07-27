@@ -28,8 +28,19 @@ class HomeActivity : AppCompatActivity() {
     private fun init() {
         replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
+        binding.apply {
+            homeTv.isSelected = true
+            notificationsBtn.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@HomeActivity,
+                        NotificationsActivity::class.java
+                    )
+                )
+            }
+        }
         initDrawer()
-        binding.homeTv.isSelected = true
+
     }
 
     private fun initFAB() {

@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/notifications"
+            android:id="@+id/notifications_btn"
             android:layout_width="@dimen/_40dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10dp"
@@ -75,7 +75,7 @@
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_20sp"
             app:layout_constraintBottom_toBottomOf="@id/guideline_homeTv"
-            app:layout_constraintEnd_toStartOf="@id/notifications"
+            app:layout_constraintEnd_toStartOf="@id/notifications_btn"
             app:layout_constraintStart_toEndOf="@id/menu"
             app:layout_constraintTop_toTopOf="@id/guideline_grid" />
 

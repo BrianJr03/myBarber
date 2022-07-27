@@ -14,15 +14,20 @@
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.NotificationsActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:name=".view.activities.HomeActivity"
-            android:exported="false" />
+            tools:ignore="LockedOrientationActivity"/>
         <activity
+            android:name=".view.activities.HomeActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".view.activities.StartUpActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,10 +35,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
             android:name=".view.activities.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>
