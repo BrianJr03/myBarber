@@ -32,7 +32,7 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/barber_lottie" />
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
