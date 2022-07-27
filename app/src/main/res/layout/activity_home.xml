@@ -48,11 +48,24 @@
             app:layout_constraintGuide_percent="0.11" />
 
         <TextView
+            android:id="@+id/app_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home"
+            android:text="@string/app_name"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_50sp"
+            app:layout_constraintBottom_toTopOf="@id/container_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/container_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/transparent_bg_color"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,10 +145,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:itemBackground="@color/transparent_bg_color"
         app:itemIconTint="@color/blueish_idk"
         app:itemTextColor="@color/blueish_idk"
-        app:itemBackground="@color/transparent_bg_color"
-        android:fitsSystemWindows="true"
         app:menu="@menu/nav_drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

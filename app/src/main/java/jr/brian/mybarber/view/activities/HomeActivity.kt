@@ -9,8 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
+import jr.brian.mybarber.model.data.HaircutHomeImage
+import jr.brian.mybarber.model.util.replaceFragment
+import jr.brian.mybarber.view.adapters.HaircutHomeImageAdapter
+import jr.brian.mybarber.view.auth_fragments.SignInFragment
+import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -24,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
         initDrawer()
     }
