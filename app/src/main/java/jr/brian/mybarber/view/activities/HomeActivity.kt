@@ -1,21 +1,16 @@
 package jr.brian.mybarber.view.activities
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
-
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -43,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         initDrawer()
-
     }
 
     private fun initFAB() {
@@ -57,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             fabSignOut.setOnClickListener {
-                openSignOutDialog()
+                signOut()
             }
         }
     }
@@ -83,7 +77,8 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.view_services -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
-                    startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
+                    startActivity(
+                        Intent(this@HomeActivity, ServiceActivity::class.java))
                 }
                 R.id.showcase -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -123,40 +118,6 @@ class HomeActivity : AppCompatActivity() {
     private fun signOut() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
-    }
-
-    private fun openSignOutDialog() {
-        val alertDialog = AlertDialog.Builder(this)
-            .setTitle("Sign Out")
-            .setMessage("Do you wish to sign out?")
-            .setPositiveButtonIcon(
-                AppCompatResources.getDrawable(
-                    this,
-                    R.drawable.sign_out_10
-                )
-            )
-            .setPositiveButton(null) { d, _ ->
-                d.dismiss()
-                signOut()
-            }
-            .setNegativeButtonIcon(
-                AppCompatResources.getDrawable(
-                    this,
-                    R.drawable.close_10
-                )
-            )
-            .setPositiveButton(null) { d, _ ->
-                d.dismiss()
-            }
-            .create()
-        alertDialog.setOnShowListener {
-            alertDialog.findViewById<TextView?>(android.R.id.message)
-                ?.apply {
-                    setTextColor(getColor(R.color.blueish_idk))
-                    setTypeface(null, Typeface. BOLD)
-                }
-        }
-        alertDialog.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
