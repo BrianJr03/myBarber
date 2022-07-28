@@ -6,6 +6,16 @@
     android:layout_height="wrap_content"
     tools:context=".view.fragments.HaircutHomeFragment">
 
+    <TextView
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/highlighted_cuts"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="@id/recyclerView"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -21,13 +31,12 @@
         android:id="@+id/play_scroll_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_10dp"
         android:backgroundTint="@color/transparent_bg_color"
         android:clickable="true"
         android:contentDescription="@string/scroll_images"
         android:focusable="true"
         android:src="@drawable/compare_arrows_36"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/recyclerView"
         app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

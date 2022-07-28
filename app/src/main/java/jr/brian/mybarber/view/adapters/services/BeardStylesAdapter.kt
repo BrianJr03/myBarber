@@ -34,7 +34,7 @@ class BeardStylesAdapter(
             val serviceItem = serviceItems[position]
             bind(serviceItem)
             itemView.setOnClickListener {
-                context.startActivity(Intent(context, BeardStylesActivity::class.java))
+//                context.startActivity(Intent(context, BeardStylesActivity::class.java))
             }
         }
     }
