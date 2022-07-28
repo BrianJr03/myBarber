@@ -35,4 +35,6 @@
     <string name="error">error</string>
     <string name="no_notifications">No notifications to show</string>
     <string name="scroll_images">Scroll Images</string>
+    <string name="haircuts">Haircuts</string>
+    <string name="service_img">image</string>
 </resources>

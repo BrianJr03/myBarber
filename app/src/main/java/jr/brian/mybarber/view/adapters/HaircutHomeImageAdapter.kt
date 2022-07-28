@@ -3,7 +3,9 @@ package jr.brian.mybarber.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.HaircutHomeImageBinding
 import jr.brian.mybarber.model.data.HaircutHomeImage
 
@@ -27,9 +29,10 @@ class HaircutHomeImageAdapter(private val cuts: List<HaircutHomeImage>) :
         }
     }
 
-    inner class HaircutHomeImageViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    inner class HaircutHomeImageViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         fun bind(image: HaircutHomeImage) {
-            binding.haircutImage.setImageResource(image.image)
+            val img = v.findViewById<AppCompatImageView>(R.id.haircut_image)
+            img.setImageResource(image.image)
         }
     }
 }

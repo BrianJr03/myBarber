@@ -14,10 +14,13 @@
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.ServiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.NotificationsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.activities.HomeActivity"
             android:exported="false"

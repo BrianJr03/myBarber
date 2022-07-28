@@ -60,6 +60,10 @@ class HomeActivity : AppCompatActivity() {
                     fabMain.setIconResource(R.drawable.arrow_up_24)
                 }
             }
+            fabServices.setOnClickListener {
+                startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
+                hideFabGroup()
+            }
             fabOptions.setOnClickListener {
                 if (!drawerLayout.isOpen) {
                     drawerLayout.openDrawer(GravityCompat.START)
