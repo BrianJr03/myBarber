@@ -13,7 +13,7 @@
         android:id="@+id/nav_g1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/our_services"
+            android:id="@+id/view_services"
             android:icon="@drawable/cut_24"
             android:title="@string/view_services" />
 
@@ -34,12 +34,12 @@
     </group>
 
     <item
-        android:id="@+id/how_to_reach"
+        android:id="@+id/contact_us"
         android:icon="@drawable/location_24"
         android:title="@string/contact_us" />
 
     <item
-        android:id="@+id/working_hours"
+        android:id="@+id/business_hours"
         android:icon="@drawable/working_hours_24"
         android:title="@string/working_hours" />
 

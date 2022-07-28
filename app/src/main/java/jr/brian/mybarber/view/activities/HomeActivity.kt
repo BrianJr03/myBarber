@@ -105,8 +105,9 @@ class HomeActivity : AppCompatActivity() {
                 R.id.book_appt -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.our_services -> {
+                R.id.view_services -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
                 }
                 R.id.showcase -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -117,10 +118,10 @@ class HomeActivity : AppCompatActivity() {
                 R.id.home_care_products -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.how_to_reach -> {
+                R.id.contact_us -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.working_hours -> {
+                R.id.business_hours -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.user_ratings -> {
