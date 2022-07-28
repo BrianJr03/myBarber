@@ -12,11 +12,11 @@ import retrofit2.http.POST
 interface ApiService {
 
     @Headers("Content-type: application/json")
-    @POST("/AppUser/signup")
+    @POST("AppUser/signup")
     fun signUp(@Body signUpRequest: SignUpRequest): Call<SignUpResponse>
 
     @Headers("Content-type: application/json")
-    @POST("/AppUser/login")
+    @POST("AppUser/login")
     fun signIn(@Body signInRequest: SignInRequest): Call<SignInResponse>
 
 //    @GET("User/jobs")
@@ -27,8 +27,4 @@ interface ApiService {
 //        @Path("user_id") user_id: String,
 //        @Path("job_id") job_id: String
 //    ): Call<ApplyJobResponse>
-
-    companion object {
-        val INSTANCE: ApiService = ApiClient.retrofit.create(ApiService::class.java)
-    }
 }

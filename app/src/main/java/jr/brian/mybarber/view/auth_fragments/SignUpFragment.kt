@@ -13,11 +13,10 @@ import com.google.firebase.messaging.FirebaseMessaging
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentSignUpBinding
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.data.remote.ApiService
 import jr.brian.mybarber.model.util.*
 import jr.brian.mybarber.view.activities.HomeActivity
-import jr.brian.mybarber.viewmodel.SignUpVMFactory
-import jr.brian.mybarber.viewmodel.SignUpViewModel
+import jr.brian.mybarber.viewmodel.sign_up.SignUpVMFactory
+import jr.brian.mybarber.viewmodel.sign_up.SignUpViewModel
 
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
@@ -100,8 +99,7 @@ class SignUpFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.loginResponse.observe(viewLifecycleOwner) {
-//            saveUser(it.user)
-            startActivity(Intent(requireContext(), HomeActivity::class.java))
+//           TODO - notify user to sign in
             activity?.finish()
         }
 
@@ -109,15 +107,4 @@ class SignUpFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
-
-//    private fun saveUser(user: User) {
-//        val pref = getSharedPreferences("users", AppCompatActivity.MODE_PRIVATE)
-//
-//        pref.edit().apply{
-//            putString("name", user.name)
-//            putString("mobile_no", user.mobile_no)
-//            putString("user_id", user.user_id)
-//            apply()
-//        }
-//    }
 }

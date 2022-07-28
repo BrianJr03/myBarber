@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-
         <variable
             name="viewModel"
-            type="jr.brian.mybarber.viewmodel.SignUpViewModel" />
+            type="jr.brian.mybarber.viewmodel.sign_up.SignUpViewModel" />
 
         <import type="android.view.View" />
     </data>
