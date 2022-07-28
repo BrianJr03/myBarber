@@ -17,4 +17,17 @@
         tools:itemCount="1"
         tools:listitem="@layout/haircut_home_image" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/play_scroll_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:backgroundTint="@color/transparent_bg_color"
+        android:clickable="true"
+        android:contentDescription="@string/scroll_images"
+        android:focusable="true"
+        android:src="@drawable/compare_arrows_36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

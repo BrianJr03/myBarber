@@ -1,14 +1,18 @@
 package jr.brian.mybarber.view.fragments
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentHaircutHomeBinding
 import jr.brian.mybarber.model.data.HaircutHomeImage
+import jr.brian.mybarber.model.util.smoothSnapToPosition
 import jr.brian.mybarber.view.adapters.HaircutHomeImageAdapter
 
 class HaircutHomeFragment : Fragment() {
@@ -22,6 +26,7 @@ class HaircutHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHaircutHomeBinding.inflate(inflater, container, false)
+        init()
         setAdapter()
         return binding.root
     }
@@ -38,12 +43,29 @@ class HaircutHomeFragment : Fragment() {
         }
     }
 
+    private fun init() {
+        binding.apply {
+            var isInFirstPosition = true
+            playScrollBtn.setOnClickListener {
+                isInFirstPosition = if (isInFirstPosition) {
+                    recyclerView.smoothScrollToPosition(homeImageAdapter.itemCount)
+                    false
+                } else {
+                    recyclerView.smoothScrollToPosition(0)
+                    true
+                }
+            }
+        }
+    }
+
     private fun initData() {
         cuts = ArrayList()
-        for (i in 1..15) {
+        for (i in 1..7) {
             cuts.add(
                 HaircutHomeImage(R.drawable.profile_pl_24)
             )
         }
     }
+
+
 }

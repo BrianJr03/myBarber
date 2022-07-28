@@ -34,4 +34,5 @@
     <string name="pl_notification">Notification</string>
     <string name="error">error</string>
     <string name="no_notifications">No notifications to show</string>
+    <string name="scroll_images">Scroll Images</string>
 </resources>
