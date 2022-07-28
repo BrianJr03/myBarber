@@ -3,6 +3,7 @@ package jr.brian.mybarber.model.util
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment

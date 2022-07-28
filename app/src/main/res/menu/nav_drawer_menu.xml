@@ -60,10 +60,5 @@
             android:id="@+id/about"
             android:icon="@drawable/info_24"
             android:title="@string/about" />
-
-        <item
-            android:id="@+id/sign_out_drawer"
-            android:icon="@drawable/sign_out_24"
-            android:title="@string/sign_out" />
     </group>
 </menu>
