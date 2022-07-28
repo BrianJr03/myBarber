@@ -42,4 +42,7 @@
     <string name="dollar_sign">$</string>
     <string name="pl_price">30</string>
     <string name="highlighted_cuts">Highlighted Cuts</string>
+    <string name="notifications">Notifications</string>
+    <string name="_1">1</string>
+    <string name="noti_bell">noti_bell</string>
 </resources>

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable-v24/menu_36.xml" value="0.129" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/arrow_back_36.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/calendar_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/close_24.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/compare_arrows_24.xml" value="0.1" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_massage_and_spa.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_notifications.xml" value="0.1" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_notifications.xml" value="0.22" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_offers.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_official_looks.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_service.xml" value="0.20416666666666666" />

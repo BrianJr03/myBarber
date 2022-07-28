@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textColor="@color/blueish_idk"
-            android:textSize="@dimen/_30sp"
+            android:textSize="@dimen/activity_header_text_size"
             app:layout_constraintBottom_toBottomOf="@id/menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
