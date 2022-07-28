@@ -18,7 +18,7 @@
             android:layout_height="@dimen/_200dp"
             android:layout_margin="10dp"
             android:cropToPadding="true"
-            android:src="@drawable/profile_pl_24"
+            android:src="@drawable/profile_pl_100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

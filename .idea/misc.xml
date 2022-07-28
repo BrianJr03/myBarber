@@ -17,14 +17,22 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/offer_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/play_arrow_36.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/profile_pl_24.xml" value="0.129" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/profile_pl_60.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/services_pl_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/share_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/sign_out_24.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/user_rating_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/working_hours_24.xml" value="0.129" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_beard_styles.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_hair_colors.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_haircut.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_head_massage.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_massage_and_spa.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_notifications.xml" value="0.1" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_offers.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_official_looks.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_service.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_start_up.xml" value="0.16" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/fragment_haircut_home.xml" value="0.165625" />
@@ -34,6 +42,7 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/notification.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/service_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/service_item.xml" value="0.25" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/xml/scene_01.xml" value="0.25416666666666665" />
       </map>

@@ -21,12 +21,12 @@ class ServiceActivity : AppCompatActivity() {
 
     private fun setAdapter() {
         initData()
-        serviceCardAdapter = ServiceCardAdapter(serviceCards)
+        serviceCardAdapter = ServiceCardAdapter(this, serviceCards)
         binding.apply {
-            notesRecyclerView.layoutManager = GridLayoutManager(
+            serviceRecyclerView.layoutManager = GridLayoutManager(
                 this@ServiceActivity, 2
             )
-            notesRecyclerView.adapter = serviceCardAdapter
+            serviceRecyclerView.adapter = serviceCardAdapter
         }
     }
 
@@ -36,7 +36,7 @@ class ServiceActivity : AppCompatActivity() {
             serviceCards.add(
                 ServiceCard(
                     "",
-                    "Haircuts"
+                    "Beard Styles"
                 )
             )
         }

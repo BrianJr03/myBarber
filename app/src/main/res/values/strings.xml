@@ -37,4 +37,8 @@
     <string name="scroll_images">Scroll Images</string>
     <string name="haircuts">Haircuts</string>
     <string name="service_img">image</string>
+    <string name="pl_duration">15 Minutes</string>
+    <string name="pl_title">Bald Fade</string>
+    <string name="dollar_sign">$</string>
+    <string name="pl_price">30</string>
 </resources>

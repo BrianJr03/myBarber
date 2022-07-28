@@ -58,7 +58,7 @@ class HaircutHomeFragment : Fragment() {
         cuts = ArrayList()
         for (i in 1..7) {
             cuts.add(
-                HaircutHomeImage(R.drawable.profile_pl_24)
+                HaircutHomeImage(R.drawable.profile_pl_100)
             )
         }
     }

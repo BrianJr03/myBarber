@@ -14,6 +14,27 @@
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.services.OffersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.BeardStylesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.HairColorsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.OfficialLooksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.HeadMassageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.MassageAndSpaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.services.HaircutActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.ServiceActivity"
             android:exported="false" />
         <activity
