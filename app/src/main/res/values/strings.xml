@@ -45,4 +45,7 @@
     <string name="notifications">Notifications</string>
     <string name="_1">1</string>
     <string name="noti_bell">noti_bell</string>
+    <string name="call">Call</string>
+    <string name="maps">Maps</string>
+    <string name="visit_us">Visit Us</string>
 </resources>

@@ -21,15 +21,6 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
     beginTransaction().func().commit()
 }
 
-fun showSnackbar(str: String, view: View, id: Int) {
-    Snackbar.make(
-        view.context,
-        view.findViewById(id),
-        str,
-        Snackbar.LENGTH_SHORT
-    ).show()
-}
-
 fun startHomeActivity(context: Context, activity: AppCompatActivity) {
     ContextCompat.startActivity(
         context,

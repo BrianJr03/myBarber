@@ -1,6 +1,8 @@
 package jr.brian.mybarber.view.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -40,10 +42,23 @@ class HomeActivity : AppCompatActivity() {
         initDrawer()
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun initFAB() {
         binding.apply {
             fabServices.setOnClickListener {
                 startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
+            }
+            fabCall.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:1234567890")
+                startActivity(intent)
+            }
+            fabMaps.setOnClickListener {
+                val maps = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("geo:25.781620, -80.131200?z=11")
+                )
+                startActivity(maps)
             }
             fabOptions.setOnClickListener {
                 if (!drawerLayout.isOpen) {
@@ -78,7 +93,8 @@ class HomeActivity : AppCompatActivity() {
                 R.id.view_services -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                     startActivity(
-                        Intent(this@HomeActivity, ServiceActivity::class.java))
+                        Intent(this@HomeActivity, ServiceActivity::class.java)
+                    )
                 }
                 R.id.showcase -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
