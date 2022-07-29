@@ -18,6 +18,12 @@ class BeardStylesActivity : AppCompatActivity() {
         binding = ActivityBeardStylesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setAdapter()
+        binding.apply {
+            backBeardStyles.setOnClickListener {
+                super.onBackPressed()
+                finish()
+            }
+        }
     }
 
     private fun setAdapter() {

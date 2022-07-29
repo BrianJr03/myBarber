@@ -48,4 +48,7 @@
     <string name="call">Call</string>
     <string name="maps">Maps</string>
     <string name="visit_us">Visit Us</string>
+    <string name="back">back</string>
+    <string name="services">Services</string>
+    <string name="beard_styles">Beard Styles</string>
 </resources>

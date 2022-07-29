@@ -17,6 +17,12 @@ class ServiceActivity : AppCompatActivity() {
         binding = ActivityServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setAdapter()
+        binding.apply {
+            backService.setOnClickListener {
+                super.onBackPressed()
+                finish()
+            }
+        }
     }
 
     private fun setAdapter() {
