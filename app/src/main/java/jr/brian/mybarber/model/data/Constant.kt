@@ -31,4 +31,6 @@ object Constant {
 
     const val HAIRCUT_PL_7 = "https://menshaircuts.com/wp-content/uploads/2021/12/how-to-bear" +
             "d-styles-imperial-short-hair-fade-683x1024.jpg"
+
+    const val SHOP_ADDRESS = "235 W Van Buren St, Chicago, IL 60607"
 }

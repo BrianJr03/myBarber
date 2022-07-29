@@ -61,7 +61,7 @@ class HomeActivity : AppCompatActivity() {
             fabMaps.setOnClickListener {
                 val maps = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("geo:25.781620, -80.131200?z=11")
+                    Uri.parse("geo:41.876701, -87.634903?z=11")
                 )
                 startActivity(maps)
             }
