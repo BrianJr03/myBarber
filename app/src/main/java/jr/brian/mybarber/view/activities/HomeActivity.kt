@@ -13,7 +13,6 @@ import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.replaceFragment
-import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 
@@ -115,6 +114,12 @@ class HomeActivity : AppCompatActivity() {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.business_hours -> {
+                    startActivity(
+                        Intent(
+                            this@HomeActivity,
+                            BusinessHoursActivity::class.java
+                        )
+                    )
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.user_ratings -> {
