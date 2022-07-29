@@ -121,6 +121,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.about -> {
+                    startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
             }

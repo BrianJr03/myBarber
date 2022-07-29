@@ -51,4 +51,9 @@
     <string name="back">back</string>
     <string name="services">Services</string>
     <string name="beard_styles">Beard Styles</string>
+    <string name="app_version">Version 1.0.1</string>
+    <string name="developed_by">Developed By</string>
+    <string name="website">Website</string>
+    <string name="website_url">https://brianjr03.github.io<a href="https://brianjr03.github.io"/></string>
+    <string name="company_name">ASAP Industries</string>
 </resources>
