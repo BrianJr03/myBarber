@@ -13,6 +13,7 @@ import androidx.work.WorkerParameters
 import jr.brian.mybarber.R
 import jr.brian.mybarber.view.activities.HomeActivity
 
+@Suppress("ALL")
 class WorkManagerClass(private val context: Context, workerParameters: WorkerParameters) :
     Worker(context, workerParameters) {
 

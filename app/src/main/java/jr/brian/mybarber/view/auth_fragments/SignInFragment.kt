@@ -18,7 +18,6 @@ import jr.brian.mybarber.model.util.validatePassword
 import jr.brian.mybarber.model.util.validatePhone
 import jr.brian.mybarber.viewmodel.sign_in.SignInVMFactory
 import jr.brian.mybarber.viewmodel.sign_in.SignInViewModel
-import java.util.concurrent.TimeUnit
 
 class SignInFragment : Fragment() {
 
@@ -101,12 +100,12 @@ class SignInFragment : Fragment() {
 
         WorkManager.getInstance(requireActivity().applicationContext)
             .getWorkInfoByIdLiveData(otr.id).observe(
-            requireActivity()
-        ) {
-            if (it != null && it.state == WorkInfo.State.SUCCEEDED) {
-                viewModel.signIn()
+                requireActivity()
+            ) {
+                if (it != null && it.state == WorkInfo.State.SUCCEEDED) {
+                    viewModel.signIn()
+                }
             }
-        }
     }
 
     companion object {
