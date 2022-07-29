@@ -63,4 +63,7 @@ dependencies {
     // Lottie
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation("androidx.core:core-ktx:1.8.0")
 }
