@@ -35,7 +35,7 @@
             android:clickable="true"
             android:contentDescription="@string/show_menu"
             android:focusable="true"
-            android:src="@drawable/notifications_none_36"
+            android:src="@drawable/notifications_36"
             app:layout_constraintBottom_toTopOf="@id/guideline_grid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

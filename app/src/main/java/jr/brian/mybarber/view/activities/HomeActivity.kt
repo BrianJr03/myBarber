@@ -13,6 +13,8 @@ import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.replaceFragment
+import jr.brian.mybarber.model.util.startHomeActivity
+import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 
 class HomeActivity : AppCompatActivity() {
@@ -29,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun init() {
         sharedPrefHelper = SharedPrefHelper(this)
+        verifySignIn()
         replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
         binding.apply {
@@ -139,6 +142,21 @@ class HomeActivity : AppCompatActivity() {
         sharedPrefHelper.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
+    }
+
+    private fun verifySignIn() {
+        sharedPrefHelper.encryptedSharedPrefs.apply {
+            if (!(this.contains(SignInFragment.PHONE_NUM) && this.contains(SignInFragment.PASSWORD))) {
+                binding.apply {
+                    tvSignOut.text = getString(R.string.sign_in)
+                    fabSignOut.setIconResource(R.drawable.sign_in_24)
+                    fabSignOut.setOnClickListener {
+                        super.onBackPressed()
+                        finish()
+                    }
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
