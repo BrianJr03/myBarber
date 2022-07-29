@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import jr.brian.mybarber.databinding.ActivityStartUpBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
@@ -26,24 +27,36 @@ class StartUpActivity : AppCompatActivity() {
         supportActionBar?.hide()
         sharedPrefHelper = SharedPrefHelper(this)
         Handler(Looper.getMainLooper()).postDelayed({
-            verifySignIn()
+            doWork()
         }, 2000)
+    }
 
+    private fun doWork() {
         val data = Data.Builder()
+
         data.putString("message", "App Update")
         data.putString("content", "Please install latest update.")
+
         val otr = OneTimeWorkRequest.Builder(WorkManagerClass::class.java)
+            .setInputData(data.build())
             .setInitialDelay(2, TimeUnit.SECONDS)
             .build()
         WorkManager.getInstance(applicationContext).enqueue(otr)
+        WorkManager.getInstance(this.applicationContext)
+            .getWorkInfoByIdLiveData(otr.id).observe(
+                this
+            ) {
+                if (it != null && it.state == WorkInfo.State.SUCCEEDED) {
+                    verifySignIn()
+                }
+            }
     }
 
     private fun verifySignIn() {
         sharedPrefHelper.encryptedSharedPrefs.apply {
             if (this.contains(SignInFragment.PHONE_NUM) && this.contains(SignInFragment.PASSWORD)) {
                 startHomeActivity(this@StartUpActivity, this@StartUpActivity)
-            }
-            else {
+            } else {
                 startActivity(Intent(this@StartUpActivity, MainActivity::class.java))
                 finish()
             }
