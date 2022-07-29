@@ -22,7 +22,7 @@ class StartUpActivity : AppCompatActivity() {
         sharedPrefHelper = SharedPrefHelper(this)
         Handler(Looper.getMainLooper()).postDelayed({
             verifySignIn()
-        }, 2700)
+        }, 2000)
     }
 
     private fun verifySignIn() {
