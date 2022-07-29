@@ -81,14 +81,6 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    companion object {
-        const val FILENAME = "login-details"
-        const val FULL_NAME = "full name"
-        const val MOBILE_NO = "mobile no"
-        const val EMAIL = "email"
-        const val PASSWORD = "password"
-    }
-
     private fun clear() {
         binding.apply {
             fullNameEt.text?.clear()
@@ -107,7 +99,7 @@ class SignUpFragment : Fragment() {
     private fun setupObservers() {
         viewModel.loginResponse.observe(viewLifecycleOwner) {
 //           TODO - notify user to sign in
-            activity?.finish()
+            clear()
         }
 
         viewModel.error.observe(viewLifecycleOwner) {

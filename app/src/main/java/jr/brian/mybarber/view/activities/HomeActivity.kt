@@ -11,12 +11,14 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var sharedPrefHelper: SharedPrefHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        sharedPrefHelper = SharedPrefHelper(this)
         replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
         binding.apply {
@@ -132,6 +135,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
+        sharedPrefHelper.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

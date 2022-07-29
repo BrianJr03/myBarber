@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.response.SignInResponse
 

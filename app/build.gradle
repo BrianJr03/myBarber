@@ -47,6 +47,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
 
+    // Encrypted Shared Prefs
+    implementation 'androidx.security:security-crypto:1.0.0'
+    implementation 'androidx.security:security-app-authenticator:1.0.0-alpha02'
+
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

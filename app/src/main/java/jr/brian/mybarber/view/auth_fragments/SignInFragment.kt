@@ -1,28 +1,26 @@
 package jr.brian.mybarber.view.auth_fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import jr.brian.mybarber.databinding.FragmentSignInBinding
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.UserLogin
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.model.util.validatePassword
 import jr.brian.mybarber.model.util.validatePhone
-import jr.brian.mybarber.view.activities.HomeActivity
 import jr.brian.mybarber.viewmodel.sign_in.SignInVMFactory
 import jr.brian.mybarber.viewmodel.sign_in.SignInViewModel
-import jr.brian.mybarber.viewmodel.sign_up.SignUpVMFactory
-import jr.brian.mybarber.viewmodel.sign_up.SignUpViewModel
 
 class SignInFragment : Fragment() {
 
     private lateinit var binding: FragmentSignInBinding
+    private lateinit var sharedPrefHelper: SharedPrefHelper
     lateinit var viewModel: SignInViewModel
 
     override fun onCreateView(
@@ -41,6 +39,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun init() {
+        sharedPrefHelper = SharedPrefHelper(requireContext())
         binding.apply {
             signInBTN.setOnClickListener {
                 validateForm()
@@ -56,7 +55,12 @@ class SignInFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.loginResponse.observe(viewLifecycleOwner) {
-//            TODO - saveUser(it.user)
+            sharedPrefHelper.saveUser(
+                UserLogin(
+                    binding.phoneEtSignIn.text.toString(),
+                    binding.passwordEtSignIn.text.toString()
+                )
+            )
             startHomeActivity(requireContext(), requireActivity())
             activity?.finish()
         }
@@ -77,17 +81,8 @@ class SignInFragment : Fragment() {
     }
 
     companion object {
-        const val FILENAME = "sign_in_details"
+        const val FILENAME = "login-details"
+        const val PHONE_NUM = "phone_num"
+        const val PASSWORD = "password"
     }
-
-    //    private fun saveUser(user: User) {
-//        val pref = getSharedPreferences("users", AppCompatActivity.MODE_PRIVATE)
-//
-//        pref.edit().apply{
-//            putString("name", user.name)
-//            putString("mobile_no", user.mobile_no)
-//            putString("user_id", user.user_id)
-//            apply()
-//        }
-//    }
 }
