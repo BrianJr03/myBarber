@@ -110,9 +110,6 @@ class HomeActivity : AppCompatActivity() {
                 R.id.home_care_products -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.contact_us -> {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-                }
                 R.id.business_hours -> {
                     startActivity(
                         Intent(
@@ -126,6 +123,13 @@ class HomeActivity : AppCompatActivity() {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.share -> {
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, "https://brianjr03.github.io")
+                        type = "text/plain"
+                    }
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.about -> {

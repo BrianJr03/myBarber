@@ -26,17 +26,12 @@
             android:id="@+id/offers"
             android:icon="@drawable/offer_24"
             android:title="@string/offers" />
-
-        <item
-            android:id="@+id/home_care_products"
-            android:icon="@drawable/face_retouching_natural_24"
-            android:title="@string/home_care_products" />
     </group>
 
     <item
-        android:id="@+id/contact_us"
-        android:icon="@drawable/location_24"
-        android:title="@string/contact_us" />
+        android:id="@+id/home_care_products"
+        android:icon="@drawable/face_retouching_natural_24"
+        android:title="@string/home_care_products" />
 
     <item
         android:id="@+id/business_hours"

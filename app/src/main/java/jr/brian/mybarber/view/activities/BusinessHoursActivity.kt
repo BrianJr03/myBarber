@@ -31,8 +31,8 @@ class BusinessHoursActivity : AppCompatActivity() {
             val currentDate = LocalDateTime.now()
             val day = currentDate.dayOfWeek
             val hour = currentDate.hour
-            val businessHours = intArrayOf(9, 10, 11, 12, 13, 14, 15, 16, 17) // 9 am - 5 pm CST
-            val satHours = intArrayOf(9, 10, 11, 12, 13, 14) // 9 am - 2 pm CST
+            val businessHours = intArrayOf(9, 10, 11, 12, 13, 14, 15, 16) // 9 am - 4 pm CST
+            val satHours = intArrayOf(9, 10, 11, 12, 13) // 9 am - 1 pm CST
             if (hour !in businessHours) {
                 openTv.text = getString(R.string.closed_caps)
             } else if (day.toString() == "SATURDAY" && hour !in satHours) {
