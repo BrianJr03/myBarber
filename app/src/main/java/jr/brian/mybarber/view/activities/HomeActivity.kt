@@ -50,6 +50,9 @@ class HomeActivity : AppCompatActivity() {
     @SuppressLint("QueryPermissionsNeeded")
     private fun initFAB() {
         binding.apply {
+            fabBookAppt.setOnClickListener {
+                startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+            }
             fabServices.setOnClickListener {
                 startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
             }
@@ -94,6 +97,9 @@ class HomeActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.book_appt -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    startActivity(
+                        Intent(this@HomeActivity, BarbersActivity::class.java)
+                    )
                 }
                 R.id.view_services -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)

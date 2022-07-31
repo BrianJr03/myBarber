@@ -41,6 +41,7 @@ class ServiceCardAdapter(private val context: Context, private val serviceCards:
         fun bind(serviceCard: ServiceCard) {
             val name = v.findViewById<TextView>(R.id.service_name)
             val img = v.findViewById<AppCompatImageView>(R.id.service_card_img)
+            // TODO - load image via glide
             name.text = serviceCard.serviceName
         }
     }

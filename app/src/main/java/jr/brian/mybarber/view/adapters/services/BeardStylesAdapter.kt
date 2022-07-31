@@ -45,6 +45,7 @@ class BeardStylesAdapter(
             val price = v.findViewById<TextView>(R.id.sItem_price)
             val duration = v.findViewById<TextView>(R.id.sItem_duration)
             val image = v.findViewById<AppCompatImageView>(R.id.sItem_image)
+            // TODO - load image via glide
             title.text = serviceItem.title
             price.text = serviceItem.price
             duration.text = serviceItem.duration

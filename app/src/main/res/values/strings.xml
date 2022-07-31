@@ -69,4 +69,6 @@
     <string name="closed_caps">CLOSED</string>
     <string name="business_hours_time">9 am - 5 pm</string>
     <string name="business_hours_time_sat">9 am - 2 pm</string>
+    <string name="pl_barber_name">Greg Wilson</string>
+    <string name="barbers">Barbers</string>
 </resources>
