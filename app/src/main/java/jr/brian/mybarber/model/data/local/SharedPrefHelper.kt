@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import jr.brian.mybarber.model.data.UserLogin
+import jr.brian.mybarber.model.data.home.UserLogin
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 
 class SharedPrefHelper(context: Context) {

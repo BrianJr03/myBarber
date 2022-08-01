@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.NotificationBinding
-import jr.brian.mybarber.model.data.Notification
+import jr.brian.mybarber.model.data.notification.Notification
 import jr.brian.mybarber.model.util.openDialog
 
 class NotificationAdapter(

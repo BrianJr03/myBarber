@@ -1,6 +1,5 @@
 package jr.brian.mybarber.view.auth_fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.FirebaseMessaging
-import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentSignUpBinding
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.util.*
-import jr.brian.mybarber.view.activities.HomeActivity
+import jr.brian.mybarber.model.util.validateCountryCode
+import jr.brian.mybarber.model.util.validateName
+import jr.brian.mybarber.model.util.validatePassword
+import jr.brian.mybarber.model.util.validatePhone
 import jr.brian.mybarber.viewmodel.sign_up.SignUpVMFactory
 import jr.brian.mybarber.viewmodel.sign_up.SignUpViewModel
 
@@ -47,12 +47,12 @@ class SignUpFragment : Fragment() {
     private fun initView(view: View) {
         binding.apply {
             signUpBtn.setOnClickListener {
-                validateForm(view)
+                validateForm()
             }
         }
     }
 
-    private fun validateForm(view: View) {
+    private fun validateForm() {
         binding.apply {
             val isNameValid = validateName(fullNameEt)
             val isPhoneValid = validatePhone(mobileNoEt)
@@ -73,7 +73,8 @@ class SignUpFragment : Fragment() {
                         Snackbar.make(
                             it.findViewById(android.R.id.content),
                             "Passwords do not match",
-                            Snackbar.LENGTH_LONG).show()
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
 
                 }
@@ -87,6 +88,7 @@ class SignUpFragment : Fragment() {
             mobileNoEt.text?.clear()
             passwordEt.text?.clear()
             cPasswordEt.text?.clear()
+            countryCodeEt.text?.clear()
         }
     }
 
@@ -98,7 +100,11 @@ class SignUpFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.loginResponse.observe(viewLifecycleOwner) {
-//           TODO - notify user to sign in
+            Toast.makeText(
+                requireContext(),
+                "Your account has been created. Please sign in",
+                Toast.LENGTH_LONG
+            ).show()
             clear()
         }
 

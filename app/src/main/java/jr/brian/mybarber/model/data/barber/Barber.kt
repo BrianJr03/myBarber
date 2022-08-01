@@ -1,4 +1,4 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.barber
 
 data class Barber(
     val barberId: Int,

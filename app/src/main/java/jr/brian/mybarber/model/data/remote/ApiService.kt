@@ -1,6 +1,6 @@
 package jr.brian.mybarber.model.data.remote
 
-import jr.brian.mybarber.model.data.BarberResponse
+import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
 import jr.brian.mybarber.model.data.response.SignInResponse

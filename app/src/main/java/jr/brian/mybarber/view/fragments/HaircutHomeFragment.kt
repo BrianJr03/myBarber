@@ -14,7 +14,7 @@ import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_4
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_5
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_6
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_7
-import jr.brian.mybarber.model.data.HaircutHomeImage
+import jr.brian.mybarber.model.data.home.HaircutHomeImage
 import jr.brian.mybarber.view.adapters.HaircutHomeImageAdapter
 
 class HaircutHomeFragment : Fragment() {

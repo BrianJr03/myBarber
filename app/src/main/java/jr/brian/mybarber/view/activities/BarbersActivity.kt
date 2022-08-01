@@ -7,16 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBarbersBinding
-import jr.brian.mybarber.model.data.Barber
-import jr.brian.mybarber.model.data.BarberCard
+import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.data.UserLogin
-import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.adapters.BarberAdapter
 import jr.brian.mybarber.viewmodel.barbers.BarberVMFactory
 import jr.brian.mybarber.viewmodel.barbers.BarberViewModel
-import jr.brian.mybarber.viewmodel.sign_in.SignInVMFactory
-import jr.brian.mybarber.viewmodel.sign_in.SignInViewModel
 
 class BarbersActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBarbersBinding

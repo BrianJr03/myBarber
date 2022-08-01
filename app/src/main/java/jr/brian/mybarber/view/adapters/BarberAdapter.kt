@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
-import jr.brian.mybarber.model.data.Barber
-import jr.brian.mybarber.model.data.BarberCard
-import jr.brian.mybarber.model.data.Notification
+import jr.brian.mybarber.model.data.barber.Barber
 
 class BarberAdapter(
     private val context: Context,

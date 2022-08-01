@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ServiceCardBinding
-import jr.brian.mybarber.model.data.ServiceCard
+import jr.brian.mybarber.model.data.services.ServiceCard
 import jr.brian.mybarber.view.activities.services.BeardStylesActivity
 
 class ServiceCardAdapter(private val context: Context, private val serviceCards: List<ServiceCard>) :

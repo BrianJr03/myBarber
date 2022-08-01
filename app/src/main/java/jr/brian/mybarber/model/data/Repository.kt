@@ -3,6 +3,7 @@ package jr.brian.mybarber.model.data
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.remote.ApiClient.retrofit
 import jr.brian.mybarber.model.data.remote.ApiService
 import jr.brian.mybarber.model.data.request.SignInRequest

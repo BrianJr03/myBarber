@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import jr.brian.mybarber.databinding.FragmentSignInBinding
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.data.UserLogin
+import jr.brian.mybarber.model.data.home.UserLogin
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.model.util.validatePassword

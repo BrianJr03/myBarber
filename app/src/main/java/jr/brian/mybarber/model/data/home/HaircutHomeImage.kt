@@ -1,4 +1,4 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.home
 
 import androidx.annotation.DrawableRes
 

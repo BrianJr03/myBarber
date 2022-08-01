@@ -2,10 +2,9 @@ package jr.brian.mybarber.view.activities.services
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBeardStylesBinding
-import jr.brian.mybarber.model.data.ServiceItem
+import jr.brian.mybarber.model.data.services.ServiceItem
 import jr.brian.mybarber.view.adapters.services.BeardStylesAdapter
 
 class BeardStylesActivity : AppCompatActivity() {
