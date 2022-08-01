@@ -23,6 +23,7 @@ import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.databinding.NavHeaderBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
+import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
@@ -173,10 +174,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun imageChooser() {
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
-        launchImageActivity.launch(i)
+        if (binding.tvSignOut.text.equals("Sign In")) {
+            openDialog(
+                this,
+                "Please Sign In",
+                R.drawable.info_24,
+                "You must be signed in to save a profile picture"
+            )
+        } else {
+            val i = Intent()
+            i.type = "image/*"
+            i.action = Intent.ACTION_GET_CONTENT
+            launchImageActivity.launch(i)
+        }
     }
 
     private var launchImageActivity = registerForActivityResult(
@@ -226,7 +236,7 @@ class HomeActivity : AppCompatActivity() {
         header = binding.navView.getHeaderView(0)
         val pfp = header.findViewById(R.id.pfp) as AppCompatImageView
         val previouslyEncodedImage: String =
-            sharedPrefHelper.encryptedSharedPrefs.getString("pfp", "pfp").toString()
+            sharedPrefHelper.encryptedSharedPrefs.getString("pfp", "").toString()
         if (!previouslyEncodedImage.equals("", ignoreCase = true)) {
             val b = Base64.decode(previouslyEncodedImage, Base64.DEFAULT)
             val bitmap = BitmapFactory.decodeByteArray(b, 0, b.size)
