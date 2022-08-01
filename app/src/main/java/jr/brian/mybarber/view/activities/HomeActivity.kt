@@ -2,28 +2,49 @@ package jr.brian.mybarber.view.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.view.MenuItem
+import android.view.View
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.graphics.createBitmap
 import androidx.core.view.GravityCompat
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
+import jr.brian.mybarber.databinding.NavHeaderBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 
+
+@Suppress("DEPRECATION")
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var sharedPrefHelper: SharedPrefHelper
+
+    private lateinit var header: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding.navView.inflateHeaderView(R.layout.nav_header)
+        navHeaderBinding = NavHeaderBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         init()
     }
@@ -31,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
     private fun init() {
         sharedPrefHelper = SharedPrefHelper(this)
         verifySignIn()
+        getPfpFromPrefs()
         replaceFragment(R.id.container_home, HaircutHomeFragment())
         initFAB()
         binding.apply {
@@ -95,6 +117,9 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.select_pfp -> {
+                    imageChooser()
+                }
                 R.id.book_appt -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                     startActivity(
@@ -145,12 +170,68 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
-        initDrawerHeader()
     }
 
-    private fun initDrawerHeader() {
-        val navView = binding.navView.inflateHeaderView(R.layout.nav_header)
-        val pfp = navView.findViewById<AppCompatImageView>(R.id.pfp)
+    private fun imageChooser() {
+        val i = Intent()
+        i.type = "image/*"
+        i.action = Intent.ACTION_GET_CONTENT
+        launchImageActivity.launch(i)
+    }
+
+    private var launchImageActivity = registerForActivityResult(
+        StartActivityForResult()
+    ) { result: ActivityResult ->
+        if (result.resultCode
+            == RESULT_OK
+        ) {
+            val data = result.data
+            if (data != null
+                && data.data != null
+            ) {
+                val selectedImageUri = data.data
+                var selectedImageBitmap = createBitmap(100, 100)
+                try {
+                    selectedImageBitmap = selectedImageUri?.let { getPfpFromGallery(it) }!!
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+//                pfp.setImageBitmap(
+//                    selectedImageBitmap
+//                )
+                val baos = ByteArrayOutputStream()
+                selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val b: ByteArray = baos.toByteArray()
+                val encodedImage: String = Base64.encodeToString(b, Base64.DEFAULT)
+                sharedPrefHelper.editor.putString("pfp", encodedImage).commit()
+                getPfpFromPrefs()
+            }
+        }
+    }
+
+    private fun getPfpFromGallery(selectedPhotoUri: Uri): Bitmap {
+        return when {
+            Build.VERSION.SDK_INT < 28 -> MediaStore.Images.Media.getBitmap(
+                this.contentResolver,
+                selectedPhotoUri
+            )
+            else -> {
+                val source = ImageDecoder.createSource(this.contentResolver, selectedPhotoUri)
+                ImageDecoder.decodeBitmap(source)
+            }
+        }
+    }
+
+    private fun getPfpFromPrefs() {
+        header = binding.navView.getHeaderView(0)
+        val pfp = header.findViewById(R.id.pfp) as AppCompatImageView
+        val previouslyEncodedImage: String =
+            sharedPrefHelper.encryptedSharedPrefs.getString("pfp", "pfp").toString()
+        if (!previouslyEncodedImage.equals("", ignoreCase = true)) {
+            val b = Base64.decode(previouslyEncodedImage, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(b, 0, b.size)
+            pfp.setImageBitmap(bitmap)
+        }
     }
 
     private fun signOut() {

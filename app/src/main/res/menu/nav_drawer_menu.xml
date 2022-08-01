@@ -4,6 +4,10 @@
         android:id="@+id/nav_gr"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/select_pfp"
+            android:icon="@drawable/pfp_nav_menu"
+            android:title="@string/select_profile_pic" />
+        <item
             android:id="@+id/book_appt"
             android:icon="@drawable/calendar_24"
             android:title="@string/book_appt" />

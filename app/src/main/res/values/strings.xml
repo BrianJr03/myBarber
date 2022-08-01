@@ -71,4 +71,5 @@
     <string name="business_hours_time_sat">9 am - 2 pm</string>
     <string name="pl_barber_name">Greg Wilson</string>
     <string name="barbers">Barbers</string>
+    <string name="select_profile_pic">Select Profile Picture</string>
 </resources>
