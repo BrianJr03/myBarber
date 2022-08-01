@@ -1,23 +1,29 @@
 package jr.brian.mybarber.model.data.remote
 
+import jr.brian.mybarber.model.data.BarberResponse
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
 import jr.brian.mybarber.model.data.response.SignInResponse
 import jr.brian.mybarber.model.data.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
 
     @Headers("Content-type: application/json")
-    @POST("AppUser/signup")
+    @POST("appUser/signup")
     fun signUp(@Body signUpRequest: SignUpRequest): Call<SignUpResponse>
 
     @Headers("Content-type: application/json")
-    @POST("AppUser/login")
+    @POST("appUser/login")
     fun signIn(@Body signInRequest: SignInRequest): Call<SignInResponse>
+
+    @Headers("Content-type: application/json")
+    @GET("barber/getBarbers")
+    fun getBarbers(): Call<BarberResponse>
 
 //    @GET("User/jobs")
 //    fun getJobs(): Call<JobsResponse>

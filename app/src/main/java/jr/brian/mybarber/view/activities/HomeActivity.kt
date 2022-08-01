@@ -206,9 +206,6 @@ class HomeActivity : AppCompatActivity() {
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-//                pfp.setImageBitmap(
-//                    selectedImageBitmap
-//                )
                 val baos = ByteArrayOutputStream()
                 selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                 val b: ByteArray = baos.toByteArray()

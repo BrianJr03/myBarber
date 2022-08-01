@@ -1,5 +1,6 @@
 package jr.brian.mybarber.model.data
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import jr.brian.mybarber.model.data.remote.ApiClient.retrofit
@@ -17,6 +18,7 @@ class Repository() {
     private val apiService = retrofit.create(ApiService::class.java)
     val signUpResponse = MutableLiveData<SignUpResponse>()
     val signInResponse = MutableLiveData<SignInResponse>()
+    val barberLiveData = MutableLiveData<BarberResponse>()
     val isProcessing = ObservableField<Boolean>()
 
     val error = MutableLiveData<String>()
@@ -89,6 +91,27 @@ class Repository() {
                 isProcessing.set(false)
                 t.printStackTrace()
                 error.postValue("Error is : $t.\n\nPlease retry.")
+            }
+        })
+    }
+
+    fun getBarbers() {
+        isProcessing.set(true)
+        val call: Call<BarberResponse> = apiService.getBarbers()
+        call.enqueue(object : Callback<BarberResponse> {
+            override fun onResponse(call: Call<BarberResponse>, response: Response<BarberResponse>) {
+                if (response.isSuccessful) {
+                    if(response.body()!!.status == 0){
+                        barberLiveData.postValue(response.body()!!)
+                        Log.i("TAG", response.body()!!.barbers.toString())
+                    } else {
+                        Log.e("response error", response.body()!!.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<BarberResponse>, t: Throwable) {
+                Log.e("TAG", t.toString())
+                t.printStackTrace()
             }
         })
     }

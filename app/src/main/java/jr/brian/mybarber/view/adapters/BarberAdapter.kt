@@ -11,12 +11,13 @@ import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
+import jr.brian.mybarber.model.data.Barber
 import jr.brian.mybarber.model.data.BarberCard
 import jr.brian.mybarber.model.data.Notification
 
 class BarberAdapter(
     private val context: Context,
-    private val barbers: List<BarberCard>
+    private val barbers: List<Barber>
 ) :
     RecyclerView.Adapter<BarberAdapter.BarberViewHolder>() {
 
@@ -41,13 +42,13 @@ class BarberAdapter(
     }
 
     inner class BarberViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
-        fun bind(barberCard: BarberCard) {
+        fun bind(barberCard: Barber) {
             val name = v.findViewById<TextView>(R.id.barber_name)
             val rating = v.findViewById<AppCompatRatingBar>(R.id.barber_rating)
             val pfpUrl = v.findViewById<AppCompatImageView>(R.id.barber_image)
             // TODO - load image via glide
-            name.text = barberCard.name
-            rating.rating = barberCard.rating
+            name.text = barberCard.barberName
+            rating.rating = barberCard.userRating.toFloat()
         }
     }
 }
