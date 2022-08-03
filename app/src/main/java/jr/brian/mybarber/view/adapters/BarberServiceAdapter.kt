@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +33,11 @@ class BarberServiceAdapter(
         holder.apply {
             val barberService = barbers[position]
             bind(barberService)
+            binding.apply {
+                serviceCheckbox.setOnClickListener {
+                    barberService.isSelected = serviceCheckbox.isChecked
+                }
+            }
         }
     }
 
@@ -42,12 +46,10 @@ class BarberServiceAdapter(
             val name = v.findViewById<TextView>(R.id.tv_service_name)
             val cost = v.findViewById<TextView>(R.id.tv_duration)
             val duration = v.findViewById<TextView>(R.id.tv_cost)
-            val checkBox = v.findViewById<CheckBox>(R.id.service_checkbox)
             val image = v.findViewById<AppCompatImageView>(R.id.service_image)
             name.text = barberService.serviceName
             cost.text = barberService.cost.toString()
             duration.text = barberService.duration.toString()
-            barberService.isSelected = checkBox.isChecked
             Glide.with(context)
                 .load(BASE_IMAGE_URL + barberService.servicePic)
                 .into(image)

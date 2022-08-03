@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10dp"
+    android:backgroundTint="@color/blueish_idk"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time_slot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="@string/_9_00_am"
+        android:textSize="@dimen/_18sp" />
+</androidx.cardview.widget.CardView>

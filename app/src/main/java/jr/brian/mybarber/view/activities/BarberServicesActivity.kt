@@ -1,7 +1,7 @@
 package jr.brian.mybarber.view.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +16,6 @@ import jr.brian.mybarber.viewmodel.barbers.BarberServiceViewModel
 
 class BarberServicesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBarberServicesBinding
-
     private lateinit var barberAdapter: BarberServiceAdapter
     private lateinit var barberServices: ArrayList<BarberService>
     lateinit var viewModel: BarberServiceViewModel
@@ -34,7 +33,33 @@ class BarberServicesActivity : AppCompatActivity() {
                 super.onBackPressed()
                 finish()
             }
+            btnContinue.setOnClickListener {
+                var selectionCount = 0
+                for (b in barberServices) {
+                    if (b.isSelected) {
+                        selectionCount++
+                    }
+                }
+                if (selectionCount != 0) {
+                    startActivity(
+                        Intent(
+                            this@BarberServicesActivity,
+                            TimeSelectionActivity::class.java
+                        )
+                    )
+                } else {
+                    Toast.makeText(
+                        this@BarberServicesActivity,
+                        " Please select at least 1 option",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+            btnChangeBarber.setOnClickListener {
+                super.onBackPressed()
+            }
         }
+
     }
 
     private fun setAdapter() {
