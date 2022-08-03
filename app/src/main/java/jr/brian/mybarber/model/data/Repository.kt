@@ -54,6 +54,7 @@ class Repository() {
                 }
 
                 if (apiResponse.status == 0) {
+                    isProcessing.set(false)
                     signInResponse.postValue(apiResponse)
                 } else {
                     error.postValue(apiResponse.message)

@@ -17,6 +17,19 @@
         android:layout_height="match_parent"
         tools:context=".view.activities.services.BeardStylesActivity">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="125dp"
+            android:layout_height="117dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/barber_lottie" />
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/back_barbers"
             android:layout_width="@dimen/_40dp"
@@ -54,6 +67,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/barberRecyclerView"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/_0dp"
             android:layout_gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,6 +1,7 @@
 package jr.brian.mybarber.view.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -52,6 +53,10 @@ class BarbersActivity : AppCompatActivity() {
     private fun setupObservers() {
         viewModel.barberResponse.observe(this) {
             barbers = it.barbers
+            binding.apply {
+                animationView.visibility = View.GONE
+                barberRecyclerView.visibility = View.VISIBLE
+            }
             setAdapter()
         }
 

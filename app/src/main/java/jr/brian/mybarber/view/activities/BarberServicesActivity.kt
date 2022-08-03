@@ -2,6 +2,7 @@ package jr.brian.mybarber.view.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -54,6 +55,10 @@ class BarberServicesActivity : AppCompatActivity() {
         viewModel.barberServiceResponse.observe(this) {
             barberServices = it.services
             setAdapter()
+            binding.apply {
+                animationView.visibility = View.GONE
+                recyclerViewServices.visibility = View.VISIBLE
+            }
         }
 
         viewModel.error.observe(this) {
