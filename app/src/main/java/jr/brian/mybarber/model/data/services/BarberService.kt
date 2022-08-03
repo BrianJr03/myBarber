@@ -5,5 +5,6 @@ data class BarberService(
     val duration: Double,
     val serviceId: Int,
     val serviceName: String,
-    val servicePic: String
+    val servicePic: String,
+    var isSelected: Boolean
 )

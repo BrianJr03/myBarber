@@ -17,9 +17,11 @@
         android:padding="8dp">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/barber_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/service_image"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/profile_pl_80"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,10 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:shadowColor="@color/white"
-            android:text="Service name"
+            android:text="@string/service_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@id/barber_image"
+            app:layout_constraintStart_toEndOf="@id/service_image"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -42,16 +44,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:layout_constraintStart_toEndOf="@id/barber_image"
+            app:layout_constraintStart_toEndOf="@id/service_image"
             app:layout_constraintTop_toBottomOf="@id/tv_service_name"
-            app:srcCompat="@drawable/clock_24" />
+            app:srcCompat="@drawable/clock_24"
+            android:contentDescription="@string/close" />
 
         <TextView
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="45 Min"
+            android:text="@string/_45_min"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/tv_duration_icon"
@@ -59,6 +62,7 @@
 
 
         <ImageView
+            android:contentDescription="@string/close"
             android:id="@+id/tv_cost_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="100"
+            android:text="@string/_100"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/tv_cost_icon"
@@ -80,7 +84,7 @@
 
 
         <CheckBox
-            android:id="@+id/iv_select"
+            android:id="@+id/service_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/white"

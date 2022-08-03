@@ -72,4 +72,7 @@
     <string name="pl_barber_name">Greg Wilson</string>
     <string name="barbers">Barbers</string>
     <string name="select_profile_pic">Select Profile Picture</string>
+    <string name="_100">100</string>
+    <string name="_45_min">45 Min</string>
+    <string name="service_name">Service name</string>
 </resources>

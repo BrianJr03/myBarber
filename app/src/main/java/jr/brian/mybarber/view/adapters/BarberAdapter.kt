@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
+import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.view.activities.BarberServicesActivity
 
@@ -45,9 +47,11 @@ class BarberAdapter(
             val name = v.findViewById<TextView>(R.id.barber_name)
             val rating = v.findViewById<AppCompatRatingBar>(R.id.barber_rating)
             val pfpUrl = v.findViewById<AppCompatImageView>(R.id.barber_image)
-            // TODO - load image via glide
             name.text = barberCard.barberName
             rating.rating = barberCard.userRating.toFloat()
+            Glide.with(context)
+                .load(Constant.BASE_IMAGE_URL + barberCard.profilePic)
+                .into(pfpUrl)
         }
     }
 }

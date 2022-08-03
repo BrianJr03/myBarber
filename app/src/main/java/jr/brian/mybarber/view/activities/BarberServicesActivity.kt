@@ -24,17 +24,16 @@ class BarberServicesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBarberServicesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        barbers = ArrayList()
-//        setAdapter()
+        barberServices = ArrayList()
         setupViewModel()
         setupObservers()
         viewModel.getBarberServices()
-//        binding.apply {
-//            backBarbers.setOnClickListener {
-//                super.onBackPressed()
-//                finish()
-//            }
-//        }
+        binding.apply {
+            backBarberServices.setOnClickListener {
+                super.onBackPressed()
+                finish()
+            }
+        }
     }
 
     private fun setAdapter() {
@@ -55,7 +54,6 @@ class BarberServicesActivity : AppCompatActivity() {
         viewModel.barberServiceResponse.observe(this) {
             barberServices = it.services
             setAdapter()
-            Log.i("TAG", barberServices.toString())
         }
 
         viewModel.error.observe(this) {
