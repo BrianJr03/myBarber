@@ -6,18 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.services.BarberServiceResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BarberViewModel(private val repository: Repository) : ViewModel() {
+class BarberServiceViewModel(private val repository: Repository) : ViewModel() {
 
-    val barberResponse: LiveData<BarberResponse> = repository.barberLiveData
+    val barberServiceResponse: LiveData<BarberServiceResponse> = repository.barberServiceLiveData
     val error: LiveData<String> = repository.error
     val isProcessing = repository.isProcessing
 
-    fun getBarbers() {
+    fun getBarberServices() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getBarbers()
+            repository.getBarberServices()
         }
     }
 }

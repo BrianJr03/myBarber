@@ -25,6 +25,7 @@ import jr.brian.mybarber.databinding.NavHeaderBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.model.util.replaceFragment
+import jr.brian.mybarber.view.activities.services.ServiceActivity
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment
 import java.io.ByteArrayOutputStream

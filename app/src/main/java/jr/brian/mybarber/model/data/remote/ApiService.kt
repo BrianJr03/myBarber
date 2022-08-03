@@ -5,6 +5,8 @@ import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
 import jr.brian.mybarber.model.data.response.SignInResponse
 import jr.brian.mybarber.model.data.response.SignUpResponse
+import jr.brian.mybarber.model.data.services.BarberServiceResponse
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -24,6 +26,10 @@ interface ApiService {
     @Headers("Content-type: application/json")
     @GET("barber/getBarbers")
     fun getBarbers(): Call<BarberResponse>
+
+    @Headers("Content-type: application/json")
+    @POST("barber/getBarberServices1")
+    fun getBarberServices(@Body getBarberServicesReq: RequestBody): Call<BarberServiceResponse>
 
 //    @GET("User/jobs")
 //    fun getJobs(): Call<JobsResponse>

@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.services
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

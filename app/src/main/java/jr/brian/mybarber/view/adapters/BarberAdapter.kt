@@ -1,6 +1,7 @@
 package jr.brian.mybarber.view.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
 import jr.brian.mybarber.model.data.barber.Barber
+import jr.brian.mybarber.view.activities.BarberServicesActivity
 
 class BarberAdapter(
     private val context: Context,
@@ -33,7 +35,7 @@ class BarberAdapter(
             val barberCard = barbers[position]
             bind(barberCard)
             itemView.setOnClickListener {
-                // TODO - Launch select services activity
+                context.startActivity(Intent(context, BarberServicesActivity::class.java))
             }
         }
     }

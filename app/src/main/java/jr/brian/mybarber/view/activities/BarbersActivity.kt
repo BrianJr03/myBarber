@@ -1,14 +1,13 @@
 package jr.brian.mybarber.view.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBarbersBinding
-import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.view.adapters.BarberAdapter
 import jr.brian.mybarber.viewmodel.barbers.BarberVMFactory
 import jr.brian.mybarber.viewmodel.barbers.BarberViewModel
@@ -37,22 +36,12 @@ class BarbersActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-//        initData()
         barberAdapter = BarberAdapter(this, barbers)
         binding.apply {
             barberRecyclerView.layoutManager = LinearLayoutManager(this@BarbersActivity)
             barberRecyclerView.adapter = barberAdapter
         }
     }
-
-//    private fun initData() {
-//        barbers = ArrayList()
-//        for (i in 1..7) {
-//            barbers.add(
-//                BarberCard("Greg Wilson", 4.5f, "")
-//            )
-//        }
-//    }
 
     private fun setupViewModel() {
         val factory = BarberVMFactory(Repository())
@@ -64,7 +53,6 @@ class BarbersActivity : AppCompatActivity() {
         viewModel.barberResponse.observe(this) {
             barbers = it.barbers
             setAdapter()
-            Log.i("TAG", "WORKING")
         }
 
         viewModel.error.observe(this) {
