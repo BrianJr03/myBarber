@@ -18,6 +18,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.roundToInt
 
 
 class Repository() {
@@ -29,7 +30,34 @@ class Repository() {
     val barberServiceLiveData = MutableLiveData<BarberServiceResponse>()
     val isProcessing = ObservableField<Boolean>()
 
+    val appointmentsDateLiveData = MutableLiveData<String>()
+    val appointmentsStartFromLiveData = MutableLiveData<Int>()
+    val currentAppointmentsLiveData = MutableLiveData<ArrayList<Slot>>()
+    val appointmentsSlotLiveData = MutableLiveData<Int>()
+
+    val barberServicesSelectLiveData = MutableLiveData<ArrayList<Int>>()
+    val appointmentsTotalDurationLiveData = MutableLiveData<Double>()
+
     val error = MutableLiveData<String>()
+
+    fun setAppointmentsDate(date: String) {
+        appointmentsDateLiveData.postValue(date)
+    }
+
+    fun setAppointmentsStartFrom(startFrom: Int) {
+        appointmentsStartFromLiveData.postValue(startFrom)
+    }
+
+    fun updateAppointmentsSlot(){
+        var totalDuration = 0.0
+        barberServiceLiveData.value!!.services.forEach(){
+            if (it.serviceId in barberServicesSelectLiveData.value!!){
+                totalDuration += it.duration
+            }
+        }
+        appointmentsTotalDurationLiveData.postValue(totalDuration)
+        appointmentsSlotLiveData.postValue((totalDuration/15 + 0.5).roundToInt())
+    }
 
     fun signIn(signInRequest: SignInRequest) {
         isProcessing.set(true)
@@ -109,15 +137,19 @@ class Repository() {
 
         val call: Call<BarberResponse> = apiService.getBarbers()
         call.enqueue(object : Callback<BarberResponse> {
-            override fun onResponse(call: Call<BarberResponse>, response: Response<BarberResponse>) {
+            override fun onResponse(
+                call: Call<BarberResponse>,
+                response: Response<BarberResponse>
+            ) {
                 if (response.isSuccessful) {
-                    if(response.body()!!.status == 0){
+                    if (response.body()!!.status == 0) {
                         barberLiveData.postValue(response.body()!!)
                     } else {
                         Log.e("response error", response.body()!!.message)
                     }
                 }
             }
+
             override fun onFailure(call: Call<BarberResponse>, t: Throwable) {
                 Log.e("TAG", t.toString())
                 t.printStackTrace()
@@ -136,17 +168,47 @@ class Repository() {
 
         val call: Call<BarberServiceResponse> = apiService.getBarberServices(body)
         call.enqueue(object : Callback<BarberServiceResponse> {
-            override fun onResponse(call: Call<BarberServiceResponse>, response: Response<BarberServiceResponse>) {
+            override fun onResponse(
+                call: Call<BarberServiceResponse>,
+                response: Response<BarberServiceResponse>
+            ) {
                 if (response.isSuccessful) {
-                    if(response.body()!!.status == 0){
+                    if (response.body()!!.status == 0) {
                         barberServiceLiveData.postValue(response.body()!!)
+                        barberServicesSelectLiveData.postValue(ArrayList())
                     } else {
                         Log.e("response error", response.body()!!.message)
                     }
                 }
             }
+
             override fun onFailure(call: Call<BarberServiceResponse>, t: Throwable) {
                 Log.e("TAG", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun loadCurrentAppointments() {
+        val call: Call<CurrentApptResponse> = apiService.getCurrentAppts()
+        call.enqueue(object : Callback<CurrentApptResponse> {
+            override fun onResponse(
+                call: Call<CurrentApptResponse>,
+                response: Response<CurrentApptResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 0) {
+                        Log.e("HELPME", response.body()!!.slots.toString())
+                        currentAppointmentsLiveData.postValue(response.body()!!.slots)
+
+                    } else {
+                        Log.e("HELPME", response.body()!!.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<CurrentApptResponse>, t: Throwable) {
+                Log.e("HELPME", t.toString())
                 t.printStackTrace()
             }
         })

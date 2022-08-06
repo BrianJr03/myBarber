@@ -1,5 +1,6 @@
 package jr.brian.mybarber.model.data.remote
 
+import jr.brian.mybarber.model.data.CurrentApptResponse
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
@@ -8,10 +9,7 @@ import jr.brian.mybarber.model.data.response.SignUpResponse
 import jr.brian.mybarber.model.data.services.BarberServiceResponse
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -30,6 +28,11 @@ interface ApiService {
     @Headers("Content-type: application/json")
     @POST("barber/getBarberServices1")
     fun getBarberServices(@Body getBarberServicesReq: RequestBody): Call<BarberServiceResponse>
+
+    @Headers("Content-type: application/json")
+    @GET("appointment/currentAppointments/1")
+    fun getCurrentAppts(): Call<CurrentApptResponse>
+
 
 //    @GET("User/jobs")
 //    fun getJobs(): Call<JobsResponse>

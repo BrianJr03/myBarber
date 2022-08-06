@@ -2,23 +2,41 @@ package jr.brian.mybarber.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.mybarber.databinding.ActivityTimeSelectionBinding
-import jr.brian.mybarber.model.data.time.TimeSlot
+import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.view.adapters.DateSelectionAdapter
 import jr.brian.mybarber.view.adapters.TimeSelectionAdapter
+import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
+import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
 
 class TimeSelectionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimeSelectionBinding
-    private lateinit var timeAdapter: TimeSelectionAdapter
-    private lateinit var timeSlots: ArrayList<TimeSlot>
+    lateinit var dateAdapter: DateSelectionAdapter
+    lateinit var timeAdapter: TimeSelectionAdapter
+    private lateinit var appointmentViewModel: AppointmentViewModel
+    private val repository = Repository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimeSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setAdapter()
+//        repository.updateAppointmentsSlot()
+        setupViewModel()
+        setupObservers()
         binding.apply {
+            // TODO - Stop refresh after retrieval of data
+            srLayout.setOnRefreshListener {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (srLayout.isRefreshing) {
+                        srLayout.isRefreshing = false;
+                    }
+                }, 2000)
+            }
             backTime.setOnClickListener {
                 super.onBackPressed()
             }
@@ -31,21 +49,33 @@ class TimeSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAdapter() {
-        initTimeData()
-        timeAdapter = TimeSelectionAdapter(this, timeSlots)
-        binding.apply {
-            recyclerViewTime.layoutManager = GridLayoutManager(this@TimeSelectionActivity, 4)
-            recyclerViewTime.adapter = timeAdapter
-        }
+    private fun setupViewModel() {
+        val factory = ApptVMFactory(repository)
+        appointmentViewModel = ViewModelProvider(this, factory)[AppointmentViewModel::class.java]
+        appointmentViewModel.loadCurrentAppointments()
+        binding.viewModel = appointmentViewModel
     }
 
-    private fun initTimeData() {
-        timeSlots = ArrayList()
-        for (i in 1..32) {
-            timeSlots.add(
-                TimeSlot("9:00 AM")
-            )
+    private fun setupObservers() {
+        repository.currentAppointmentsLiveData.observe(this) {
+            val availableSlots = it.filter { it.slots.isNotEmpty() }
+            dateAdapter = DateSelectionAdapter(this, availableSlots)
+//            binding.rvDates.adapter = dateAdapter
+//            binding.rvDates.layoutManager =
+//                LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+//            binding.tvSelectedDayDate.text = "${availableSlots[0].day}, ${availableSlots[0].date}"
+            repository.setAppointmentsDate(availableSlots[0].date)
+        }
+
+        repository.appointmentsDateLiveData.observe(this) { date ->
+            repository.currentAppointmentsLiveData.value!!.forEach() {
+                if (it.date == date) {
+                    timeAdapter = TimeSelectionAdapter(this, it.slots)
+//                    binding.tvSelectedDayDate.text = "${it.day}, ${it.date}"
+                    binding.recyclerViewTime.adapter = timeAdapter
+                    binding.recyclerViewTime.layoutManager = GridLayoutManager(this, 4)
+                }
+            }
         }
     }
 }

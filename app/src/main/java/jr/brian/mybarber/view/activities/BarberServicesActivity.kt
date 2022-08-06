@@ -2,6 +2,8 @@ package jr.brian.mybarber.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +31,14 @@ class BarberServicesActivity : AppCompatActivity() {
         setupObservers()
         viewModel.getBarberServices()
         binding.apply {
+            // TODO - Stop refresh after retrieval of data
+            srLayout.setOnRefreshListener {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    if (srLayout.isRefreshing) {
+                        srLayout.isRefreshing = false;
+                    }
+                }, 2000)
+            }
             backBarberServices.setOnClickListener {
                 super.onBackPressed()
                 finish()

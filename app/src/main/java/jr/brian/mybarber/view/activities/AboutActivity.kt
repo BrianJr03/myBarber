@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import jr.brian.mybarber.databinding.ActivityAboutBinding
 import jr.brian.mybarber.model.data.Constant.DEV_PIC_URL
-import jr.brian.mybarber.model.data.Constant.DEV_WEBSITE_URL
+import jr.brian.mybarber.model.data.Constant.GITHUB_PROFILE_URL
 import jr.brian.mybarber.model.data.Constant.LINKEDIN_PROFILE_URL
 
 
@@ -23,16 +23,18 @@ class AboutActivity : AppCompatActivity() {
 
     private fun init() {
         binding.apply {
-            linkedInUrl.setOnClickListener {
+            linkedInIcon.setOnClickListener {
                 val webIntent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(LINKEDIN_PROFILE_URL))
+                    Uri.parse(LINKEDIN_PROFILE_URL)
+                )
                 startActivity(webIntent)
             }
-            websiteUrl.setOnClickListener {
+            gitHubIcon.setOnClickListener {
                 val webIntent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(DEV_WEBSITE_URL))
+                    Uri.parse(GITHUB_PROFILE_URL)
+                )
                 startActivity(webIntent)
             }
             aboutBackArrow.setOnClickListener {
