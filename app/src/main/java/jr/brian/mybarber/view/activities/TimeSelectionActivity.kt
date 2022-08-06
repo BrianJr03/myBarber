@@ -40,9 +40,18 @@ class TimeSelectionActivity : AppCompatActivity() {
             backTime.setOnClickListener {
                 super.onBackPressed()
             }
-            btnCancel.setOnClickListener {
+            fabCancel.setOnClickListener {
                 startActivity(
                     Intent(this@TimeSelectionActivity, HomeActivity::class.java)
+                )
+                finish()
+            }
+            fabConfirm.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@TimeSelectionActivity,
+                        BookingSummaryActivity::class.java
+                    )
                 )
                 finish()
             }

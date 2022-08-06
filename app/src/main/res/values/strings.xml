@@ -45,7 +45,7 @@
     <string name="notifications">Notifications</string>
     <string name="_1">1</string>
     <string name="noti_bell">noti_bell</string>
-    <string name="call">Call</string>
+    <string name="call_us">Call Us</string>
     <string name="maps">Maps</string>
     <string name="visit_us">Visit Us</string>
     <string name="back">back</string>
@@ -81,4 +81,10 @@
     <string name="continueText">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="brian_jr">Brian Jr</string>
+    <string name="summary">Summary</string>
+    <string name="ex_date">Sat 23 Mar, 2022</string>
+    <string name="ex_time">3:30 PM - 3:45 PM (15 minutes)</string>
+    <string name="barber">Barber</string>
+    <string name="ex_cost">Total Cost: $30</string>
+    <string name="view_coupons">View Coupons</string>
 </resources>

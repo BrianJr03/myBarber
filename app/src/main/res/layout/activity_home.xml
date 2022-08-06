@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10dp"
-            android:text="@string/call"
+            android:text="@string/call_us"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_20sp"
             app:layout_constraintBottom_toBottomOf="@id/fab_call"
