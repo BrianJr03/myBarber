@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -25,6 +25,10 @@ import jr.brian.mybarber.databinding.NavHeaderBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.model.util.replaceFragment
+import jr.brian.mybarber.view.activities.AboutActivity
+import jr.brian.mybarber.view.activities.BarbersActivity
+import jr.brian.mybarber.view.activities.BusinessHoursActivity
+import jr.brian.mybarber.view.activities.MainActivity
 import jr.brian.mybarber.view.activities.services.ServiceActivity
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import jr.brian.mybarber.view.fragments.HaircutHomeFragment

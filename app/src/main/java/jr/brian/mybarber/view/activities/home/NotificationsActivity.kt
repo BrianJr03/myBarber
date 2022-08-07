@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.home
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityNotificationsBinding
 import jr.brian.mybarber.model.data.notification.Notification
-import jr.brian.mybarber.view.adapters.NotificationAdapter
+import jr.brian.mybarber.view.adapters.home.NotificationAdapter
 
 class NotificationsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotificationsBinding

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.BookingSummaryActivity">
+    tools:context=".view.activities.appointment.BookingSummaryActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_grid"

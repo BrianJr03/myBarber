@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import jr.brian.mybarber.model.data.local.SharedPrefHelper
-import jr.brian.mybarber.view.activities.HomeActivity
-import jr.brian.mybarber.view.auth_fragments.SignInFragment
+import jr.brian.mybarber.view.activities.home.HomeActivity
 
 fun AppCompatActivity.replaceFragment(containerId: Int, fragment: Fragment) {
     supportFragmentManager.inTransaction { replace(containerId, fragment) }

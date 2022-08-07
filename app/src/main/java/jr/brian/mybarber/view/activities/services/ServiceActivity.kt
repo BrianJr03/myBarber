@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.mybarber.databinding.ActivityServiceBinding
 import jr.brian.mybarber.model.data.services.ServiceCard
-import jr.brian.mybarber.view.adapters.ServiceCardAdapter
+import jr.brian.mybarber.view.adapters.services.ServiceCardAdapter
 
 class ServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityServiceBinding

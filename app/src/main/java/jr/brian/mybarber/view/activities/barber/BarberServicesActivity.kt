@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.barber
 
 import android.content.Intent
 import android.os.Bundle

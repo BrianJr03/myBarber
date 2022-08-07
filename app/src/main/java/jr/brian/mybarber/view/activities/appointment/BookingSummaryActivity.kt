@@ -1,12 +1,11 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.appointment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBookingSummaryBinding
 import jr.brian.mybarber.model.data.services.BarberService
-import jr.brian.mybarber.model.util.startHomeActivity
-import jr.brian.mybarber.view.adapters.SummaryServiceAdapter
+import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
 
 class BookingSummaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookingSummaryBinding

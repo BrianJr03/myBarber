@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.adapters
+package jr.brian.mybarber.view.adapters.services
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberServiceBookedItemBinding
-import jr.brian.mybarber.model.data.Constant.BASE_IMAGE_URL
 import jr.brian.mybarber.model.data.services.BarberService
 import kotlin.math.roundToInt
 

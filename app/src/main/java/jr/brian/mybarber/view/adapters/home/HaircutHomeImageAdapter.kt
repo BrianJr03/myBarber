@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.adapters
+package jr.brian.mybarber.view.adapters.home
 
 import android.content.Context
 import android.view.LayoutInflater

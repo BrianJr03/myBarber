@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.adapters
+package jr.brian.mybarber.view.adapters.services
 
 import android.content.Context
 import android.content.Intent
@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ServiceCardBinding
-import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.services.ServiceCard
 import jr.brian.mybarber.view.activities.services.BeardStylesActivity
 

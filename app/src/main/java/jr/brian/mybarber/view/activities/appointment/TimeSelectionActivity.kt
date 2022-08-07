@@ -1,4 +1,4 @@
-package jr.brian.mybarber.view.activities
+package jr.brian.mybarber.view.activities.appointment
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.mybarber.databinding.ActivityTimeSelectionBinding
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.view.adapters.DateSelectionAdapter
-import jr.brian.mybarber.view.adapters.TimeSelectionAdapter
+import jr.brian.mybarber.view.activities.home.HomeActivity
+import jr.brian.mybarber.view.adapters.appointment.DateSelectionAdapter
+import jr.brian.mybarber.view.adapters.appointment.TimeSelectionAdapter
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
 
