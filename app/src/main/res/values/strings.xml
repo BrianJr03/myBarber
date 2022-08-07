@@ -87,4 +87,8 @@
     <string name="barber">Barber</string>
     <string name="ex_cost">Total Cost: $30</string>
     <string name="view_coupons">View Coupons</string>
+    <string name="appt_num">Appointment Number: 233</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber at arrival</string>
+    <string name="appt_details">Appointment Details</string>
 </resources>

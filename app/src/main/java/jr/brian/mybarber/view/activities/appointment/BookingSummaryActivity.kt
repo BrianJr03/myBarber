@@ -1,10 +1,12 @@
 package jr.brian.mybarber.view.activities.appointment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBookingSummaryBinding
 import jr.brian.mybarber.model.data.services.BarberService
+import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
 
 class BookingSummaryActivity : AppCompatActivity() {
@@ -19,10 +21,20 @@ class BookingSummaryActivity : AppCompatActivity() {
         binding.apply {
             summaryBackArrow.setOnClickListener {
                 super.onBackPressed()
-//                startHomeActivity(
-//                    this@BookingSummaryActivity,
-//                    this@BookingSummaryActivity
-//                )
+            }
+            fabCancel.setOnClickListener {
+                startHomeActivity(
+                    this@BookingSummaryActivity,
+                    this@BookingSummaryActivity
+                )
+            }
+            fabConfirm.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@BookingSummaryActivity,
+                        ApptDetailsActivity::class.java
+                    )
+                )
             }
         }
         initDummyData()

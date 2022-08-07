@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.appointment.BookingSummaryActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/details_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:background="@color/transparent_bg_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/arrow_back_36"
+        app:layout_constraintBottom_toBottomOf="@id/appt_details_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/appt_details_tv" />
+
+    <TextView
+        android:id="@+id/appt_details_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appt_details"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/activity_header_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_grid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/ex_date"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_grid" />
+
+    <TextView
+        android:id="@+id/appt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:text="@string/ex_time"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appt_date" />
+
+    <TextView
+        android:id="@+id/appt_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:text="@string/ex_cost"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appt_time" />
+
+    <TextView
+        android:id="@+id/chosen_barber_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:text="@string/barber"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appt_time" />
+
+    <TextView
+        android:id="@+id/chosen_barber_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/pl_barber_name"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chosen_barber_tv" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/barber_image"
+        android:layout_width="@dimen/_70dp"
+        android:layout_height="@dimen/_70dp"
+        android:layout_margin="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:backgroundTint="@color/blueish_idk"
+        android:src="@drawable/github_48"
+        app:layout_constraintBottom_toBottomOf="@id/chosen_barber_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chosen_barber_tv" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/play_scroll_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:backgroundTint="@color/transparent_bg_color"
+        android:clickable="true"
+        android:contentDescription="@string/scroll_images"
+        android:focusable="true"
+        android:src="@drawable/compare_arrows_36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_rv_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="276dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_rv_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_rv_start"
+        tools:itemCount="1"
+        tools:listitem="@layout/barber_service_booked_item" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_rv_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="419dp" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20dp"
+        android:backgroundTint="@color/blueish_idk"
+        app:icon="@drawable/close_10"
+        app:iconTint="?android:colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/teal_200" />
+
+    <TextView
+        android:id="@+id/reschedule_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/reschedule"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_20sp"
+        app:layout_constraintBottom_toBottomOf="@id/fab_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fab_cancel" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20dp"
+        android:backgroundTint="@color/blueish_idk"
+        app:icon="@drawable/check_24"
+        app:iconTint="?android:colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/teal_200" />
+
+    <TextView
+        android:id="@+id/Appt_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/appt_num"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+
+    <TextView
+        android:id="@+id/Appt_instructions_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/appt_instructions"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/qr_code"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_margin="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:backgroundTint="@color/blueish_idk"
+        android:src="@drawable/qr_code_2_24"
+        app:layout_constraintBottom_toBottomOf="@id/guideline4"
+        app:layout_constraintStart_toStartOf="@id/Appt_instructions_tv"
+        app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appt_status_stamp"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_margin="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_40dp"
+        android:backgroundTint="@color/blueish_idk"
+        android:src="@drawable/fact_check_48"
+        app:layout_constraintBottom_toBottomOf="@id/guideline4"
+        app:layout_constraintEnd_toEndOf="@id/Appt_instructions_tv"
+        app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="645dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,16 +14,19 @@
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.appointment.ApptDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.appointment.BookingSummaryActivity"
             android:exported="false" />
         <activity
             android:name=".view.activities.appointment.TimeSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activities.BarberServicesActivity"
+            android:name=".view.activities.barber.BarberServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activities.BarbersActivity"
+            android:name=".view.activities.barber.BarbersActivity"
             android:exported="false" />
         <activity
             android:name=".view.activities.BusinessHoursActivity"

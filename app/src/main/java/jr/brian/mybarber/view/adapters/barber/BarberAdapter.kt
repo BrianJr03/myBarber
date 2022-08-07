@@ -14,7 +14,7 @@ import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.barber.Barber
-import jr.brian.mybarber.view.activities.BarberServicesActivity
+import jr.brian.mybarber.view.activities.barber.BarberServicesActivity
 
 class BarberAdapter(
     private val context: Context,
