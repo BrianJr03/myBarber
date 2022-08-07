@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
-import jr.brian.mybarber.databinding.DateSelectionItemBinding
+import jr.brian.mybarber.databinding.DateSelectItemBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.Slot
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
@@ -18,10 +18,10 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
     RecyclerView.Adapter<DateSelectionAdapter.SelectDateHolder>() {
     private val repository = Repository()
     lateinit var appointmentViewModel: AppointmentViewModel
-    lateinit var binding: DateSelectionItemBinding
+    lateinit var binding: DateSelectItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectDateHolder {
-        binding = DateSelectionItemBinding
+        binding = DateSelectItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         appointmentViewModel =
             ViewModelProvider(context as AppCompatActivity)[AppointmentViewModel::class.java]
@@ -30,8 +30,8 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
 
     override fun onBindViewHolder(holder: SelectDateHolder, position: Int) {
         holder.apply {
-            val info = slots[position]
-            holder.bind(info)
+            val date = slots[position]
+            holder.bind(date)
         }
     }
 
@@ -41,18 +41,20 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
 
     inner class SelectDateHolder(val v: View) : RecyclerView.ViewHolder(binding.root) {
         fun bind(slot: Slot) {
-            binding.tvDate.text = slot.date
+            binding.tvDayMonth.text = slot.date
             binding.tvDay.text = slot.day
             appointmentViewModel.appointmentsDateLiveData.observe(context as AppCompatActivity) {
                 if (slot.date == it) {
-                    binding.dateSlotBg.setBackgroundColor(
+                    binding.dateCard.setBackgroundResource(R.drawable.time_slot_available)
+                    binding.dateCard.setBackgroundColor(
                         ContextCompat.getColor(
                             context,
                             R.color.blueish_idk
                         )
                     )
                 } else {
-                    binding.dateSlotBg.setBackgroundColor(
+                    binding.dateCard.setBackgroundResource(R.drawable.time_slot_selected)
+                    binding.dateCard.setBackgroundColor(
                         ContextCompat.getColor(
                             context,
                             R.color.white

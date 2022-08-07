@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityTimeSelectionBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.view.activities.home.HomeActivity
@@ -14,6 +15,8 @@ import jr.brian.mybarber.view.adapters.appointment.DateSelectionAdapter
 import jr.brian.mybarber.view.adapters.appointment.TimeSelectionAdapter
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
+import java.time.LocalDate
+import java.util.stream.Collectors
 
 class TimeSelectionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimeSelectionBinding
@@ -70,9 +73,9 @@ class TimeSelectionActivity : AppCompatActivity() {
         repository.currentAppointmentsLiveData.observe(this) {
             val availableSlots = it.filter { it.slots.isNotEmpty() }
             dateAdapter = DateSelectionAdapter(this, availableSlots)
-//            binding.rvDates.adapter = dateAdapter
-//            binding.rvDates.layoutManager =
-//                LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+            binding.recyclerViewDateSelect.adapter = dateAdapter
+            binding.recyclerViewDateSelect.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 //            binding.tvSelectedDayDate.text = "${availableSlots[0].day}, ${availableSlots[0].date}"
             repository.setAppointmentsDate(availableSlots[0].date)
         }

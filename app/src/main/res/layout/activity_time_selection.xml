@@ -65,13 +65,23 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.11" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_date_select"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            tools:itemCount="1"
+            app:layout_constraintTop_toTopOf="@id/guideline_grid"
+            app:layout_constraintBottom_toTopOf="@id/date_select_end"
+            tools:listitem="@layout/date_select_item" />
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/sr_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/guideline3"
-            app:layout_constraintTop_toTopOf="@id/guideline_grid">
+            app:layout_constraintTop_toTopOf="@id/date_select_end">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_time"
@@ -114,6 +124,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="635dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/date_select_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="174dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

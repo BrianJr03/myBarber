@@ -91,4 +91,5 @@
     <string name="reschedule">Reschedule</string>
     <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber at arrival</string>
     <string name="appt_details">Appointment Details</string>
+    <string name="pl_day_month">08 Aug</string>
 </resources>
