@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityTimeSelectionBinding
+import jr.brian.mybarber.databinding.DateSelectItemBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.view.activities.home.HomeActivity
 import jr.brian.mybarber.view.adapters.appointment.DateSelectionAdapter
@@ -72,7 +73,7 @@ class TimeSelectionActivity : AppCompatActivity() {
     private fun setupObservers() {
         repository.currentAppointmentsLiveData.observe(this) {
             val availableSlots = it.filter { it.slots.isNotEmpty() }
-            dateAdapter = DateSelectionAdapter(this, availableSlots)
+            dateAdapter = DateSelectionAdapter(this, availableSlots, binding.selectedDate)
             binding.recyclerViewDateSelect.adapter = dateAdapter
             binding.recyclerViewDateSelect.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

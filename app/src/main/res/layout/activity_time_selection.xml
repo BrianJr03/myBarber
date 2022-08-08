@@ -70,9 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            tools:itemCount="1"
-            app:layout_constraintTop_toTopOf="@id/guideline_grid"
             app:layout_constraintBottom_toTopOf="@id/date_select_end"
+            app:layout_constraintTop_toTopOf="@id/guideline_grid"
+            tools:itemCount="1"
             tools:listitem="@layout/date_select_item" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -117,6 +117,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/guideline3"
             app:rippleColor="@color/teal_200" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_time"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fab_cancel" />
+
+        <TextView
+            android:id="@+id/selected_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/n_a"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

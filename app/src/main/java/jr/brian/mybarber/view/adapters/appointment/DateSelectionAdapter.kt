@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +15,7 @@ import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.Slot
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 
-class DateSelectionAdapter(private val context: Context, private val slots: List<Slot>) :
+class DateSelectionAdapter(private val context: Context, private val slots: List<Slot>, private val tv: TextView) :
     RecyclerView.Adapter<DateSelectionAdapter.SelectDateHolder>() {
     private val repository = Repository()
     lateinit var appointmentViewModel: AppointmentViewModel
@@ -41,7 +42,10 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
 
     inner class SelectDateHolder(val v: View) : RecyclerView.ViewHolder(binding.root) {
         fun bind(slot: Slot) {
-            binding.tvDayMonth.text = slot.date
+            val dateSplit = slot.date.split("-")
+            val monthAbbrev = getMonthAbbrevFromInt(dateSplit[1].toInt())
+            val selectedDate = "$monthAbbrev ${dateSplit[2]}"
+            binding.tvDayMonth.text = selectedDate
             binding.tvDay.text = slot.day
             appointmentViewModel.appointmentsDateLiveData.observe(context as AppCompatActivity) {
                 if (slot.date == it) {
@@ -63,9 +67,30 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
                 }
             }
             binding.root.setOnClickListener {
+                tv.text = "\n${slot.day}, $selectedDate"
                 repository.setAppointmentsDate(slot.date)
                 repository.setAppointmentsStartFrom(-1)
             }
         }
+
+        private fun getMonthAbbrevFromInt(monthInt: Int) : String {
+            when (monthInt) {
+                1 -> return "Jan"
+                2 -> return "Feb"
+                3 -> return "Mar"
+                4 -> return "Apr"
+                5 -> return "May"
+                6 -> return "June"
+                7 -> return "July"
+                8 -> return "Aug"
+                9 -> return "Sep"
+                10 -> return "Oct"
+                11 -> return "Nov"
+                12 -> return "Dec"
+            }
+            return "Jan"
+        }
     }
 }
+
+

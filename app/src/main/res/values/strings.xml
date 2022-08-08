@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">myBarber</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -92,4 +92,6 @@
     <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber at arrival</string>
     <string name="appt_details">Appointment Details</string>
     <string name="pl_day_month">08 Aug</string>
+    <string name="selected_time">Selected Time</string>
+    <string name="n_a">N/A</string>
 </resources>
