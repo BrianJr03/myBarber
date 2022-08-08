@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.mybarber.databinding.ActivityBarberServicesBinding
+import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.view.activities.appointment.TimeSelectionActivity
 import jr.brian.mybarber.view.adapters.barber.BarberServiceAdapter
@@ -22,36 +24,40 @@ class BarberServicesActivity : AppCompatActivity() {
     private lateinit var barberAdapter: BarberServiceAdapter
     private lateinit var barberServices: ArrayList<BarberService>
     lateinit var viewModel: BarberServiceViewModel
+    private lateinit var sharedPrefHelper: SharedPrefHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBarberServicesBinding.inflate(layoutInflater)
+        sharedPrefHelper = SharedPrefHelper(this)
         setContentView(binding.root)
         barberServices = ArrayList()
         setupViewModel()
         setupObservers()
         viewModel.getBarberServices()
         binding.apply {
-            // TODO - Stop refresh after retrieval of data
             srLayout.setOnRefreshListener {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {
+                        viewModel?.getBarberServices()
                         srLayout.isRefreshing = false;
                     }
                 }, 2000)
             }
             backBarberServices.setOnClickListener {
+                sharedPrefHelper.removeData(SELECTED_BARBER)
                 super.onBackPressed()
                 finish()
             }
             btnContinue.setOnClickListener {
-                var selectionCount = 0
+                val selectedServices = ArrayList<BarberService>()
                 for (b in barberServices) {
                     if (b.isSelected) {
-                        selectionCount++
+                        selectedServices.add(b)
                     }
                 }
-                if (selectionCount != 0) {
+                if (selectedServices.isNotEmpty()) {
+                    sharedPrefHelper.saveListOfServices(selectedServices)
                     startActivity(
                         Intent(
                             this@BarberServicesActivity,
@@ -67,6 +73,7 @@ class BarberServicesActivity : AppCompatActivity() {
                 }
             }
             btnChangeBarber.setOnClickListener {
+                sharedPrefHelper.removeData(SELECTED_BARBER)
                 super.onBackPressed()
             }
         }

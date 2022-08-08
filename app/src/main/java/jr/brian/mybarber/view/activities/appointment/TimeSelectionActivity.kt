@@ -4,37 +4,41 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityTimeSelectionBinding
-import jr.brian.mybarber.databinding.DateSelectItemBinding
+import jr.brian.mybarber.model.data.Constant.APPT_DATE
+import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
+import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.view.activities.home.HomeActivity
 import jr.brian.mybarber.view.adapters.appointment.DateSelectionAdapter
 import jr.brian.mybarber.view.adapters.appointment.TimeSelectionAdapter
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
-import java.time.LocalDate
-import java.util.stream.Collectors
 
 class TimeSelectionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimeSelectionBinding
-    lateinit var dateAdapter: DateSelectionAdapter
-    lateinit var timeAdapter: TimeSelectionAdapter
+    private lateinit var dateAdapter: DateSelectionAdapter
+    private lateinit var timeAdapter: TimeSelectionAdapter
     private lateinit var appointmentViewModel: AppointmentViewModel
+    private lateinit var sharedPrefHelper: SharedPrefHelper
     private val repository = Repository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTimeSelectionBinding.inflate(layoutInflater)
+        sharedPrefHelper = SharedPrefHelper(this)
         setContentView(binding.root)
 //        repository.updateAppointmentsSlot()
         setupViewModel()
         setupObservers()
         binding.apply {
-            // TODO - Stop refresh after retrieval of data
             srLayout.setOnRefreshListener {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {
@@ -46,19 +50,32 @@ class TimeSelectionActivity : AppCompatActivity() {
                 super.onBackPressed()
             }
             fabCancel.setOnClickListener {
+                sharedPrefHelper.apply {
+                    removeData(APPT_DATE)
+                    removeData(SELECTED_BARBER)
+                    removeData(SELECTED_SERVICES)
+                }
                 startActivity(
                     Intent(this@TimeSelectionActivity, HomeActivity::class.java)
                 )
                 finish()
             }
             fabConfirm.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this@TimeSelectionActivity,
-                        BookingSummaryActivity::class.java
+                if (!selectedDate.text.equals(getString(R.string.n_a))) {
+                    startActivity(
+                        Intent(
+                            this@TimeSelectionActivity,
+                            BookingSummaryActivity::class.java
+                        )
                     )
-                )
-                finish()
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@TimeSelectionActivity,
+                        "Please choose a date and time",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
     }

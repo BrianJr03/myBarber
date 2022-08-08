@@ -14,6 +14,7 @@ import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberCardBinding
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.barber.Barber
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.view.activities.barber.BarberServicesActivity
 
 class BarberAdapter(
@@ -23,6 +24,7 @@ class BarberAdapter(
     RecyclerView.Adapter<BarberAdapter.BarberViewHolder>() {
 
     lateinit var binding: BarberCardBinding
+    private val sharedPrefHelper = SharedPrefHelper(context)
 
     override fun getItemCount() = barbers.size
 
@@ -34,9 +36,10 @@ class BarberAdapter(
 
     override fun onBindViewHolder(holder: BarberViewHolder, position: Int) {
         holder.apply {
-            val barberCard = barbers[position]
-            bind(barberCard)
+            val barber = barbers[position]
+            bind(barber)
             itemView.setOnClickListener {
+                sharedPrefHelper.saveSelectedBarber(barber)
                 context.startActivity(Intent(context, BarberServicesActivity::class.java))
             }
         }

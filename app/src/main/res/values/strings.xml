@@ -83,7 +83,8 @@
     <string name="brian_jr">Brian Jr</string>
     <string name="summary">Summary</string>
     <string name="ex_date">Sat 23 Mar, 2022</string>
-    <string name="ex_time">3:30 PM - 3:45 PM (15 minutes)</string>
+    <string name="ex_time">3:30 PM - 3:45 PM</string>
+    <string name="ex_duration">15 minutes</string>
     <string name="barber">Barber</string>
     <string name="ex_cost">Total Cost: $30</string>
     <string name="view_coupons">View Coupons</string>

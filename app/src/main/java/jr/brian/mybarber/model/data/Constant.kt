@@ -38,6 +38,13 @@ object Constant {
 
     const val SHOP_ADDRESS = "235 W Van Buren St, Chicago, IL 60607"
 
+    const val SELECTED_BARBER = "SELECTED_BARBER"
+
+    const val SELECTED_SERVICES = "SELECTED_SERVICES"
+
+    const val APPT_DATE = "APPT_DATE"
+
+    /* Used for testing */
     const val BARBER_SUCCESS_RESPONSE = """
         {
         "status": 0,

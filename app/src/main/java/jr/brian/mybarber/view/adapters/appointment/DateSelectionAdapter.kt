@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.DateSelectItemBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.Slot
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 
 class DateSelectionAdapter(private val context: Context, private val slots: List<Slot>, private val tv: TextView) :
@@ -20,6 +23,7 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
     private val repository = Repository()
     lateinit var appointmentViewModel: AppointmentViewModel
     lateinit var binding: DateSelectItemBinding
+    private val sharedPrefHelper = SharedPrefHelper(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectDateHolder {
         binding = DateSelectItemBinding
@@ -67,9 +71,11 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
                 }
             }
             binding.root.setOnClickListener {
-                tv.text = "\n${slot.day}, $selectedDate"
+                val date = "\n${slot.day}, $selectedDate"
+                tv.text = date
                 repository.setAppointmentsDate(slot.date)
                 repository.setAppointmentsStartFrom(-1)
+                sharedPrefHelper.saveApptDateAndTime(date)
             }
         }
 
@@ -92,5 +98,6 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
         }
     }
 }
+
 
 

@@ -4,12 +4,22 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import jr.brian.mybarber.model.data.Constant.APPT_DATE
+import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
+import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
+import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.model.data.home.UserLogin
+import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
+import java.lang.reflect.Type
 
 class SharedPrefHelper(context: Context) {
     var editor: SharedPreferences.Editor
     var encryptedSharedPrefs: SharedPreferences
+
+    private val gson = Gson()
 
     init {
         val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
@@ -33,6 +43,54 @@ class SharedPrefHelper(context: Context) {
             commit()
         }
     }
+
+    private fun saveObject(obj: Any, key: String) {
+        editor.putString(key, gson.toJson(obj))
+        editor.apply()
+    }
+
+    private fun getObject(type: Type, key: String): Any {
+        val json: String? = encryptedSharedPrefs.getString(key, null)
+        return gson.fromJson(json, type)
+    }
+
+    fun saveSelectedBarber(barber: Barber) {
+        saveObject(barber, SELECTED_BARBER)
+    }
+
+    fun getSelectedBarber(): Barber {
+        return getObject(
+            type = object : TypeToken<Barber>() {}.type,
+            key = SELECTED_BARBER) as Barber
+    }
+
+    fun saveListOfServices(list: ArrayList<BarberService>) {
+        saveObject(list, SELECTED_SERVICES)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getBarberServices(): ArrayList<BarberService> {
+        return getObject(
+            type = object : TypeToken<ArrayList<BarberService>>() {}.type,
+            key = SELECTED_SERVICES) as ArrayList<BarberService>
+    }
+
+    fun saveApptDateAndTime(date: String) {
+        saveObject(date, APPT_DATE)
+    }
+
+    fun getApptDateAndTime(): String {
+        return getObject(
+            type = object : TypeToken<String>() {}.type,
+            key = APPT_DATE) as String
+    }
+
+    fun removeData(key: String) {
+        encryptedSharedPrefs
+            .edit()
+            .remove(key)
+            .apply()
+  }
 
     fun signOut() {
         editor.apply {

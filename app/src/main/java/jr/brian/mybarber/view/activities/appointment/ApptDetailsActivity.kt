@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import jr.brian.mybarber.databinding.ActivityApptDetailsBinding
+import jr.brian.mybarber.model.data.Constant
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
@@ -13,10 +16,13 @@ class ApptDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityApptDetailsBinding
     private lateinit var adapter: SummaryServiceAdapter
     private lateinit var services: ArrayList<BarberService>
+    private lateinit var sharedPrefHelper: SharedPrefHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityApptDetailsBinding.inflate(layoutInflater)
+        sharedPrefHelper = SharedPrefHelper(this)
+        services = ArrayList()
         setContentView(binding.root)
         binding.apply {
             detailsBackArrow.setOnClickListener {
@@ -38,6 +44,11 @@ class ApptDetailsActivity : AppCompatActivity() {
                     "Appointment has been canceled",
                     Toast.LENGTH_LONG
                 ).show()
+                sharedPrefHelper.apply {
+                    removeData(Constant.APPT_DATE)
+                    removeData(Constant.SELECTED_BARBER)
+                    removeData(Constant.SELECTED_SERVICES)
+                }
                 startHomeActivity(
                     this@ApptDetailsActivity,
                     this@ApptDetailsActivity
@@ -46,16 +57,21 @@ class ApptDetailsActivity : AppCompatActivity() {
             fabConfirm.setOnClickListener {
                 Toast.makeText(
                     this@ApptDetailsActivity,
-                    "Appointment has been set",
+                    "Appointment has been booked",
                     Toast.LENGTH_LONG
                 ).show()
+                sharedPrefHelper.apply {
+                    removeData(Constant.APPT_DATE)
+                    removeData(Constant.SELECTED_BARBER)
+                    removeData(Constant.SELECTED_SERVICES)
+                }
                 startHomeActivity(
                     this@ApptDetailsActivity,
                     this@ApptDetailsActivity
                 )
             }
         }
-        initDummyData()
+        initData()
     }
 
     private fun setAdapter() {
@@ -69,20 +85,26 @@ class ApptDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun initDummyData() {
-        services = ArrayList()
-        for (i in 1..3) {
-            services.add(
-                BarberService(
-                    30.0,
-                    15.0,
-                    1,
-                    "Bald Fade",
-                    "",
-                    false
-                )
-            )
+    private fun initData() {
+        var cost = 0
+        var duration = 0
+        services = sharedPrefHelper.getBarberServices().apply {
+            for (i in this) {
+                cost += i.cost.toInt()
+                duration += i.duration.toInt()
+            }
+            binding.apply {
+                apptCost.text = "Total Cost: $$cost"
+                apptDate.text = sharedPrefHelper.getApptDateAndTime()
+            }
         }
         setAdapter()
+        val selectedBarber = sharedPrefHelper.getSelectedBarber()
+        binding.apply {
+            selectedBarberName.text = selectedBarber.barberName
+            Glide.with(this@ApptDetailsActivity)
+                .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
+                .into(barberImage)
+        }
     }
 }

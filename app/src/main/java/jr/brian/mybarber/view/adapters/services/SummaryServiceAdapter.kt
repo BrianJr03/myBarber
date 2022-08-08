@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberServiceBookedItemBinding
+import jr.brian.mybarber.model.data.Constant.BASE_IMAGE_URL
 import jr.brian.mybarber.model.data.services.BarberService
 import kotlin.math.roundToInt
 
@@ -44,9 +46,9 @@ class SummaryServiceAdapter(
             name.text = barberService.serviceName
             cost.text = "$${barberService.cost.roundToInt()}"
             duration.text = "${barberService.duration.roundToInt()} MIN"
-//            Glide.with(context)
-//                .load(BASE_IMAGE_URL + barberService.servicePic)
-//                .into(image)
+            Glide.with(context)
+                .load(BASE_IMAGE_URL + barberService.servicePic)
+                .into(image)
         }
     }
 }
