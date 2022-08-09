@@ -62,7 +62,6 @@ class SharedPrefHelper(context: Context) {
     }
 
     fun getApiToken(): String {
-        Log.i("TAG_GETAPITOKEN", encryptedSharedPrefs.getString(API_TOKEN, null).toString())
         return encryptedSharedPrefs.getString(API_TOKEN, null).toString()
     }
 

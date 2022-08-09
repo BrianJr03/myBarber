@@ -37,6 +37,7 @@ class BookingSummaryActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupViewModel()
         initData()
+        val t = sharedPrefHelper.getApiToken()
         binding.apply {
             summaryBackArrow.setOnClickListener {
                 super.onBackPressed()
@@ -53,8 +54,8 @@ class BookingSummaryActivity : AppCompatActivity() {
                 )
             }
             fabConfirm.setOnClickListener {
-                Log.i("TAG", sharedPrefHelper.getApiToken())
-//                viewModel?.bookAppointment(map, )
+                val apiToken: String = t.substring(1, t.length - 1)
+                viewModel?.bookAppointment(map, apiToken)
                 startActivity(
                     Intent(
                         this@BookingSummaryActivity,
@@ -119,8 +120,9 @@ class BookingSummaryActivity : AppCompatActivity() {
 
     private fun initApptMap(cost: Any, duration: Any) {
         map["userId"] = "14" // sharedPrefHelper.getUserData().userId
-        map["barberId"] = "15" // sharedPrefHelper.getSelectedBarber().barberId.toString()
-        map["services"] = intArrayOf(3, 4, 7, 5).toString() //  sharedPrefHelper.getBarberServices()
+        map["barberId"] = "2" // sharedPrefHelper.getSelectedBarber().barberId.toString()
+        map["services"] =
+            intArrayOf(3, 4, 7, 5).contentToString() //  sharedPrefHelper.getBarberServices()
         map["aptDate"] = "2018/11/25" //sharedPrefHelper.getApptDateAndTime()
         map["timeFrom"] = "3:00"
         map["timeTo"] = "3:30"

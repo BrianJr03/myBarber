@@ -3,7 +3,6 @@ package jr.brian.mybarber.model.data
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.remote.ApiClient.retrofit
@@ -13,7 +12,6 @@ import jr.brian.mybarber.model.data.request.SignUpRequest
 import jr.brian.mybarber.model.data.response.SignInResponse
 import jr.brian.mybarber.model.data.response.SignUpResponse
 import jr.brian.mybarber.model.data.services.BarberServiceResponse
-import jr.brian.mybarber.view.adapters.appointment.TimeSelectionAdapter
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -21,8 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class Repository() {
+class Repository {
 
     private val apiService = retrofit.create(ApiService::class.java)
     val signUpResponse = MutableLiveData<SignUpResponse>()
@@ -233,35 +230,12 @@ class Repository() {
         })
     }
 
-//    fun bookAppointment(bookApptRequest: BookApptRequest) {
-//        val call: Call<BookApptResponse> = apiService.bookAppointment(bookApptRequest)
-//        call.enqueue(object : Callback<BookApptResponse> {
-//            override fun onResponse(
-//                call: Call<BookApptResponse>,
-//                response: Response<BookApptResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    if (response.body()!!.status == 0) {
-//                        Log.e("TAG", response.body()!!.appointment.toString())
-//                    } else {
-//                        Log.e("TAG", response.body()!!.toString())
-//                        error.postValue("Please retry.")
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<BookApptResponse>, t: Throwable) {
-//                error.postValue("Error is : $t.\n\nPlease retry.")
-//                t.printStackTrace()
-//            }
-//        })
-//    }
-
     fun bookAppointment(map: HashMap<String, Any>, psAuthToken: String) {
         val reqJson: String = Gson().toJson(map)
         val body: RequestBody =
             reqJson.toRequestBody("application/json".toMediaTypeOrNull())
-        val call: Call<BookApptResponse> = apiService.bookAppointment(psAuthToken, body)
+        val call: Call<BookApptResponse> =
+            apiService.bookAppointment(psAuthToken, body)
         call.enqueue(object : Callback<BookApptResponse> {
             override fun onResponse(
                 call: Call<BookApptResponse>,
@@ -269,7 +243,10 @@ class Repository() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 0) {
-                        Log.e("TAG_BOOK", response.body()!!.appointment.toString())
+                        Log.e(
+                            "TAG_BOOK",
+                            response.body()!!.appointment.toString()
+                        )
 
                     } else {
                         Log.e("TAG_BOOK", response.body()!!.message)

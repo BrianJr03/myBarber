@@ -42,22 +42,16 @@ interface ApiService {
     fun getCurrentAppts(): Call<CurrentApptResponse>
 
     @Headers("Content-type: application/json")
-    @POST("appointment/book")
-    fun bookAppointment(
-        @Body bookReq: BookApptRequest
-    ): Call<BookApptResponse>
-
-    @Headers("Content-type: application/json")
     @POST("appUser/updateFcmToken")
     fun updateFcmToken(
-        @Header("ps_auth_token") ps_auth_token: String,
+        @Header("ps_auth_token") psAuthToken: String,
         @Body updateReq: RequestBody
     ): Call<BasicResponse>
 
     @Headers("Content-type: application/json")
-    @POST("/appointment/book")
+    @POST("appointment/book")
     fun bookAppointment(
-        @Header("ps_auth_token") ps_auth_token: String,
-        @Body bookReq: RequestBody
+        @Header("ps_auth_token") psAuthToken: String,
+        @Body bookedRequest: RequestBody
     ): Call<BookApptResponse>
 }
