@@ -35,14 +35,13 @@ class TimeSelectionActivity : AppCompatActivity() {
         binding = ActivityTimeSelectionBinding.inflate(layoutInflater)
         sharedPrefHelper = SharedPrefHelper(this)
         setContentView(binding.root)
-//        repository.updateAppointmentsSlot()
         setupViewModel()
         setupObservers()
         binding.apply {
             srLayout.setOnRefreshListener {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {
-                        srLayout.isRefreshing = false;
+                        srLayout.isRefreshing = false
                     }
                 }, 2000)
             }
@@ -61,7 +60,8 @@ class TimeSelectionActivity : AppCompatActivity() {
                 finish()
             }
             fabConfirm.setOnClickListener {
-                if (!selectedDate.text.equals(getString(R.string.n_a))) {
+                if (!selectedDate.text.equals(getString(R.string.no_date_selected))
+                    && !selectedTime.text.equals(getString(R.string.no_time_selected))) {
                     startActivity(
                         Intent(
                             this@TimeSelectionActivity,
@@ -88,21 +88,19 @@ class TimeSelectionActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        repository.currentAppointmentsLiveData.observe(this) {
+        repository.currentAppointmentsLiveData.observe(this) { it ->
             val availableSlots = it.filter { it.slots.isNotEmpty() }
             dateAdapter = DateSelectionAdapter(this, availableSlots, binding.selectedDate)
             binding.recyclerViewDateSelect.adapter = dateAdapter
             binding.recyclerViewDateSelect.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-//            binding.tvSelectedDayDate.text = "${availableSlots[0].day}, ${availableSlots[0].date}"
             repository.setAppointmentsDate(availableSlots[0].date)
         }
 
         repository.appointmentsDateLiveData.observe(this) { date ->
             repository.currentAppointmentsLiveData.value!!.forEach() {
                 if (it.date == date) {
-                    timeAdapter = TimeSelectionAdapter(this, it.slots)
-//                    binding.tvSelectedDayDate.text = "${it.day}, ${it.date}"
+                    timeAdapter = TimeSelectionAdapter(this, it.slots, binding.selectedTime)
                     binding.recyclerViewTime.adapter = timeAdapter
                     binding.recyclerViewTime.layoutManager = GridLayoutManager(this, 4)
                 }

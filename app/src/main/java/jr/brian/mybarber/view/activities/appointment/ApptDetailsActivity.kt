@@ -88,6 +88,11 @@ class ApptDetailsActivity : AppCompatActivity() {
     private fun initData() {
         var cost = 0
         var duration = 0
+        val selectedTimeSlots = sharedPrefHelper.getTimeSlots()
+
+        val firstSlot = selectedTimeSlots[0]
+        var lastSlot = selectedTimeSlots[selectedTimeSlots.size - 1]
+
         services = sharedPrefHelper.getBarberServices().apply {
             for (i in this) {
                 cost += i.cost.toInt()
@@ -95,13 +100,22 @@ class ApptDetailsActivity : AppCompatActivity() {
             }
             binding.apply {
                 apptCost.text = "Total Cost: $$cost"
-                apptDate.text = sharedPrefHelper.getApptDateAndTime()
+                apptDate.text = sharedPrefHelper.getApptDate()
             }
         }
+
+        if (selectedTimeSlots.size == 1) {
+            val split = firstSlot.split(":")
+            val firstHour = split[0]
+            val minute = split[1].toInt()
+            lastSlot = "$firstHour:${minute + duration}"
+        }
+
         setAdapter()
         val selectedBarber = sharedPrefHelper.getSelectedBarber()
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
+            apptTime.text = "$firstSlot - $lastSlot"
             Glide.with(this@ApptDetailsActivity)
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)

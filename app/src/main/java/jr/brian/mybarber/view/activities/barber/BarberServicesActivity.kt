@@ -40,7 +40,7 @@ class BarberServicesActivity : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {
                         viewModel?.getBarberServices()
-                        srLayout.isRefreshing = false;
+                        srLayout.isRefreshing = false
                     }
                 }, 2000)
             }
@@ -49,7 +49,7 @@ class BarberServicesActivity : AppCompatActivity() {
                 super.onBackPressed()
                 finish()
             }
-            btnContinue.setOnClickListener {
+            fabContinue.setOnClickListener {
                 val selectedServices = ArrayList<BarberService>()
                 for (b in barberServices) {
                     if (b.isSelected) {
@@ -72,7 +72,7 @@ class BarberServicesActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-            btnChangeBarber.setOnClickListener {
+            fabChangeBarber.setOnClickListener {
                 sharedPrefHelper.removeData(SELECTED_BARBER)
                 super.onBackPressed()
             }

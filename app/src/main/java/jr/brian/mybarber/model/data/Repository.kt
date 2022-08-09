@@ -33,10 +33,8 @@ class Repository() {
     val appointmentsDateLiveData = MutableLiveData<String>()
     val appointmentsStartFromLiveData = MutableLiveData<Int>()
     val currentAppointmentsLiveData = MutableLiveData<ArrayList<Slot>>()
-    val appointmentsSlotLiveData = MutableLiveData<Int>()
 
     val barberServicesSelectLiveData = MutableLiveData<ArrayList<Int>>()
-    val appointmentsTotalDurationLiveData = MutableLiveData<Double>()
 
     val error = MutableLiveData<String>()
 
@@ -46,17 +44,6 @@ class Repository() {
 
     fun setAppointmentsStartFrom(startFrom: Int) {
         appointmentsStartFromLiveData.postValue(startFrom)
-    }
-
-    fun updateAppointmentsSlot(){
-        var totalDuration = 0.0
-        barberServiceLiveData.value!!.services.forEach(){
-            if (it.serviceId in barberServicesSelectLiveData.value!!){
-                totalDuration += it.duration
-            }
-        }
-        appointmentsTotalDurationLiveData.postValue(totalDuration)
-        appointmentsSlotLiveData.postValue((totalDuration/15 + 0.5).roundToInt())
     }
 
     fun signIn(signInRequest: SignInRequest) {
@@ -84,6 +71,7 @@ class Repository() {
                 if (apiResponse.status == 0) {
                     isProcessing.set(false)
                     signInResponse.postValue(apiResponse)
+                    Log.e("TAG", response.body()!!.toString())
                 } else {
                     error.postValue(apiResponse.message)
                 }
@@ -198,17 +186,34 @@ class Repository() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 0) {
-                        Log.e("HELPME", response.body()!!.slots.toString())
+                        Log.e("TAG", response.body()!!.slots.toString())
                         currentAppointmentsLiveData.postValue(response.body()!!.slots)
 
                     } else {
-                        Log.e("HELPME", response.body()!!.message)
+                        Log.e("TAG", response.body()!!.message)
                     }
                 }
             }
 
             override fun onFailure(call: Call<CurrentApptResponse>, t: Throwable) {
-                Log.e("HELPME", t.toString())
+                Log.e("TAG", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun bookAppointment(bookApptRequest: BookApptRequest){
+        val call: Call<BookApptResponse> = apiService.bookAppointment(bookApptRequest)
+        call.enqueue(object : Callback<BookApptResponse> {
+            override fun onResponse(call: Call<BookApptResponse>, response: Response<BookApptResponse>) {
+                if (response.isSuccessful) {
+                    if(response.body()!!.status == 0){
+                        Log.e("TAG", response.body()!!.appointment.toString())
+                    } else { error.postValue("Please retry.") }
+                }
+            }
+            override fun onFailure(call: Call<BookApptResponse>, t: Throwable) {
+                error.postValue("Error is : $t.\n\nPlease retry.")
                 t.printStackTrace()
             }
         })

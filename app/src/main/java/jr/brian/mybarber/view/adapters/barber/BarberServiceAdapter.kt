@@ -22,7 +22,6 @@ class BarberServiceAdapter(
     RecyclerView.Adapter<BarberServiceAdapter.BarberServiceViewHolder>() {
 
     lateinit var binding: BarberServiceItemBinding
-    private val repository = Repository()
 
     override fun getItemCount() = barbers.size
 

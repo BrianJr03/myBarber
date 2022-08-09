@@ -92,8 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
         android:layout_marginStart="@dimen/_40dp"
-        android:text="@string/business_hours_time"
-        android:textColor="@color/blueish_idk"
+        android:text="@string/holiday"
+        android:textColor="@color/gold"
+        android:textStyle="bold"
         android:textSize="@dimen/_20sp"
         app:layout_constraintStart_toEndOf="@id/guideline_mid"
         app:layout_constraintTop_toBottomOf="@id/sunday_tv" />

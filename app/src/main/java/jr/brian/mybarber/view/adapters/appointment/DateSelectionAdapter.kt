@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.DateSelectItemBinding
 import jr.brian.mybarber.model.data.Repository
@@ -18,7 +16,11 @@ import jr.brian.mybarber.model.data.Slot
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 
-class DateSelectionAdapter(private val context: Context, private val slots: List<Slot>, private val tv: TextView) :
+class DateSelectionAdapter(
+    private val context: Context,
+    private val slots: List<Slot>,
+    private val tv: TextView
+) :
     RecyclerView.Adapter<DateSelectionAdapter.SelectDateHolder>() {
     private val repository = Repository()
     lateinit var appointmentViewModel: AppointmentViewModel
@@ -70,16 +72,29 @@ class DateSelectionAdapter(private val context: Context, private val slots: List
                     )
                 }
             }
-            binding.root.setOnClickListener {
-                val date = "\n${slot.day}, $selectedDate"
-                tv.text = date
-                repository.setAppointmentsDate(slot.date)
-                repository.setAppointmentsStartFrom(-1)
-                sharedPrefHelper.saveApptDateAndTime(date)
+
+            binding.apply {
+                var isSelected = false
+                root.setOnClickListener {
+                    isSelected = !isSelected
+                    val date = "\n${slot.day}, $selectedDate"
+                    if (isSelected) {
+                        repository.setAppointmentsDate(slot.date)
+                        repository.setAppointmentsStartFrom(-1)
+                        sharedPrefHelper.saveApptDateAndTime(date)
+                        tvDay.setTextColor(context.getColor(R.color.gold))
+                        tvDayMonth.setTextColor(context.getColor(R.color.gold))
+                        tv.text = date
+                    } else {
+                        tvDay.setTextColor(context.getColor(R.color.white))
+                        tvDayMonth.setTextColor(context.getColor(R.color.white))
+                        tv.text = context.getString(R.string.no_date_selected)
+                    }
+                }
             }
         }
 
-        private fun getMonthAbbrevFromInt(monthInt: Int) : String {
+        private fun getMonthAbbrevFromInt(monthInt: Int): String {
             when (monthInt) {
                 1 -> return "Jan"
                 2 -> return "Feb"

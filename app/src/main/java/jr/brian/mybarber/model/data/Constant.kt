@@ -42,6 +42,8 @@ object Constant {
 
     const val SELECTED_SERVICES = "SELECTED_SERVICES"
 
+    const val TIME_SLOTS = "TIME_SLOTS"
+
     const val APPT_DATE = "APPT_DATE"
 
     /* Used for testing */

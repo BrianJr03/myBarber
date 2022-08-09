@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
+import jr.brian.mybarber.model.data.Constant.TIME_SLOTS
 import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.model.data.home.UserLogin
 import jr.brian.mybarber.model.data.services.BarberService
@@ -75,11 +76,22 @@ class SharedPrefHelper(context: Context) {
             key = SELECTED_SERVICES) as ArrayList<BarberService>
     }
 
+    fun saveListOfTimeSlots(list: ArrayList<String>) {
+        saveObject(list, TIME_SLOTS)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getTimeSlots() : ArrayList<String> {
+        return getObject(
+            type = object : TypeToken<ArrayList<String>>() {}.type,
+            key = TIME_SLOTS) as ArrayList<String>
+    }
+
     fun saveApptDateAndTime(date: String) {
         saveObject(date, APPT_DATE)
     }
 
-    fun getApptDateAndTime(): String {
+    fun getApptDate(): String {
         return getObject(
             type = object : TypeToken<String>() {}.type,
             key = APPT_DATE) as String

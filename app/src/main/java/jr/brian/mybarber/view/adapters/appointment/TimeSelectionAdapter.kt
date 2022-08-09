@@ -4,23 +4,26 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.TimeGridItemBinding
 import jr.brian.mybarber.model.data.Repository
+import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 
 class TimeSelectionAdapter(
-    private val context: Context, private val slot: Map<String, Boolean>
+    private val context: Context, private val slot: Map<String, Boolean>, private val tv: TextView
 ) :
     RecyclerView.Adapter<TimeSelectionAdapter.SelectDateHolder>() {
     lateinit var appointmentViewModel: AppointmentViewModel
     lateinit var binding: TimeGridItemBinding
     private val repository = Repository()
-
+    private var selectedTimeSlots = ArrayList<String>()
+    private val sharedPrefHelper = SharedPrefHelper(context)
 
     override fun getItemCount() = slot.size
 
@@ -50,32 +53,48 @@ class TimeSelectionAdapter(
 
     inner class SelectDateHolder(private val v: View) : RecyclerView.ViewHolder(binding.root) {
         fun bind(time: String, booked: Boolean, position: Int) {
-            binding.tvTimeSlot.text = time.split("-")[0]
-            if (booked) {
-                binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_booked)
-            } else {
-                binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_available)
-            }
-            binding.tvTimeSlot.setOnClickListener {
-                val slots = 1 // repository.appointmentsSlotLiveData.value!!
-                val freeSlots = freeSlots(slots, position)
-                binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_selected)
-                if (freeSlots == -1) {
-                    repository.setAppointmentsStartFrom(position)
+            binding.tvTimeSlot.apply {
+                text = time.split("-")[0]
+                if (booked) {
+                    setBackgroundResource(R.drawable.time_slot_booked)
                 } else {
-                    openDialog(
-                        context as AppCompatActivity,
-                        "Time Not Available",
-                        R.drawable.info_24,
-                        "Please select an available time"
-                    )
+                    setBackgroundResource(R.drawable.time_slot_available)
+                }
+                var isSelected = false
+                setOnClickListener {
+                    isSelected = !isSelected
+                    val slots = 2 // repository.appointmentsSlotLiveData.value!!
+                    val freeSlots = freeSlots(slots, position)
+                    if (freeSlots == -1) {
+                        if (isSelected) {
+                            repository.setAppointmentsStartFrom(position)
+                            setTextColor(context.getColor(R.color.gold))
+                            tv.text = "Starting at ${this.text}"
+                            selectedTimeSlots.add(this.text.toString())
+                            sharedPrefHelper.saveListOfTimeSlots(selectedTimeSlots)
+                        }
+                        else {
+                            selectedTimeSlots.remove(this.text.toString())
+                            sharedPrefHelper.saveListOfTimeSlots(selectedTimeSlots)
+                            setTextColor(context.getColor(R.color.white))
+                            tv.text = context.getString(R.string.select_time)
+                        }
+                    } else {
+                        openDialog(
+                            context as AppCompatActivity,
+                            "Time Not Available",
+                            R.drawable.info_24,
+                            "Please select an available time"
+                        )
+                    }
                 }
             }
 
+
             repository.appointmentsStartFromLiveData.observe(context as AppCompatActivity) {
-                val slots = 1 // repository.appointmentsSlotLiveData.value!!
+                val slots = 2 // repository.appointmentsSlotLiveData.value!!
                 if (it != -1 && position in it until (it + slots)) {
-                    binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_selected)
+//                    binding.tvTimeSlot.setTextColor(context.getColor(R.color.gold))
                 } else {
                     if (booked) {
                         binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_booked)

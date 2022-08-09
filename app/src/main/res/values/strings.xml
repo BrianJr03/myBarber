@@ -93,6 +93,7 @@
     <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber at arrival</string>
     <string name="appt_details">Appointment Details</string>
     <string name="pl_day_month">08 Aug</string>
-    <string name="selected_time">Selected Time</string>
-    <string name="n_a">N/A</string>
+    <string name="no_time_selected">No Time Selected</string>
+    <string name="no_date_selected">No Date Selected</string>
+    <string name="holiday">HOLIDAY</string>
 </resources>
