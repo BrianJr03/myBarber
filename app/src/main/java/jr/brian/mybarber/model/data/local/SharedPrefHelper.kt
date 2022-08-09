@@ -2,10 +2,12 @@ package jr.brian.mybarber.model.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import jr.brian.mybarber.model.data.Constant.API_TOKEN
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
@@ -53,6 +55,15 @@ class SharedPrefHelper(context: Context) {
     private fun getObject(type: Type, key: String): Any {
         val json: String? = encryptedSharedPrefs.getString(key, null)
         return gson.fromJson(json, type)
+    }
+
+    fun saveApiToken(token: String) {
+        saveObject(token, API_TOKEN)
+    }
+
+    fun getApiToken(): String {
+        Log.i("TAG_GETAPITOKEN", encryptedSharedPrefs.getString(API_TOKEN, null).toString())
+        return encryptedSharedPrefs.getString(API_TOKEN, null).toString()
     }
 
     fun saveSelectedBarber(barber: Barber) {

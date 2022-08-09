@@ -1,5 +1,6 @@
 package jr.brian.mybarber.model.data.remote
 
+import jr.brian.mybarber.model.data.BasicResponse
 import jr.brian.mybarber.model.data.BookApptRequest
 import jr.brian.mybarber.model.data.BookApptResponse
 import jr.brian.mybarber.model.data.CurrentApptResponse
@@ -11,10 +12,7 @@ import jr.brian.mybarber.model.data.response.SignUpResponse
 import jr.brian.mybarber.model.data.services.BarberServiceResponse
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @Headers("Content-type: application/json")
@@ -47,5 +45,19 @@ interface ApiService {
     @POST("appointment/book")
     fun bookAppointment(
         @Body bookReq: BookApptRequest
+    ): Call<BookApptResponse>
+
+    @Headers("Content-type: application/json")
+    @POST("appUser/updateFcmToken")
+    fun updateFcmToken(
+        @Header("ps_auth_token") ps_auth_token: String,
+        @Body updateReq: RequestBody
+    ): Call<BasicResponse>
+
+    @Headers("Content-type: application/json")
+    @POST("/appointment/book")
+    fun bookAppointment(
+        @Header("ps_auth_token") ps_auth_token: String,
+        @Body bookReq: RequestBody
     ): Call<BookApptResponse>
 }

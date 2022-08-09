@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import jr.brian.mybarber.databinding.ActivityBookingSummaryBinding
-import jr.brian.mybarber.model.data.BookApptRequest
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
@@ -17,13 +17,17 @@ import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
+import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
+import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
 
 class BookingSummaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookingSummaryBinding
     private lateinit var adapter: SummaryServiceAdapter
     private lateinit var services: ArrayList<BarberService>
     private lateinit var sharedPrefHelper: SharedPrefHelper
-    private var repository = Repository()
+    private lateinit var viewModel: AppointmentViewModel
+
+    private val map = HashMap<String, Any>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,7 @@ class BookingSummaryActivity : AppCompatActivity() {
         sharedPrefHelper = SharedPrefHelper(this)
         services = ArrayList()
         setContentView(binding.root)
+        setupViewModel()
         initData()
         binding.apply {
             summaryBackArrow.setOnClickListener {
@@ -48,20 +53,8 @@ class BookingSummaryActivity : AppCompatActivity() {
                 )
             }
             fabConfirm.setOnClickListener {
-                val list = listOf(2, 3, 5, 7)
-                val br = BookApptRequest(
-                    userId = "14",
-                    barberId = "15",
-                    services = list.toString(),
-                    aptDate = "2018/11/25",
-                    timeFrom = "11:00",
-                    timeTo = "12:30",
-                    totalDuration = "90",
-                    totalCost = "550",
-                    couponCode = "",
-                    sendSms = "false"
-                )
-                repository.bookAppointment(br)
+                Log.i("TAG", sharedPrefHelper.getApiToken())
+//                viewModel?.bookAppointment(map, )
                 startActivity(
                     Intent(
                         this@BookingSummaryActivity,
@@ -70,6 +63,12 @@ class BookingSummaryActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    private fun setupViewModel() {
+        val factory = ApptVMFactory(Repository())
+        viewModel = ViewModelProvider(this, factory)[AppointmentViewModel::class.java]
+        binding.viewModel = viewModel
     }
 
     private fun setAdapter() {
@@ -88,6 +87,7 @@ class BookingSummaryActivity : AppCompatActivity() {
                 cost += i.cost.toInt()
                 duration += i.duration.toInt()
             }
+            initApptMap(cost, duration)
             binding.apply {
                 apptDuration.text = "$duration Minutes"
                 apptCost.text = "Total Cost: $$cost"
@@ -117,31 +117,16 @@ class BookingSummaryActivity : AppCompatActivity() {
         }
     }
 
-//    private fun initApptMap(cost: Any, duration: Any) {
-
-
-//        map["userId"] = "14" // sharedPrefHelper.getUserData().userId
-//        map["barberId"] = "15" // sharedPrefHelper.getSelectedBarber().barberId.toString()
-//        map["services"] = intArrayOf(3, 4, 7, 5).toString() //  sharedPrefHelper.getBarberServices()
-//        map["aptDate"] = "2018/11/25" //sharedPrefHelper.getApptDateAndTime()
-//        map["timeFrom"] = "3:00"
-//        map["timeTo"] = "3:30"
-//        map["totalDuration"] = duration.toString()
-//        map["totalCost"] = cost.toString()
-//        map["couponCode"] = ""
-//        map["sendSms"] = false.toString()
-
-
-//        {
-//        "userId" : 147,
-//        "barberId": 15,
-//        "services" : [4, 5, 9, 7],
-//        "aptDate":"2018/11/25",
-//        "timeFrom": "11:00",
-//        "timeTo": "12:30",
-//        "totalDuration": 90;
-//        "totalCost": 550;
-//        "couponCode" : "",
-//        "sendSms" : true
-//        }
+    private fun initApptMap(cost: Any, duration: Any) {
+        map["userId"] = "14" // sharedPrefHelper.getUserData().userId
+        map["barberId"] = "15" // sharedPrefHelper.getSelectedBarber().barberId.toString()
+        map["services"] = intArrayOf(3, 4, 7, 5).toString() //  sharedPrefHelper.getBarberServices()
+        map["aptDate"] = "2018/11/25" //sharedPrefHelper.getApptDateAndTime()
+        map["timeFrom"] = "3:00"
+        map["timeTo"] = "3:30"
+        map["totalDuration"] = duration.toString()
+        map["totalCost"] = cost.toString()
+        map["couponCode"] = ""
+        map["sendSms"] = true.toString()
+    }
 }

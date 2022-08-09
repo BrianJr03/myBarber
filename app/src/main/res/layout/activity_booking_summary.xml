@@ -1,190 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.activities.appointment.BookingSummaryActivity">
+<layout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_grid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.11" />
+    <data>
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/summary_back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10dp"
-        android:background="@color/transparent_bg_color"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/arrow_back_36"
-        app:layout_constraintBottom_toBottomOf="@id/summary_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/summary_tv" />
+        <variable
+            name="viewModel"
+            type="jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel" />
 
-    <TextView
-        android:id="@+id/summary_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/summary"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/activity_header_text_size"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_grid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <import type="android.view.View" />
+    </data>
 
-    <TextView
-        android:id="@+id/appt_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/ex_date"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_grid" />
-
-    <TextView
-        android:id="@+id/appt_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
-        android:text="@string/ex_time"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintEnd_toStartOf="@id/appt_duration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appt_date" />
-
-    <TextView
-        android:id="@+id/appt_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:text="@string/ex_duration"
-        android:textColor="@color/blueish_idk"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintStart_toEndOf="@id/appt_time"
-        app:layout_constraintTop_toBottomOf="@id/appt_date" />
-
-    <TextView
-        android:id="@+id/appt_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
-        android:text="@string/ex_cost"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appt_time" />
-
-    <TextView
-        android:id="@+id/chosen_barber_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20dp"
-        android:layout_marginTop="@dimen/_30dp"
-        android:text="@string/barber"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appt_time" />
-
-    <TextView
-        android:id="@+id/selected_barber_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20dp"
-        android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/pl_barber_name"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chosen_barber_tv" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/barber_image"
-        android:layout_width="@dimen/_70dp"
-        android:layout_height="@dimen/_70dp"
-        android:layout_margin="@dimen/_10dp"
-        android:layout_marginEnd="@dimen/_40dp"
-        android:backgroundTint="@color/blueish_idk"
-        android:src="@drawable/github_48"
-        app:layout_constraintBottom_toBottomOf="@id/selected_barber_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/chosen_barber_tv" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_rv_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="276dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_services"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_rv_end"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline_rv_start"
-        tools:itemCount="4"
-        tools:listitem="@layout/barber_service_booked_item" />
+        android:layout_height="match_parent"
+        tools:context=".view.activities.appointment.BookingSummaryActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_rv_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="640dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20dp"
-        android:backgroundTint="@color/blueish_idk"
-        app:icon="@drawable/close_10"
-        app:iconTint="?android:colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/teal_200" />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/summary_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:background="@color/transparent_bg_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/arrow_back_36"
+            app:layout_constraintBottom_toBottomOf="@id/summary_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/summary_tv" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20dp"
-        android:backgroundTint="@color/blueish_idk"
-        app:icon="@drawable/check_24"
-        app:iconTint="?android:colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/teal_200" />
+        <TextView
+            android:id="@+id/summary_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/summary"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/activity_header_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_grid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/view_coupons_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/view_coupons"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+        <TextView
+            android:id="@+id/appt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/ex_date"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_grid" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/appt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:text="@string/ex_time"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toStartOf="@id/appt_duration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appt_date" />
+
+        <TextView
+            android:id="@+id/appt_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:text="@string/ex_duration"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/appt_time"
+            app:layout_constraintTop_toBottomOf="@id/appt_date" />
+
+        <TextView
+            android:id="@+id/appt_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:text="@string/ex_cost"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appt_time" />
+
+        <TextView
+            android:id="@+id/chosen_barber_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_30dp"
+            android:text="@string/barber"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appt_time" />
+
+        <TextView
+            android:id="@+id/selected_barber_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/pl_barber_name"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chosen_barber_tv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/barber_image"
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_margin="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_40dp"
+            android:backgroundTint="@color/blueish_idk"
+            android:src="@drawable/github_48"
+            app:layout_constraintBottom_toBottomOf="@id/selected_barber_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/chosen_barber_tv" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_rv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="276dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_services"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_rv_end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_rv_start"
+            tools:itemCount="4"
+            tools:listitem="@layout/barber_service_booked_item" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_rv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="640dp" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/close_10"
+            app:iconTint="?android:colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/check_24"
+            app:iconTint="?android:colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <TextView
+            android:id="@+id/view_coupons_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/view_coupons"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_rv_end" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

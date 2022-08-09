@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.response.SignInResponse
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class SignInViewModel(private val repository: Repository) : ViewModel() {
 
-    val loginResponse: LiveData<SignInResponse> = repository.signInResponse
+    val signInResponse: LiveData<SignInResponse> = repository.signInResponse
     val error: LiveData<String> = repository.error
     val isProcessing = repository.isProcessing
 
@@ -26,6 +25,12 @@ class SignInViewModel(private val repository: Repository) : ViewModel() {
             val signInRequest = SignInRequest(mobileNo.value!!, password.value!!)
             Log.i("TAG", signInRequest.toString())
             repository.signIn(signInRequest)
+        }
+    }
+
+    fun updateFCM(userId: String, fcm: String, psAuthToken: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateFcmToken(userId = userId, fcmToken = fcm, psAuthToken = psAuthToken)
         }
     }
 }

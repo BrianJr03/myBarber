@@ -46,6 +46,8 @@ object Constant {
 
     const val APPT_DATE = "APPT_DATE"
 
+    const val API_TOKEN = "API_TOKEN"
+
     /* Used for testing */
     const val BARBER_SUCCESS_RESPONSE = """
         {
