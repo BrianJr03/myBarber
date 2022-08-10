@@ -39,6 +39,13 @@ class ApptDetailsActivity : AppCompatActivity() {
                     true
                 }
             }
+            rescheduleTv.setOnClickListener {
+                Toast.makeText(
+                    this@ApptDetailsActivity,
+                    "Coming Soon",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             fabCancel.setOnClickListener {
                 Toast.makeText(
                     this@ApptDetailsActivity,

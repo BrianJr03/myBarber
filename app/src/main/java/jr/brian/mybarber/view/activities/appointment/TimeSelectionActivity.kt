@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -95,6 +96,10 @@ class TimeSelectionActivity : AppCompatActivity() {
             binding.recyclerViewDateSelect.adapter = dateAdapter
             binding.recyclerViewDateSelect.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            binding.apply {
+                animationView.visibility = View.GONE
+                recyclerViewDateSelect.visibility = View.VISIBLE
+            }
             appointmentViewModel.setAppointmentsDate(availableSlots[0].date)
         }
 
@@ -104,6 +109,10 @@ class TimeSelectionActivity : AppCompatActivity() {
                     timeAdapter = TimeSelectionAdapter(this, it.slots, binding.selectedTime)
                     binding.recyclerViewTime.adapter = timeAdapter
                     binding.recyclerViewTime.layoutManager = GridLayoutManager(this, 4)
+                    binding.apply {
+                        animationView.visibility = View.GONE
+                        recyclerViewTime.visibility = View.VISIBLE
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@
             android:id="@+id/animation_view"
             android:layout_width="125dp"
             android:layout_height="117dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/date_select_end"
             app:layout_constraintTop_toTopOf="@id/guideline_grid"
             tools:itemCount="1"
@@ -87,7 +88,7 @@
                 android:id="@+id/recyclerView_time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:itemCount="1"
                 tools:listitem="@layout/time_grid_item" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

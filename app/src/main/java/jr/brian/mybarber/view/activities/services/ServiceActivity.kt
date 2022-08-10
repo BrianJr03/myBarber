@@ -1,6 +1,10 @@
 package jr.brian.mybarber.view.activities.services
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.mybarber.databinding.ActivityServiceBinding
@@ -23,6 +27,18 @@ class ServiceActivity : AppCompatActivity() {
                 finish()
             }
         }
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(
+                this,
+                "Error loading Services\nDisplaying Dummy Data",
+                Toast.LENGTH_LONG
+            ).show()
+            binding.apply {
+                serviceRecyclerView.visibility = View.VISIBLE
+                animationView.visibility = View.GONE
+            }
+        }, 2000)
+
     }
 
     private fun setAdapter() {

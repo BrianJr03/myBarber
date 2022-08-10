@@ -43,6 +43,13 @@ class BookingSummaryActivity : AppCompatActivity() {
             summaryBackArrow.setOnClickListener {
                 super.onBackPressed()
             }
+            viewCouponsTv.setOnClickListener {
+                Toast.makeText(
+                    this@BookingSummaryActivity,
+                    "Coming Soon",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             fabCancel.setOnClickListener {
                 sharedPrefHelper.apply {
                     removeData(APPT_DATE)
