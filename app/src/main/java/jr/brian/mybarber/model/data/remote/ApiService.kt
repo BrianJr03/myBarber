@@ -1,7 +1,6 @@
 package jr.brian.mybarber.model.data.remote
 
 import jr.brian.mybarber.model.data.BasicResponse
-import jr.brian.mybarber.model.data.BookApptRequest
 import jr.brian.mybarber.model.data.BookApptResponse
 import jr.brian.mybarber.model.data.CurrentApptResponse
 import jr.brian.mybarber.model.data.barber.BarberResponse

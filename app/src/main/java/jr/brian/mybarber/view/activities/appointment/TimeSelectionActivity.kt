@@ -61,7 +61,8 @@ class TimeSelectionActivity : AppCompatActivity() {
             }
             fabConfirm.setOnClickListener {
                 if (!selectedDate.text.equals(getString(R.string.no_date_selected))
-                    && !selectedTime.text.equals(getString(R.string.no_time_selected))) {
+                    && !selectedTime.text.equals(getString(R.string.no_time_selected))
+                ) {
                     startActivity(
                         Intent(
                             this@TimeSelectionActivity,
@@ -88,17 +89,17 @@ class TimeSelectionActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        repository.currentAppointmentsLiveData.observe(this) { it ->
+        appointmentViewModel.currentAppointmentsLiveData.observe(this) { it ->
             val availableSlots = it.filter { it.slots.isNotEmpty() }
             dateAdapter = DateSelectionAdapter(this, availableSlots, binding.selectedDate)
             binding.recyclerViewDateSelect.adapter = dateAdapter
             binding.recyclerViewDateSelect.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            repository.setAppointmentsDate(availableSlots[0].date)
+            appointmentViewModel.setAppointmentsDate(availableSlots[0].date)
         }
 
-        repository.appointmentsDateLiveData.observe(this) { date ->
-            repository.currentAppointmentsLiveData.value!!.forEach() {
+        appointmentViewModel.appointmentsDateLiveData.observe(this) { date ->
+            appointmentViewModel.currentAppointmentsLiveData.value!!.forEach {
                 if (it.date == date) {
                     timeAdapter = TimeSelectionAdapter(this, it.slots, binding.selectedTime)
                     binding.recyclerViewTime.adapter = timeAdapter

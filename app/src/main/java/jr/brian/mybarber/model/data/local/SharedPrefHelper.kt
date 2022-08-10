@@ -2,7 +2,6 @@ package jr.brian.mybarber.model.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.google.gson.Gson
@@ -72,7 +71,8 @@ class SharedPrefHelper(context: Context) {
     fun getSelectedBarber(): Barber {
         return getObject(
             type = object : TypeToken<Barber>() {}.type,
-            key = SELECTED_BARBER) as Barber
+            key = SELECTED_BARBER
+        ) as Barber
     }
 
     fun saveListOfServices(list: ArrayList<BarberService>) {
@@ -83,7 +83,8 @@ class SharedPrefHelper(context: Context) {
     fun getBarberServices(): ArrayList<BarberService> {
         return getObject(
             type = object : TypeToken<ArrayList<BarberService>>() {}.type,
-            key = SELECTED_SERVICES) as ArrayList<BarberService>
+            key = SELECTED_SERVICES
+        ) as ArrayList<BarberService>
     }
 
     fun saveListOfTimeSlots(list: ArrayList<String>) {
@@ -91,10 +92,11 @@ class SharedPrefHelper(context: Context) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun getTimeSlots() : ArrayList<String> {
+    fun getTimeSlots(): ArrayList<String> {
         return getObject(
             type = object : TypeToken<ArrayList<String>>() {}.type,
-            key = TIME_SLOTS) as ArrayList<String>
+            key = TIME_SLOTS
+        ) as ArrayList<String>
     }
 
     fun saveApptDateAndTime(date: String) {
@@ -104,7 +106,8 @@ class SharedPrefHelper(context: Context) {
     fun getApptDate(): String {
         return getObject(
             type = object : TypeToken<String>() {}.type,
-            key = APPT_DATE) as String
+            key = APPT_DATE
+        ) as String
     }
 
     fun removeData(key: String) {
@@ -112,7 +115,7 @@ class SharedPrefHelper(context: Context) {
             .edit()
             .remove(key)
             .apply()
-  }
+    }
 
     fun signOut() {
         editor.apply {

@@ -41,10 +41,10 @@ class SignUpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view)
+        initView()
     }
 
-    private fun initView(view: View) {
+    private fun initView() {
         binding.apply {
             signUpBtn.setOnClickListener {
                 validateForm()

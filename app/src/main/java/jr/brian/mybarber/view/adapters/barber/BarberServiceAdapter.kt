@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.BarberServiceItemBinding
 import jr.brian.mybarber.model.data.Constant.BASE_IMAGE_URL
-import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.services.BarberService
 import kotlin.math.roundToInt
 
@@ -50,8 +49,9 @@ class BarberServiceAdapter(
             val duration = v.findViewById<TextView>(R.id.tv_duration)
             val image = v.findViewById<AppCompatImageView>(R.id.service_image)
             name.text = barberService.serviceName
-            cost.text = "$${barberService.cost.roundToInt()}"
-            duration.text = "${ barberService.duration.roundToInt() } MIN"
+            cost.text = context.getString(R.string.services_cost, barberService.cost.roundToInt())
+            duration.text =
+                context.getString(R.string.services_duration, barberService.duration.roundToInt())
             Glide.with(context)
                 .load(BASE_IMAGE_URL + barberService.servicePic)
                 .into(image)

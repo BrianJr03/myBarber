@@ -57,11 +57,6 @@ class NotificationsActivity : AppCompatActivity() {
                     val pos = viewHolder.adapterPosition
                     notifications.removeAt(pos)
                     notificationAdapter.notifyItemRemoved(pos)
-//                    showSnackbar(
-//                        "Notification Deleted",
-//                        binding.notificationRecyclerView,
-//                        Snackbar.LENGTH_SHORT
-//                    )
                     Toast.makeText(
                         this@NotificationsActivity,
                         "Notification Deleted",
@@ -84,11 +79,6 @@ class NotificationsActivity : AppCompatActivity() {
                     val pos = viewHolder.adapterPosition
                     notifications.removeAt(pos)
                     notificationAdapter.notifyItemRemoved(pos)
-//                    showSnackbar(
-//                        "Notification Archived",
-//                        binding.notificationRecyclerView,
-//                        Snackbar.LENGTH_SHORT
-//                    )
                     Toast.makeText(
                         this@NotificationsActivity,
                         "Notification Deleted",

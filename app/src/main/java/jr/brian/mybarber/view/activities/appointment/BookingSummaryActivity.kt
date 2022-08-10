@@ -2,11 +2,12 @@ package jr.brian.mybarber.view.activities.appointment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityBookingSummaryBinding
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
@@ -56,6 +57,11 @@ class BookingSummaryActivity : AppCompatActivity() {
             fabConfirm.setOnClickListener {
                 val apiToken: String = t.substring(1, t.length - 1)
                 viewModel?.bookAppointment(map, apiToken)
+                Toast.makeText(
+                    this@BookingSummaryActivity,
+                    "Appointment has been booked",
+                    Toast.LENGTH_LONG
+                ).show()
                 startActivity(
                     Intent(
                         this@BookingSummaryActivity,
@@ -90,8 +96,8 @@ class BookingSummaryActivity : AppCompatActivity() {
             }
             initApptMap(cost, duration)
             binding.apply {
-                apptDuration.text = "$duration Minutes"
-                apptCost.text = "Total Cost: $$cost"
+                apptDuration.text = getString(R.string.appt_duration, duration)
+                apptCost.text = getString(R.string.total_cost_details, cost)
                 apptDate.text = sharedPrefHelper.getApptDate()
             }
         }
@@ -111,7 +117,7 @@ class BookingSummaryActivity : AppCompatActivity() {
 
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
-            apptTime.text = "$firstSlot - $lastSlot"
+            apptTime.text = getString(R.string.appt_time, firstSlot, lastSlot)
             Glide.with(this@BookingSummaryActivity)
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)

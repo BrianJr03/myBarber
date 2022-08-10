@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityApptDetailsBinding
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
@@ -55,11 +56,6 @@ class ApptDetailsActivity : AppCompatActivity() {
                 )
             }
             fabConfirm.setOnClickListener {
-                Toast.makeText(
-                    this@ApptDetailsActivity,
-                    "Appointment has been booked",
-                    Toast.LENGTH_LONG
-                ).show()
                 sharedPrefHelper.apply {
                     removeData(Constant.APPT_DATE)
                     removeData(Constant.SELECTED_BARBER)
@@ -99,7 +95,7 @@ class ApptDetailsActivity : AppCompatActivity() {
                 duration += i.duration.toInt()
             }
             binding.apply {
-                apptCost.text = "Total Cost: $$cost"
+                apptCost.text = getString(R.string.total_cost_details, cost)
                 apptDate.text = sharedPrefHelper.getApptDate()
             }
         }
@@ -115,7 +111,7 @@ class ApptDetailsActivity : AppCompatActivity() {
         val selectedBarber = sharedPrefHelper.getSelectedBarber()
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
-            apptTime.text = "$firstSlot - $lastSlot"
+            apptTime.text = getString(R.string.appt_time, firstSlot, lastSlot)
             Glide.with(this@ApptDetailsActivity)
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)

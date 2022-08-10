@@ -1,7 +1,6 @@
 package jr.brian.mybarber.view.auth_fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import jr.brian.mybarber.databinding.FragmentSignInBinding
-import jr.brian.mybarber.model.data.Constant.API_TOKEN
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.home.UserLogin
 import jr.brian.mybarber.model.data.local.SharedPrefHelper

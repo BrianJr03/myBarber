@@ -31,7 +31,6 @@ class Repository {
     val appointmentsDateLiveData = MutableLiveData<String>()
     val appointmentsStartFromLiveData = MutableLiveData<Int>()
     val currentAppointmentsLiveData = MutableLiveData<ArrayList<Slot>>()
-
     val barberServicesSelectLiveData = MutableLiveData<ArrayList<Int>>()
 
     val error = MutableLiveData<String>()
@@ -69,7 +68,6 @@ class Repository {
                 if (apiResponse.status == 0) {
                     isProcessing.set(false)
                     signInResponse.value = apiResponse
-                    Log.e("TAG_SIGNIN", signInResponse.value!!.toString())
                 } else {
                     error.postValue(apiResponse.message)
                 }
@@ -184,7 +182,6 @@ class Repository {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 0) {
-                        Log.e("TAG", response.body()!!.slots.toString())
                         currentAppointmentsLiveData.postValue(response.body()!!.slots)
 
                     } else {
@@ -216,9 +213,7 @@ class Repository {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 0) {
-                        Log.e("TAG_UPDATE", response.body()!!.toString())
-                    } else {
-                        Log.e("TAG_UPDATE", response.body()!!.message)
+                        Log.i("TAG_UPDATE", response.body()!!.message)
                     }
                 }
             }
@@ -243,7 +238,7 @@ class Repository {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 0) {
-                        Log.e(
+                        Log.i(
                             "TAG_BOOK",
                             response.body()!!.appointment.toString()
                         )

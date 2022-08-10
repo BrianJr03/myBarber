@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -79,7 +80,16 @@ class HomeActivity : AppCompatActivity() {
     private fun initFAB() {
         binding.apply {
             fabBookAppt.setOnClickListener {
-                startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                if (binding.tvSignOut.text.equals("Sign In")) {
+                    openDialog(
+                        this@HomeActivity,
+                        "Please Sign In",
+                        R.drawable.info_24,
+                        "You must be signed in to book an appointment"
+                    )
+                } else {
+                    startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                }
             }
             fabServices.setOnClickListener {
                 startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
@@ -128,23 +138,45 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.book_appt -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
-                    startActivity(
-                        Intent(this@HomeActivity, BarbersActivity::class.java)
-                    )
+                    if (binding.tvSignOut.text.equals("Sign In")) {
+                        openDialog(
+                            this@HomeActivity,
+                            "Please Sign In",
+                            R.drawable.info_24,
+                            "You must be signed in to book an appointment"
+                        )
+                    } else {
+                        startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                    }
                 }
                 R.id.view_services -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                     startActivity(
-                        Intent(this@HomeActivity, ServiceActivity::class.java)
+                        Intent(this, ServiceActivity::class.java)
                     )
                 }
                 R.id.showcase -> {
+                    Toast.makeText(
+                        this,
+                        "Coming Soon",
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.offers -> {
+                    Toast.makeText(
+                        this,
+                        "Coming Soon",
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.home_care_products -> {
+                    Toast.makeText(
+                        this,
+                        "Coming Soon",
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.business_hours -> {
@@ -157,12 +189,21 @@ class HomeActivity : AppCompatActivity() {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.user_ratings -> {
+                    Toast.makeText(
+                        this,
+                        "Coming Soon",
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.share -> {
                     val sendIntent: Intent = Intent().apply {
                         action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, "https://brianjr03.github.io")
+                        putExtra(
+                            Intent.EXTRA_TEXT, "Check this website out!\n" +
+                                    "The dev of this app wrote it!\n" +
+                                    "https://brianjr03.github.io"
+                        )
                         type = "text/plain"
                     }
                     val shareIntent = Intent.createChooser(sendIntent, null)

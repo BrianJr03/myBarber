@@ -2,7 +2,6 @@ package jr.brian.mybarber.view.adapters.appointment
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +31,7 @@ class TimeSelectionAdapter(
             TimeGridItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         appointmentViewModel =
             ViewModelProvider(context as AppCompatActivity)[AppointmentViewModel::class.java]
-        return SelectDateHolder(binding.root)
+        return SelectDateHolder()
     }
 
     override fun onBindViewHolder(holder: SelectDateHolder, position: Int) {
@@ -51,7 +50,7 @@ class TimeSelectionAdapter(
         return -1
     }
 
-    inner class SelectDateHolder(private val v: View) : RecyclerView.ViewHolder(binding.root) {
+    inner class SelectDateHolder : RecyclerView.ViewHolder(binding.root) {
         fun bind(time: String, booked: Boolean, position: Int) {
             binding.tvTimeSlot.apply {
                 text = time.split("-")[0]
@@ -63,17 +62,16 @@ class TimeSelectionAdapter(
                 var isSelected = false
                 setOnClickListener {
                     isSelected = !isSelected
-                    val slots = 2 // repository.appointmentsSlotLiveData.value!!
+                    val slots = 2
                     val freeSlots = freeSlots(slots, position)
                     if (freeSlots == -1) {
                         if (isSelected) {
                             repository.setAppointmentsStartFrom(position)
                             setTextColor(context.getColor(R.color.gold))
-                            tv.text = "Starting at ${this.text}"
+                            tv.text = context.getString(R.string.appt_start_time, this.text)
                             selectedTimeSlots.add(this.text.toString())
                             sharedPrefHelper.saveListOfTimeSlots(selectedTimeSlots)
-                        }
-                        else {
+                        } else {
                             selectedTimeSlots.remove(this.text.toString())
                             sharedPrefHelper.saveListOfTimeSlots(selectedTimeSlots)
                             setTextColor(context.getColor(R.color.white))
@@ -90,20 +88,13 @@ class TimeSelectionAdapter(
                 }
             }
 
-
             repository.appointmentsStartFromLiveData.observe(context as AppCompatActivity) {
-                val slots = 2 // repository.appointmentsSlotLiveData.value!!
-                if (it != -1 && position in it until (it + slots)) {
-//                    binding.tvTimeSlot.setTextColor(context.getColor(R.color.gold))
+                if (booked) {
+                    binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_booked)
                 } else {
-                    if (booked) {
-                        binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_booked)
-                    } else {
-                        binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_available)
-                    }
+                    binding.tvTimeSlot.setBackgroundResource(R.drawable.time_slot_available)
                 }
             }
-
         }
     }
 }
