@@ -7,10 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityNotificationsBinding
-import jr.brian.mybarber.model.data.Notification
-import jr.brian.mybarber.model.util.showSnackbar
+import jr.brian.mybarber.model.data.notification.Notification
 import jr.brian.mybarber.view.adapters.NotificationAdapter
 
 class NotificationsActivity : AppCompatActivity() {
@@ -24,9 +23,17 @@ class NotificationsActivity : AppCompatActivity() {
         setContentView(binding.root)
         initDummyData()
         setAdapter()
-        if (notifications.isEmpty()) {
-            binding.apply {
+        binding.apply {
+            notiBackArrow.setOnClickListener {
+                super.onBackPressed()
+                finish()
+            }
+            if (notifications.isEmpty()) {
                 noNotiMsgGroup.visibility = View.VISIBLE
+                notiBell.setImageResource(R.drawable.notifications_none_36)
+                notiCount.text = notifications.size.toString()
+            } else {
+                notiCount.text = notifications.size.toString()
             }
         }
     }

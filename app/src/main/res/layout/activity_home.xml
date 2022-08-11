@@ -35,7 +35,7 @@
             android:clickable="true"
             android:contentDescription="@string/show_menu"
             android:focusable="true"
-            android:src="@drawable/notifications_none_36"
+            android:src="@drawable/notifications_36"
             app:layout_constraintBottom_toTopOf="@id/guideline_grid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textColor="@color/blueish_idk"
-            android:textSize="@dimen/_30sp"
+            android:textSize="@dimen/activity_header_text_size"
             app:layout_constraintBottom_toBottomOf="@id/menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,8 +97,8 @@
             android:id="@+id/fab_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="fab_book_appt,fab_services,fab_options,tv_options,tv_book_appt,tv_services" />
+            android:visibility="visible"
+            app:constraint_referenced_ids="fab_call, fab_maps, tv_maps, tv_call, fab_sign_out,fab_book_appt,fab_services,fab_options,tv_options,tv_book_appt,tv_services, tv_sign_out" />
 
         <TextView
             android:id="@+id/tv_book_appt"
@@ -136,6 +136,42 @@
             app:layout_constraintEnd_toStartOf="@id/fab_options"
             app:layout_constraintTop_toTopOf="@id/fab_options" />
 
+        <TextView
+            android:id="@+id/tv_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:text="@string/sign_out"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_sign_out"
+            app:layout_constraintEnd_toStartOf="@id/fab_sign_out"
+            app:layout_constraintTop_toTopOf="@id/fab_sign_out" />
+
+        <TextView
+            android:id="@+id/tv_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:text="@string/call"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_call"
+            app:layout_constraintStart_toEndOf="@id/fab_call"
+            app:layout_constraintTop_toTopOf="@id/fab_call" />
+
+        <TextView
+            android:id="@+id/tv_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:text="@string/visit_us"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_maps"
+            app:layout_constraintStart_toEndOf="@id/fab_maps"
+            app:layout_constraintTop_toTopOf="@id/fab_maps" />
+
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fab_book_appt"
             android:layout_width="wrap_content"
@@ -168,20 +204,44 @@
             android:backgroundTint="@color/blueish_idk"
             app:icon="@drawable/more_24"
             app:iconTint="?android:colorPrimary"
-            app:layout_constraintBottom_toTopOf="@id/fab_main"
+            app:layout_constraintBottom_toTopOf="@id/fab_sign_out"
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/teal_200" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fab_main"
+            android:id="@+id/fab_sign_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_20dp"
             android:backgroundTint="@color/blueish_idk"
-            app:icon="@drawable/arrow_up_24"
+            app:icon="@drawable/sign_out_24"
             app:iconTint="?android:colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/map_24"
+            app:iconTint="?android:colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:rippleColor="@color/teal_200" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/call_24"
+            app:iconTint="?android:colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/fab_maps"
+            app:layout_constraintStart_toStartOf="parent"
             app:rippleColor="@color/teal_200" />
 
         <androidx.constraintlayout.widget.Guideline

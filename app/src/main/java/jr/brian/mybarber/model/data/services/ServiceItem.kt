@@ -1,4 +1,4 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.services
 
 data class ServiceItem(
     val imgUrl: String,

@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.NotificationBinding
-import jr.brian.mybarber.model.data.Notification
+import jr.brian.mybarber.model.data.notification.Notification
+import jr.brian.mybarber.model.util.openDialog
 
 class NotificationAdapter(
     private val context: Context,
@@ -32,7 +32,12 @@ class NotificationAdapter(
             val notification = notifications[position]
             bind(notification)
             itemView.setOnClickListener {
-                openDialog(notification)
+                openDialog(
+                    context,
+                    "Notification",
+                    R.drawable.notifications_none_36,
+                    "${notification.body}\n\n${notification.date}"
+                )
             }
         }
     }
@@ -44,13 +49,5 @@ class NotificationAdapter(
             body.text = notification.body
             date.text = notification.date
         }
-    }
-
-    private fun openDialog(notification: Notification) {
-        AlertDialog.Builder(context)
-            .setTitle("Notification")
-            .setIcon(R.drawable.notifications_36)
-            .setMessage("${notification.body}\n\n${notification.date}")
-            .show()
     }
 }

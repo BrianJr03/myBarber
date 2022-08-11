@@ -4,6 +4,10 @@
         android:id="@+id/nav_gr"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/select_pfp"
+            android:icon="@drawable/pfp_nav_menu"
+            android:title="@string/select_profile_pic" />
+        <item
             android:id="@+id/book_appt"
             android:icon="@drawable/calendar_24"
             android:title="@string/book_appt" />
@@ -26,17 +30,12 @@
             android:id="@+id/offers"
             android:icon="@drawable/offer_24"
             android:title="@string/offers" />
-
-        <item
-            android:id="@+id/home_care_products"
-            android:icon="@drawable/face_retouching_natural_24"
-            android:title="@string/home_care_products" />
     </group>
 
     <item
-        android:id="@+id/contact_us"
-        android:icon="@drawable/location_24"
-        android:title="@string/contact_us" />
+        android:id="@+id/home_care_products"
+        android:icon="@drawable/face_retouching_natural_24"
+        android:title="@string/home_care_products" />
 
     <item
         android:id="@+id/business_hours"
@@ -60,10 +59,5 @@
             android:id="@+id/about"
             android:icon="@drawable/info_24"
             android:title="@string/about" />
-
-        <item
-            android:id="@+id/sign_out_drawer"
-            android:icon="@drawable/sign_out_24"
-            android:title="@string/sign_out" />
     </group>
 </menu>

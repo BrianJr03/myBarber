@@ -6,9 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.FragmentHaircutHomeBinding
-import jr.brian.mybarber.model.data.HaircutHomeImage
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_1
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_2
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_3
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_4
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_5
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_6
+import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_7
+import jr.brian.mybarber.model.data.home.HaircutHomeImage
 import jr.brian.mybarber.view.adapters.HaircutHomeImageAdapter
 
 class HaircutHomeFragment : Fragment() {
@@ -29,7 +35,7 @@ class HaircutHomeFragment : Fragment() {
 
     private fun setAdapter() {
         initData()
-        homeImageAdapter = HaircutHomeImageAdapter(cuts)
+        homeImageAdapter = HaircutHomeImageAdapter(requireContext(), cuts)
         binding.apply {
             recyclerView.layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -55,13 +61,14 @@ class HaircutHomeFragment : Fragment() {
     }
 
     private fun initData() {
-        cuts = ArrayList()
-        for (i in 1..7) {
-            cuts.add(
-                HaircutHomeImage(R.drawable.profile_pl_100)
-            )
+        cuts = ArrayList<HaircutHomeImage>().apply {
+            add(HaircutHomeImage(HAIRCUT_PL_1))
+            add(HaircutHomeImage(HAIRCUT_PL_2))
+            add(HaircutHomeImage(HAIRCUT_PL_3))
+            add(HaircutHomeImage(HAIRCUT_PL_4))
+            add(HaircutHomeImage(HAIRCUT_PL_5))
+            add(HaircutHomeImage(HAIRCUT_PL_6))
+            add(HaircutHomeImage(HAIRCUT_PL_7))
         }
     }
-
-
 }

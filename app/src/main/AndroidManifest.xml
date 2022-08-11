@@ -14,6 +14,21 @@
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.TimeSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.BarberServicesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.BarbersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.BusinessHoursActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.services.OffersActivity"
             android:exported="false" />
         <activity
@@ -35,7 +50,7 @@
             android:name=".view.activities.services.HaircutActivity"
             android:exported="false" />
         <activity
-            android:name=".view.activities.ServiceActivity"
+            android:name=".view.activities.services.ServiceActivity"
             android:exported="false" />
         <activity
             android:name=".view.activities.NotificationsActivity"

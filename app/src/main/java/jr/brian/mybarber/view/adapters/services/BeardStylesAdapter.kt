@@ -1,7 +1,6 @@
 package jr.brian.mybarber.view.adapters.services
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ServiceItemBinding
-import jr.brian.mybarber.model.data.ServiceItem
-import jr.brian.mybarber.view.activities.services.BeardStylesActivity
+import jr.brian.mybarber.model.data.services.ServiceItem
 
 class BeardStylesAdapter(
     private val context: Context,
@@ -45,6 +43,7 @@ class BeardStylesAdapter(
             val price = v.findViewById<TextView>(R.id.sItem_price)
             val duration = v.findViewById<TextView>(R.id.sItem_duration)
             val image = v.findViewById<AppCompatImageView>(R.id.sItem_image)
+            // TODO - load image via glide
             title.text = serviceItem.title
             price.text = serviceItem.price
             duration.text = serviceItem.duration
