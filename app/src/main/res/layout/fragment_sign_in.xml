@@ -59,6 +59,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/password_et_signIn_layout"-->
+<!--            android:layout_width="@dimen/_250dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_10dp"-->
+<!--            android:autofillHints=""-->
+<!--            android:backgroundTint="@color/blueish_idk"-->
+<!--            android:hint="@string/password"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:text="@={viewModel.password}"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:passwordToggleEnabled="true"-->
+<!--            app:passwordToggleTint="@color/blueish_idk">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/password_et_signIn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:ems="15"-->
+<!--                android:inputType="textPassword" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInBTN"
             android:layout_width="@dimen/_250dp"

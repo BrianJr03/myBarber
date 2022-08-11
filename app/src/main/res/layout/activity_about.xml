@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.NotificationsActivity">
+    tools:context=".view.activities.home.NotificationsActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_grid"
@@ -101,48 +101,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20dp"
-        android:text="@string/company_name"
+        android:text="@string/brian_jr"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dev_pic" />
 
-    <TextView
-        android:id="@+id/website_label"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/git_hub_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20dp"
-        android:text="@string/websites"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_20sp"
+        android:layout_marginTop="@dimen/_40dp"
+        android:src="@drawable/github_48"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dev_company_name" />
 
-    <TextView
-        android:id="@+id/website_url"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/linkedIn_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/website_url"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_20sp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:src="@drawable/linkedin_48"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/website_label" />
-
-    <TextView
-        android:id="@+id/linkedIn_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/linkedIn_url"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/website_url" />
-
+        app:layout_constraintTop_toBottomOf="@id/git_hub_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

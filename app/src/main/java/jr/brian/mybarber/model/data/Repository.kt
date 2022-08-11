@@ -19,8 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class Repository() {
+class Repository {
 
     private val apiService = retrofit.create(ApiService::class.java)
     val signUpResponse = MutableLiveData<SignUpResponse>()
@@ -29,7 +28,20 @@ class Repository() {
     val barberServiceLiveData = MutableLiveData<BarberServiceResponse>()
     val isProcessing = ObservableField<Boolean>()
 
+    val appointmentsDateLiveData = MutableLiveData<String>()
+    val appointmentsStartFromLiveData = MutableLiveData<Int>()
+    val currentAppointmentsLiveData = MutableLiveData<ArrayList<Slot>>()
+    val barberServicesSelectLiveData = MutableLiveData<ArrayList<Int>>()
+
     val error = MutableLiveData<String>()
+
+    fun setAppointmentsDate(date: String) {
+        appointmentsDateLiveData.postValue(date)
+    }
+
+    fun setAppointmentsStartFrom(startFrom: Int) {
+        appointmentsStartFromLiveData.postValue(startFrom)
+    }
 
     fun signIn(signInRequest: SignInRequest) {
         isProcessing.set(true)
@@ -55,7 +67,7 @@ class Repository() {
 
                 if (apiResponse.status == 0) {
                     isProcessing.set(false)
-                    signInResponse.postValue(apiResponse)
+                    signInResponse.value = apiResponse
                 } else {
                     error.postValue(apiResponse.message)
                 }
@@ -109,15 +121,19 @@ class Repository() {
 
         val call: Call<BarberResponse> = apiService.getBarbers()
         call.enqueue(object : Callback<BarberResponse> {
-            override fun onResponse(call: Call<BarberResponse>, response: Response<BarberResponse>) {
+            override fun onResponse(
+                call: Call<BarberResponse>,
+                response: Response<BarberResponse>
+            ) {
                 if (response.isSuccessful) {
-                    if(response.body()!!.status == 0){
+                    if (response.body()!!.status == 0) {
                         barberLiveData.postValue(response.body()!!)
                     } else {
-                        Log.e("response error", response.body()!!.message)
+                        Log.e("TAG", response.body()!!.message)
                     }
                 }
             }
+
             override fun onFailure(call: Call<BarberResponse>, t: Throwable) {
                 Log.e("TAG", t.toString())
                 t.printStackTrace()
@@ -136,17 +152,105 @@ class Repository() {
 
         val call: Call<BarberServiceResponse> = apiService.getBarberServices(body)
         call.enqueue(object : Callback<BarberServiceResponse> {
-            override fun onResponse(call: Call<BarberServiceResponse>, response: Response<BarberServiceResponse>) {
+            override fun onResponse(
+                call: Call<BarberServiceResponse>,
+                response: Response<BarberServiceResponse>
+            ) {
                 if (response.isSuccessful) {
-                    if(response.body()!!.status == 0){
+                    if (response.body()!!.status == 0) {
                         barberServiceLiveData.postValue(response.body()!!)
+                        barberServicesSelectLiveData.postValue(ArrayList())
                     } else {
                         Log.e("response error", response.body()!!.message)
                     }
                 }
             }
+
             override fun onFailure(call: Call<BarberServiceResponse>, t: Throwable) {
                 Log.e("TAG", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun loadCurrentAppointments() {
+        val call: Call<CurrentApptResponse> = apiService.getCurrentAppts()
+        call.enqueue(object : Callback<CurrentApptResponse> {
+            override fun onResponse(
+                call: Call<CurrentApptResponse>,
+                response: Response<CurrentApptResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 0) {
+                        currentAppointmentsLiveData.postValue(response.body()!!.slots)
+
+                    } else {
+                        Log.e("TAG", response.body()!!.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<CurrentApptResponse>, t: Throwable) {
+                Log.e("TAG", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun updateFcmToken(userId: String, fcmToken: String, psAuthToken: String) {
+        val map = HashMap<String, Any>()
+        map["userId"] = userId
+        map["fcmToken"] = fcmToken
+        map["application"] = "Brian"
+        val reqJson: String = Gson().toJson(map)
+        val body: RequestBody =
+            reqJson.toRequestBody("application/json".toMediaTypeOrNull())
+        val call: Call<BasicResponse> = apiService.updateFcmToken(psAuthToken, body)
+        call.enqueue(object : Callback<BasicResponse> {
+            override fun onResponse(
+                call: Call<BasicResponse>,
+                response: Response<BasicResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 0) {
+                        Log.i("TAG_UPDATE", response.body()!!.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                Log.e("TAG_UPDATE", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun bookAppointment(map: HashMap<String, Any>, psAuthToken: String) {
+        val reqJson: String = Gson().toJson(map)
+        val body: RequestBody =
+            reqJson.toRequestBody("application/json".toMediaTypeOrNull())
+        val call: Call<BookApptResponse> =
+            apiService.bookAppointment(psAuthToken, body)
+        call.enqueue(object : Callback<BookApptResponse> {
+            override fun onResponse(
+                call: Call<BookApptResponse>,
+                response: Response<BookApptResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 0) {
+                        Log.i(
+                            "TAG_BOOK",
+                            response.body()!!.appointment.toString()
+                        )
+
+                    } else {
+                        Log.e("TAG_BOOK", response.body()!!.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BookApptResponse>, t: Throwable) {
+                Log.e("TAG_BOOK", t.toString())
                 t.printStackTrace()
             }
         })

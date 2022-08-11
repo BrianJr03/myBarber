@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
+    android:id="@+id/time_card"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_10dp"
     android:backgroundTint="@color/blueish_idk"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_time_slot"
-        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="8dp"

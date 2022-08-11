@@ -1,5 +1,8 @@
 package jr.brian.mybarber.model.data.remote
 
+import jr.brian.mybarber.model.data.BasicResponse
+import jr.brian.mybarber.model.data.BookApptResponse
+import jr.brian.mybarber.model.data.CurrentApptResponse
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
@@ -8,20 +11,20 @@ import jr.brian.mybarber.model.data.response.SignUpResponse
 import jr.brian.mybarber.model.data.services.BarberServiceResponse
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
-
     @Headers("Content-type: application/json")
     @POST("appUser/signup")
-    fun signUp(@Body signUpRequest: SignUpRequest): Call<SignUpResponse>
+    fun signUp(
+        @Body signUpRequest: SignUpRequest
+    ): Call<SignUpResponse>
 
     @Headers("Content-type: application/json")
     @POST("appUser/login")
-    fun signIn(@Body signInRequest: SignInRequest): Call<SignInResponse>
+    fun signIn(
+        @Body signInRequest: SignInRequest
+    ): Call<SignInResponse>
 
     @Headers("Content-type: application/json")
     @GET("barber/getBarbers")
@@ -29,14 +32,25 @@ interface ApiService {
 
     @Headers("Content-type: application/json")
     @POST("barber/getBarberServices1")
-    fun getBarberServices(@Body getBarberServicesReq: RequestBody): Call<BarberServiceResponse>
+    fun getBarberServices(
+        @Body getBarberServicesReq: RequestBody
+    ): Call<BarberServiceResponse>
 
-//    @GET("User/jobs")
-//    fun getJobs(): Call<JobsResponse>
-//
-//    @GET("User/applyForJob/{user_id}/{job_id}")
-//    fun applyForJob(
-//        @Path("user_id") user_id: String,
-//        @Path("job_id") job_id: String
-//    ): Call<ApplyJobResponse>
+    @Headers("Content-type: application/json")
+    @GET("appointment/currentAppointments/1")
+    fun getCurrentAppts(): Call<CurrentApptResponse>
+
+    @Headers("Content-type: application/json")
+    @POST("appUser/updateFcmToken")
+    fun updateFcmToken(
+        @Header("ps_auth_token") psAuthToken: String,
+        @Body updateReq: RequestBody
+    ): Call<BasicResponse>
+
+    @Headers("Content-type: application/json")
+    @POST("appointment/book")
+    fun bookAppointment(
+        @Header("ps_auth_token") psAuthToken: String,
+        @Body bookedRequest: RequestBody
+    ): Call<BookApptResponse>
 }

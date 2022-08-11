@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/btn_change_barber"
+            app:layout_constraintBottom_toTopOf="@id/guideline3"
             app:layout_constraintTop_toTopOf="@id/guideline_grid">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -82,29 +82,37 @@
                 tools:listitem="@layout/barber_service_item" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_change_barber"
-            android:layout_width="0dp"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_changeBarber"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="10dp"
-            android:background="?android:colorPrimary"
-            android:text="@string/change_barber"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/cut_24"
+            app:iconTint="?android:colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_continue"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline3"
+            app:rippleColor="@color/teal_200" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_continue"
-            android:layout_width="0dp"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_continue"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/blueish_idk"
-            android:text="@string/continueText"
-            android:textColor="@color/white"
+            android:layout_margin="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            app:icon="@drawable/check_24"
+            app:iconTint="?android:colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_change_barber" />
+            app:layout_constraintTop_toTopOf="@id/guideline3"
+            app:rippleColor="@color/teal_200" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="635dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

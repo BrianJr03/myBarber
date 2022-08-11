@@ -53,35 +53,24 @@
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="@dimen/_5dp"
             android:text="@string/_45_min"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/tv_duration_icon"
             app:layout_constraintTop_toBottomOf="@id/tv_service_name" />
 
-
-        <ImageView
-            android:contentDescription="@string/close"
-            android:id="@+id/tv_cost_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toEndOf="@id/tv_duration"
-            app:layout_constraintTop_toBottomOf="@id/tv_service_name"
-            app:srcCompat="@drawable/money_24" />
-
         <TextView
             android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:text="@string/_100"
+            android:layout_marginTop="@dimen/_10dp"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/tv_cost_icon"
-            app:layout_constraintTop_toBottomOf="@id/tv_service_name" />
-
+            app:layout_constraintStart_toStartOf="@id/tv_duration_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_duration_icon" />
 
         <CheckBox
             android:id="@+id/service_checkbox"
