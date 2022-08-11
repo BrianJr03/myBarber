@@ -71,7 +71,7 @@ Instructions for how to install Android Studio and Android SDK can be found [her
  - Notifications
 
 ## Issues
- - When an appointment is booked, a user will not recieve a push norification from FCM.
+ - When an appointment is booked, a user will not recieve a push notification from FCM.
    - The reasoning behind this is unsure. This is being looked into.
 
 *If you find any other bugs or have suggestions, email me @* `thaballa79@gmail.com`
