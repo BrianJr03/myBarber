@@ -5,8 +5,8 @@ A simple barber app built with Kotlin.
 ![myBarber Homepage](https://github.com/BrianJr03/myBarber/blob/ui_2.0/home_tn.jpg)
 ![barber selection screen](https://github.com/BrianJr03/myBarber/blob/ui_2.0/barbers_tn.jpg)
 
-![details](https://github.com/BrianJr03/myBarber/blob/ui_2.0/apt_details_tn.jpg)
 ![time selection](https://github.com/BrianJr03/myBarber/blob/ui_2.0/select_time_tn.jpg)
+![details](https://github.com/BrianJr03/myBarber/blob/ui_2.0/apt_details_tn.jpg)
 
 ![nav bar](https://github.com/BrianJr03/myBarber/blob/ui_2.0/nav_bar_tn.jpg)
 ![about screen ](https://github.com/BrianJr03/myBarber/blob/ui_2.0/about_screen_tn.jpg)
@@ -37,11 +37,16 @@ A simple barber app built with Kotlin.
   - A user can view all notifications recieved in one place.
   
 ## Other Features
-  - ### Home Care Products screen
+  - ### Hair Care Products screen
+    - View Products used by barbers in shop! 
   - ### Business Hours screen
+    - View the Shop's business hours.
   - ### User Ratings screen
+    - View ratings left by other users.
   - ### Share feature
+    - Share the details of the app with others.
   - ### About screen
+    - View the details about the dev who built this app.
   - ### Contact Us features 
     - Call and Directions to Shop
   
@@ -61,7 +66,7 @@ Instructions for how to install Android Studio and Android SDK can be found [her
 ## Pending Features
  - Viewing Service
  - Offers Screen
- - Home Care Products screen
+ - Hair Care Products screen
  - User Ratings screen
  - Notifications
 
