@@ -12,8 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(private val repository: Repository) : ViewModel() {
-
-    val loginResponse: LiveData<SignUpResponse> = repository.signUpResponse
+    val loginResponse: MutableLiveData<SignUpResponse?> = repository.signUpResponse
     val error: LiveData<String> = repository.error
     val isProcessing = repository.isProcessing
 
@@ -23,9 +22,14 @@ class SignUpViewModel(private val repository: Repository) : ViewModel() {
 
     fun signUp() {
         viewModelScope.launch(Dispatchers.IO) {
-            val signUpRequest = SignUpRequest(fcmToken.value!!, mobileNo.value!!, password.value!!)
-            Log.i("TAG", signUpRequest.toString())
-            repository.signUp(signUpRequest)
+            val signUpRequest = fcmToken.value?.let {
+                mobileNo.value?.let { it1 ->
+                    password.value?.let { it2 ->
+                        SignUpRequest(it, it1, it2)
+                    }
+                }
+            }
+            signUpRequest?.let { repository.signUp(it) }
         }
     }
 }

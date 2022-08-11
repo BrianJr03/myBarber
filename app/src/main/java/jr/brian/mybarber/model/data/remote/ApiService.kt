@@ -1,8 +1,9 @@
 package jr.brian.mybarber.model.data.remote
 
-import jr.brian.mybarber.model.data.BasicResponse
-import jr.brian.mybarber.model.data.BookApptResponse
-import jr.brian.mybarber.model.data.CurrentApptResponse
+import jr.brian.mybarber.model.data.appointment.AppointmentResponse
+import jr.brian.mybarber.model.data.response.BasicResponse
+import jr.brian.mybarber.model.data.response.BookApptResponse
+import jr.brian.mybarber.model.data.response.CurrentApptResponse
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
@@ -53,4 +54,10 @@ interface ApiService {
         @Header("ps_auth_token") psAuthToken: String,
         @Body bookedRequest: RequestBody
     ): Call<BookApptResponse>
+
+    @Headers("Content-type: application/json")
+    @GET("appointment/myAppointments/14")
+    fun getAppointments(
+        @Header("ps_auth_token") psAuthToken: String,
+    ): Call<AppointmentResponse>
 }

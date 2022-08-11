@@ -1,4 +1,4 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.response
 
 data class BasicResponse(
     val message: String,

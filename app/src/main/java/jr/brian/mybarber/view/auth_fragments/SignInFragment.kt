@@ -18,7 +18,6 @@ import jr.brian.mybarber.viewmodel.sign_in.SignInVMFactory
 import jr.brian.mybarber.viewmodel.sign_in.SignInViewModel
 
 class SignInFragment : Fragment() {
-
     private lateinit var binding: FragmentSignInBinding
     private lateinit var sharedPrefHelper: SharedPrefHelper
     lateinit var viewModel: SignInViewModel
@@ -76,8 +75,11 @@ class SignInFragment : Fragment() {
             if (isPhoneValid && isPasswordValid) {
                 viewModel?.signIn()
                 viewModel?.signInResponse?.observe(viewLifecycleOwner) {
-                    viewModel?.updateFCM(it.userId, it.fcmToken, it.apiToken)
-                    sharedPrefHelper.saveApiToken(it.apiToken)
+                    it?.userId?.let { it1 -> viewModel?.updateFCM(it1, it.fcmToken, it.apiToken) }
+                    if (it != null) {
+                        sharedPrefHelper.saveApiToken(it.apiToken)
+                        sharedPrefHelper.saveSignInResponse(it)
+                    }
                 }
             }
         }

@@ -64,11 +64,6 @@ class BookingSummaryActivity : AppCompatActivity() {
             fabConfirm.setOnClickListener {
                 val apiToken: String = t.substring(1, t.length - 1)
                 viewModel?.bookAppointment(map, apiToken)
-                Toast.makeText(
-                    this@BookingSummaryActivity,
-                    "Appointment has been booked",
-                    Toast.LENGTH_LONG
-                ).show()
                 startActivity(
                     Intent(
                         this@BookingSummaryActivity,
@@ -101,7 +96,6 @@ class BookingSummaryActivity : AppCompatActivity() {
                 cost += i.cost.toInt()
                 duration += i.duration.toInt()
             }
-            initApptMap(cost, duration)
             binding.apply {
                 apptDuration.text = getString(R.string.appt_duration, duration)
                 apptCost.text = getString(R.string.total_cost_details, cost)
@@ -121,7 +115,6 @@ class BookingSummaryActivity : AppCompatActivity() {
             val minute = split[1].toInt()
             lastSlot = "$firstHour:${minute + duration}"
         }
-
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
             apptTime.text = getString(R.string.appt_time, firstSlot, lastSlot)
@@ -129,19 +122,21 @@ class BookingSummaryActivity : AppCompatActivity() {
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)
         }
+        initApptMap(cost, duration, firstSlot, lastSlot)
     }
 
-    private fun initApptMap(cost: Any, duration: Any) {
-        map["userId"] = "14" // sharedPrefHelper.getUserData().userId
-        map["barberId"] = "2" // sharedPrefHelper.getSelectedBarber().barberId.toString()
-        map["services"] =
-            intArrayOf(3, 4, 7, 5).contentToString() //  sharedPrefHelper.getBarberServices()
-        map["aptDate"] = "2018/11/25" //sharedPrefHelper.getApptDateAndTime()
-        map["timeFrom"] = "3:00"
-        map["timeTo"] = "3:30"
+    private fun initApptMap(cost: Any, duration: Any, firstSlot: String, lastSlot: String) {
+        val serviceIds = ArrayList<Int>()
+        for (i in sharedPrefHelper.getBarberServices()) serviceIds.add(i.serviceId)
+        map["userId"] = sharedPrefHelper.getSignInResponse().userId
+        map["barberId"] = sharedPrefHelper.getSelectedBarber().barberId
+        map["services"] = serviceIds.toString()
+        map["aptDate"] = sharedPrefHelper.getApptDate()
+        map["timeFrom"] = firstSlot
+        map["timeTo"] = lastSlot
         map["totalDuration"] = duration.toString()
         map["totalCost"] = cost.toString()
         map["couponCode"] = ""
-        map["sendSms"] = true.toString()
+        map["sendSms"] = "true"
     }
 }

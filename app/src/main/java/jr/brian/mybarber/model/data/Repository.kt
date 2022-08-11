@@ -4,13 +4,15 @@ import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import jr.brian.mybarber.model.data.appointment.AppointmentResponse
+import jr.brian.mybarber.model.data.appointment.BookedAppointment
+import jr.brian.mybarber.model.data.appointment.Slot
 import jr.brian.mybarber.model.data.barber.BarberResponse
 import jr.brian.mybarber.model.data.remote.ApiClient.retrofit
 import jr.brian.mybarber.model.data.remote.ApiService
 import jr.brian.mybarber.model.data.request.SignInRequest
 import jr.brian.mybarber.model.data.request.SignUpRequest
-import jr.brian.mybarber.model.data.response.SignInResponse
-import jr.brian.mybarber.model.data.response.SignUpResponse
+import jr.brian.mybarber.model.data.response.*
 import jr.brian.mybarber.model.data.services.BarberServiceResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
@@ -20,10 +22,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Repository {
-
     private val apiService = retrofit.create(ApiService::class.java)
-    val signUpResponse = MutableLiveData<SignUpResponse>()
-    val signInResponse = MutableLiveData<SignInResponse>()
+    val signUpResponse = MutableLiveData<SignUpResponse?>()
+    val signInResponse = MutableLiveData<SignInResponse?>()
     val barberLiveData = MutableLiveData<BarberResponse>()
     val barberServiceLiveData = MutableLiveData<BarberServiceResponse>()
     val isProcessing = ObservableField<Boolean>()
@@ -32,6 +33,8 @@ class Repository {
     val appointmentsStartFromLiveData = MutableLiveData<Int>()
     val currentAppointmentsLiveData = MutableLiveData<ArrayList<Slot>>()
     val barberServicesSelectLiveData = MutableLiveData<ArrayList<Int>>()
+
+    val appointmentsLiveData = MutableLiveData<ArrayList<BookedAppointment>>()
 
     val error = MutableLiveData<String>()
 
@@ -67,7 +70,7 @@ class Repository {
 
                 if (apiResponse.status == 0) {
                     isProcessing.set(false)
-                    signInResponse.value = apiResponse
+                    signInResponse.postValue(apiResponse)
                 } else {
                     error.postValue(apiResponse.message)
                 }
@@ -251,6 +254,37 @@ class Repository {
 
             override fun onFailure(call: Call<BookApptResponse>, t: Throwable) {
                 Log.e("TAG_BOOK", t.toString())
+                t.printStackTrace()
+            }
+        })
+    }
+
+    fun getAppointments(userId: String, psAuthToken: String) {
+        val map = HashMap<String, String>()
+        map["userId"] = userId
+        val call: Call<AppointmentResponse> =
+            apiService.getAppointments(psAuthToken)
+        call.enqueue(object : Callback<AppointmentResponse> {
+            override fun onResponse(
+                call: Call<AppointmentResponse>,
+                response: Response<AppointmentResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 0) {
+                        Log.i(
+                            "TAG_GET_APPTS",
+                            response.body()!!.appointments.toString()
+                        )
+                        appointmentsLiveData.postValue(response.body()!!.appointments)
+
+                    } else {
+                        Log.i("TAG_GET_APPTS", response.body()!!.message)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<AppointmentResponse>, t: Throwable) {
+                Log.i("TAG_GET_APPTS", t.toString())
                 t.printStackTrace()
             }
         })
