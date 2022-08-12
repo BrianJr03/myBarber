@@ -80,43 +80,18 @@ class HomeActivity : AppCompatActivity() {
     @SuppressLint("QueryPermissionsNeeded")
     private fun initFAB() {
         binding.apply {
-            fabBookAppt.setOnClickListener {
-                if (binding.tvSignOut.text.equals("Sign In")) {
-                    openDialog(
-                        this@HomeActivity,
-                        "Please Sign In",
-                        R.drawable.info_24,
-                        "You must be signed in to book an appointment"
-                    )
-                } else {
-                    startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
-                }
-            }
-            fabServices.setOnClickListener {
-                startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
-            }
-            fabCall.setOnClickListener {
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:1234567890")
-                startActivity(intent)
-            }
-            fabMaps.setOnClickListener {
-                val maps = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("geo:41.876701, -87.634903?z=11")
-                )
-                startActivity(maps)
-            }
-            fabOptions.setOnClickListener {
-                if (!drawerLayout.isOpen) {
-                    drawerLayout.openDrawer(GravityCompat.START)
-                }
-            }
-            fabSignOut.setOnClickListener {
-                signOut()
-            }
+            fabBookAppt.setOnClickListener { startBookAppt() }
+            tvBookAppt.setOnClickListener { startBookAppt() }
+            fabServices.setOnClickListener { startServices() }
+            tvServices.setOnClickListener { startServices() }
+            fabCall.setOnClickListener { startPhone() }
+            tvCall.setOnClickListener { startPhone() }
+            fabMaps.setOnClickListener { startMap() }
+            tvMaps.setOnClickListener { startMap()}
+            fabOptions.setOnClickListener { openDrawer() }
+            tvOptions.setOnClickListener { openDrawer() }
+            fabSignOut.setOnClickListener { signOut() }
+            tvSignOut.setOnClickListener { signOut() }
         }
     }
 
@@ -223,6 +198,47 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    private fun startServices() {
+        startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+    }
+
+    private fun startBookAppt() {
+        if (binding.tvSignOut.text.equals("Sign In")) {
+            openDialog(
+                this@HomeActivity,
+                "Please Sign In",
+                R.drawable.info_24,
+                "You must be signed in to book an appointment"
+            )
+        } else {
+            startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+        }
+    }
+
+    private fun startMap() {
+        val maps = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("geo:41.876701, -87.634903?z=11")
+        )
+        startActivity(maps)
+    }
+
+    private fun startPhone() {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:1234567890")
+        startActivity(intent)
+    }
+
+    private fun openDrawer() {
+        binding.apply {
+            if (!drawerLayout.isOpen) {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
         }
     }
 
