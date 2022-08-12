@@ -28,6 +28,10 @@ class ApptDetailsActivity : AppCompatActivity() {
         binding.apply {
             detailsBackArrow.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
             }
             var isInFirstPosition = true
             playScrollBtn.setOnClickListener {
@@ -123,5 +127,13 @@ class ApptDetailsActivity : AppCompatActivity() {
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }

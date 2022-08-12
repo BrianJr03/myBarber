@@ -26,6 +26,10 @@ class NotificationsActivity : AppCompatActivity() {
         binding.apply {
             notiBackArrow.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 finish()
             }
             if (notifications.isEmpty()) {
@@ -57,6 +61,7 @@ class NotificationsActivity : AppCompatActivity() {
                     val pos = viewHolder.adapterPosition
                     notifications.removeAt(pos)
                     notificationAdapter.notifyItemRemoved(pos)
+                    binding.notiCount.text = notifications.size.toString()
                     Toast.makeText(
                         this@NotificationsActivity,
                         "Notification Deleted",
@@ -79,6 +84,7 @@ class NotificationsActivity : AppCompatActivity() {
                     val pos = viewHolder.adapterPosition
                     notifications.removeAt(pos)
                     notificationAdapter.notifyItemRemoved(pos)
+                    binding.notiCount.text = notifications.size.toString()
                     Toast.makeText(
                         this@NotificationsActivity,
                         "Notification Deleted",
@@ -102,5 +108,13 @@ class NotificationsActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }

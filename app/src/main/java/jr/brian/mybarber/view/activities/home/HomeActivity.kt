@@ -71,6 +71,7 @@ class HomeActivity : AppCompatActivity() {
                         NotificationsActivity::class.java
                     )
                 )
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
             }
         }
         initDrawer()
@@ -89,10 +90,12 @@ class HomeActivity : AppCompatActivity() {
                     )
                 } else {
                     startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                 }
             }
             fabServices.setOnClickListener {
                 startActivity(Intent(this@HomeActivity, ServiceActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
             }
             fabCall.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL)
@@ -147,6 +150,7 @@ class HomeActivity : AppCompatActivity() {
                         )
                     } else {
                         startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                     }
                 }
                 R.id.view_services -> {
@@ -154,6 +158,7 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(
                         Intent(this, ServiceActivity::class.java)
                     )
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                 }
                 R.id.showcase -> {
                     Toast.makeText(
@@ -186,6 +191,7 @@ class HomeActivity : AppCompatActivity() {
                             BusinessHoursActivity::class.java
                         )
                     )
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.user_ratings -> {
@@ -212,6 +218,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.about -> {
                     startActivity(Intent(this@HomeActivity, AboutActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
             }
@@ -290,6 +297,7 @@ class HomeActivity : AppCompatActivity() {
     private fun signOut() {
         sharedPrefHelper.signOut()
         startActivity(Intent(this, MainActivity::class.java))
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left)
         finish()
     }
 

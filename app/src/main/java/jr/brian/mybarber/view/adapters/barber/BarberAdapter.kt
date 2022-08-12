@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,10 @@ class BarberAdapter(
             itemView.setOnClickListener {
                 sharedPrefHelper.saveSelectedBarber(barber)
                 context.startActivity(Intent(context, BarberServicesActivity::class.java))
+                (context as AppCompatActivity).overridePendingTransition(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_right
+                )
             }
         }
     }

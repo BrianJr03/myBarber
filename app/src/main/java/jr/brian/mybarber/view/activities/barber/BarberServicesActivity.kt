@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityBarberServicesBinding
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Repository
@@ -47,6 +48,10 @@ class BarberServicesActivity : AppCompatActivity() {
             backBarberServices.setOnClickListener {
                 sharedPrefHelper.removeData(SELECTED_BARBER)
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 finish()
             }
             fabContinue.setOnClickListener {
@@ -64,6 +69,10 @@ class BarberServicesActivity : AppCompatActivity() {
                             TimeSelectionActivity::class.java
                         )
                     )
+                    overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_right
+                    )
                 } else {
                     Toast.makeText(
                         this@BarberServicesActivity,
@@ -75,6 +84,10 @@ class BarberServicesActivity : AppCompatActivity() {
             fabChangeBarber.setOnClickListener {
                 sharedPrefHelper.removeData(SELECTED_BARBER)
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
             }
         }
 
@@ -107,5 +120,13 @@ class BarberServicesActivity : AppCompatActivity() {
         viewModel.error.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }

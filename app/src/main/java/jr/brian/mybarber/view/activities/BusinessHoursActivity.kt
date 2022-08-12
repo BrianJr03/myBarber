@@ -21,6 +21,10 @@ class BusinessHoursActivity : AppCompatActivity() {
         binding.apply {
             hoursBackArrow.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 finish()
             }
         }
@@ -64,5 +68,13 @@ class BusinessHoursActivity : AppCompatActivity() {
             initDayColor(fridayTv)
             initDayColor(saturdayTv)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }

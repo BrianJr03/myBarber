@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.messaging.FirebaseMessaging
 import jr.brian.mybarber.databinding.FragmentSignUpBinding
 import jr.brian.mybarber.model.data.Repository
@@ -70,11 +69,12 @@ class SignUpFragment : Fragment() {
                     viewModel?.signUp()
                 } else {
                     activity?.let {
-                        Snackbar.make(
-                            it.findViewById(android.R.id.content),
-                            "Passwords do not match",
-                            Snackbar.LENGTH_LONG
-                        ).show()
+                        Toast.makeText(
+                            context,
+                            "Passwords don't match",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
                     }
 
                 }

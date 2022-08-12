@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityStartUpBinding
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.startHomeActivity
@@ -32,6 +33,10 @@ class StartUpActivity : AppCompatActivity() {
             }
             else {
                 startActivity(Intent(this@StartUpActivity, MainActivity::class.java))
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 finish()
             }
         }

@@ -42,6 +42,10 @@ class BookingSummaryActivity : AppCompatActivity() {
         binding.apply {
             summaryBackArrow.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
             }
             viewCouponsTv.setOnClickListener {
                 Toast.makeText(
@@ -69,6 +73,10 @@ class BookingSummaryActivity : AppCompatActivity() {
                         this@BookingSummaryActivity,
                         ApptDetailsActivity::class.java
                     )
+                )
+                overridePendingTransition(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_right
                 )
             }
         }
@@ -138,5 +146,13 @@ class BookingSummaryActivity : AppCompatActivity() {
         map["totalCost"] = cost.toString()
         map["couponCode"] = ""
         map["sendSms"] = "true"
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }
