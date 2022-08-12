@@ -48,6 +48,8 @@ object Constant {
 
     const val API_TOKEN = "API_TOKEN"
 
+    const val SIGN_IN_RESPONSE = "SIGN_IN_RESPONSE"
+
     /* Used for testing */
     const val BARBER_SUCCESS_RESPONSE = """
         {

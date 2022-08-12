@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
@@ -33,6 +34,10 @@ class BeardStylesAdapter(
             bind(serviceItem)
             itemView.setOnClickListener {
 //                context.startActivity(Intent(context, BeardStylesActivity::class.java))
+//                (context as AppCompatActivity).overridePendingTransition(
+//                    R.anim.slide_in_right,
+//                    R.anim.slide_out_right
+//                )
             }
         }
     }

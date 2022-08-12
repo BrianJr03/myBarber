@@ -1,4 +1,4 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.appointment
 
 data class Slot(
     val date: String,

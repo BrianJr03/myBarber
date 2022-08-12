@@ -9,7 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class BarberViewModel(private val repository: Repository) : ViewModel() {
-
     val barberResponse: LiveData<BarberResponse> = repository.barberLiveData
     val error: LiveData<String> = repository.error
     val isProcessing = repository.isProcessing

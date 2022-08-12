@@ -48,6 +48,10 @@ class TimeSelectionActivity : AppCompatActivity() {
             }
             backTime.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
             }
             fabCancel.setOnClickListener {
                 sharedPrefHelper.apply {
@@ -57,6 +61,10 @@ class TimeSelectionActivity : AppCompatActivity() {
                 }
                 startActivity(
                     Intent(this@TimeSelectionActivity, HomeActivity::class.java)
+                )
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
                 )
                 finish()
             }
@@ -69,6 +77,10 @@ class TimeSelectionActivity : AppCompatActivity() {
                             this@TimeSelectionActivity,
                             BookingSummaryActivity::class.java
                         )
+                    )
+                    overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_right
                     )
                     finish()
                 } else {
@@ -116,5 +128,10 @@ class TimeSelectionActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left)
     }
 }

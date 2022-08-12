@@ -1,4 +1,6 @@
-package jr.brian.mybarber.model.data
+package jr.brian.mybarber.model.data.response
+
+import jr.brian.mybarber.model.data.appointment.Slot
 
 data class CurrentApptResponse(
     val message: String,

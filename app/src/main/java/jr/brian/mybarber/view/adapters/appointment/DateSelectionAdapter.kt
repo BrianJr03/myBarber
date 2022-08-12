@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.DateSelectItemBinding
 import jr.brian.mybarber.model.data.Repository
-import jr.brian.mybarber.model.data.Slot
+import jr.brian.mybarber.model.data.appointment.Slot
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 
@@ -81,7 +81,7 @@ class DateSelectionAdapter(
                     if (isSelected) {
                         repository.setAppointmentsDate(slot.date)
                         repository.setAppointmentsStartFrom(-1)
-                        sharedPrefHelper.saveApptDateAndTime(date)
+                        sharedPrefHelper.saveApptDate(slot.date)
                         tvDay.setTextColor(context.getColor(R.color.gold))
                         tvDayMonth.setTextColor(context.getColor(R.color.gold))
                         tv.text = date
@@ -96,7 +96,6 @@ class DateSelectionAdapter(
 
         private fun getMonthAbbrevFromInt(monthInt: Int): String {
             when (monthInt) {
-                1 -> return "Jan"
                 2 -> return "Feb"
                 3 -> return "Mar"
                 4 -> return "Apr"

@@ -3,6 +3,7 @@ package jr.brian.mybarber.view.activities.services
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityBeardStylesBinding
 import jr.brian.mybarber.model.data.services.ServiceItem
 import jr.brian.mybarber.view.adapters.services.BeardStylesAdapter
@@ -20,6 +21,10 @@ class BeardStylesActivity : AppCompatActivity() {
         binding.apply {
             backBeardStyles.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_left
+                )
                 finish()
             }
         }
@@ -46,5 +51,13 @@ class BeardStylesActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_left
+        )
     }
 }

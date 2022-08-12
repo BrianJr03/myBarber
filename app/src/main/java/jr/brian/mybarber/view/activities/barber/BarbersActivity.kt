@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityBarbersBinding
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.barber.Barber
@@ -31,6 +32,7 @@ class BarbersActivity : AppCompatActivity() {
         binding.apply {
             backBarbers.setOnClickListener {
                 super.onBackPressed()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left)
                 finish()
             }
         }
@@ -63,5 +65,10 @@ class BarbersActivity : AppCompatActivity() {
         viewModel.error.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }
 }

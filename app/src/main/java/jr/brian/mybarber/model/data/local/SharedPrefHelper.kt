@@ -10,9 +10,11 @@ import jr.brian.mybarber.model.data.Constant.API_TOKEN
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
+import jr.brian.mybarber.model.data.Constant.SIGN_IN_RESPONSE
 import jr.brian.mybarber.model.data.Constant.TIME_SLOTS
 import jr.brian.mybarber.model.data.barber.Barber
 import jr.brian.mybarber.model.data.home.UserLogin
+import jr.brian.mybarber.model.data.response.SignInResponse
 import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
 import java.lang.reflect.Type
@@ -54,6 +56,17 @@ class SharedPrefHelper(context: Context) {
     private fun getObject(type: Type, key: String): Any {
         val json: String? = encryptedSharedPrefs.getString(key, null)
         return gson.fromJson(json, type)
+    }
+
+    fun saveSignInResponse(signInResponse: SignInResponse) {
+        saveObject(signInResponse, SIGN_IN_RESPONSE)
+    }
+
+    fun getSignInResponse(): SignInResponse {
+        return getObject(
+            type = object : TypeToken<SignInResponse>() {}.type,
+            key = SIGN_IN_RESPONSE
+        ) as SignInResponse
     }
 
     fun saveApiToken(token: String) {
@@ -99,7 +112,7 @@ class SharedPrefHelper(context: Context) {
         ) as ArrayList<String>
     }
 
-    fun saveApptDateAndTime(date: String) {
+    fun saveApptDate(date: String) {
         saveObject(date, APPT_DATE)
     }
 
