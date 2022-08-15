@@ -1,5 +1,10 @@
 package jr.brian.mybarber.view.activities.appointment
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -29,6 +34,8 @@ class BookingSummaryActivity : AppCompatActivity() {
     private lateinit var viewModel: AppointmentViewModel
 
     private val map = HashMap<String, Any>()
+
+    private lateinit var notiStr: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +75,7 @@ class BookingSummaryActivity : AppCompatActivity() {
             fabConfirm.setOnClickListener {
                 val apiToken: String = t.substring(1, t.length - 1)
                 viewModel?.bookAppointment(map, apiToken)
+                LocalNotification().sendApptNotification()
                 startActivity(
                     Intent(
                         this@BookingSummaryActivity,
@@ -123,6 +131,11 @@ class BookingSummaryActivity : AppCompatActivity() {
             val minute = split[1].toInt()
             lastSlot = "$firstHour:${minute + duration}"
         }
+
+        notiStr =
+            "Appt Date: ${sharedPrefHelper.getFormattedApptDate()}" +
+                    "\nStarting at $firstSlot, Ending at $lastSlot"
+
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
             apptTime.text = getString(R.string.appt_time, firstSlot, lastSlot)
@@ -130,6 +143,7 @@ class BookingSummaryActivity : AppCompatActivity() {
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)
         }
+
         initApptMap(cost, duration, firstSlot, lastSlot)
     }
 
@@ -154,5 +168,44 @@ class BookingSummaryActivity : AppCompatActivity() {
             R.anim.slide_in_left,
             R.anim.slide_out_left
         )
+    }
+
+    inner class LocalNotification {
+        private val channelId = "ChannelId"
+        private lateinit var notificationChannel: NotificationChannel
+        private lateinit var notificationManager: NotificationManager
+        private lateinit var notificationBuilder: Notification.Builder
+
+        private fun getNotificationChannel() {
+            notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationChannel = NotificationChannel(
+                channelId,
+                "Description of channel",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                enableLights(true)
+                enableVibration(true)
+                notificationManager.createNotificationChannel(this)
+            }
+        }
+
+        fun sendApptNotification() {
+            val intent = Intent(this@BookingSummaryActivity, ApptDetailsActivity::class.java)
+            val pendingIntent =
+                PendingIntent.getActivity(
+                    this@BookingSummaryActivity,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE
+                )
+            getNotificationChannel()
+            notificationBuilder = Notification.Builder(this@BookingSummaryActivity, channelId)
+                .setContentTitle("Appointment Booked!")
+                .setContentText(notiStr)
+                .setSmallIcon(R.drawable.cut_24)
+                .setContentIntent(pendingIntent)
+            notificationManager.notify(1, notificationBuilder.build())
+        }
     }
 }

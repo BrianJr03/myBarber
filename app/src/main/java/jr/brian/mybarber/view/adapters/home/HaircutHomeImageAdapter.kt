@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.HaircutHomeImageBinding
-import jr.brian.mybarber.model.data.home.HaircutHomeImage
+import jr.brian.mybarber.model.data.home.HaircutImage
 
-class HaircutHomeImageAdapter(private val context: Context, private val cuts: List<HaircutHomeImage>) :
+class HaircutHomeImageAdapter(private val context: Context, private val cuts: List<HaircutImage>) :
     RecyclerView.Adapter<HaircutHomeImageAdapter.HaircutHomeImageViewHolder>() {
 
     lateinit var binding: HaircutHomeImageBinding
@@ -32,7 +32,7 @@ class HaircutHomeImageAdapter(private val context: Context, private val cuts: Li
     }
 
     inner class HaircutHomeImageViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
-        fun bind(image: HaircutHomeImage) {
+        fun bind(image: HaircutImage) {
             val img = v.findViewById<AppCompatImageView>(R.id.haircut_image)
             Glide.with(context)
                 .load(image.image)

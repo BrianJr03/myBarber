@@ -14,8 +14,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/haircut_image"
-            android:layout_width="@dimen/_155dp"
-            android:layout_height="@dimen/_155dp"
+            android:layout_width="@dimen/_125dp"
+            android:layout_height="@dimen/_125dp"
             android:layout_margin="10dp"
             android:cropToPadding="true"
             android:src="@drawable/profile_pl_100"

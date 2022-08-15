@@ -16,7 +16,7 @@
     <string name="book_appt">Book Appointment</string>
     <string name="showcase">Showcase</string>
     <string name="offers">Offers</string>
-    <string name="home_care_products">Home Care Products</string>
+    <string name="hair_care_products">Hair Care Products</string>
     <string name="contact_us">Contact Us</string>
     <string name="working_hours">Business Hours</string>
     <string name="user_ratings">User Ratings</string>
@@ -28,6 +28,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_out">Sign Out</string>
+    <string name="showcase_scrolling_text">These Haircuts were chosen by YOU, the community!\u0020\u0020\u0020 Our barbers and hair artists are really talented and we appreciate all of your business!.\u0020\u0020\u0020 Want your recent cut featured here? Talk to your barber after your next visit for more information!</string>
     <string name="home_scrolling_text">Welcome to myBarber! \u0020\u0020\u0020 Today\'s specials include 15% off boys haircuts. \u0020\u0020\u0020 Our business hours are 9am - 5pm. \u0020\u0020\u0020 Please remember to schedule an appointment as we are no longer taking walk-ins. \u0020\u0020\u0020 Thank You!</string>
     <string name="more_options">More Options</string>
     <string name="pl_date">7/27/2022</string>
@@ -104,5 +105,8 @@
     <string name="appt_start_time">"Starting at %1$s"</string>
     <string name="services_cost">"%1$d"</string>
     <string name="services_duration">"%1$d MIN"</string>
+    <string name="mens">Mens</string>
+    <string name="womens">Womens</string>
+    <string name="childrens">Childrens</string>
 
 </resources>

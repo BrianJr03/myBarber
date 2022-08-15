@@ -23,12 +23,14 @@ import androidx.core.view.GravityCompat
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.databinding.NavHeaderBinding
+import jr.brian.mybarber.model.data.Constant.DEV_WEBSITE_URL
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.activities.AboutActivity
 import jr.brian.mybarber.view.activities.BusinessHoursActivity
 import jr.brian.mybarber.view.activities.MainActivity
+import jr.brian.mybarber.view.activities.ShowcaseActivity
 import jr.brian.mybarber.view.activities.barber.BarbersActivity
 import jr.brian.mybarber.view.activities.services.ServiceActivity
 import jr.brian.mybarber.view.auth_fragments.SignInFragment
@@ -51,7 +53,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         binding.navView.inflateHeaderView(R.layout.nav_header)
         navHeaderBinding = NavHeaderBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
         init()
     }
@@ -87,7 +88,7 @@ class HomeActivity : AppCompatActivity() {
             fabCall.setOnClickListener { startPhone() }
             tvCall.setOnClickListener { startPhone() }
             fabMaps.setOnClickListener { startMap() }
-            tvMaps.setOnClickListener { startMap()}
+            tvMaps.setOnClickListener { startMap() }
             fabOptions.setOnClickListener { openDrawer() }
             tvOptions.setOnClickListener { openDrawer() }
             fabSignOut.setOnClickListener { signOut() }
@@ -124,7 +125,12 @@ class HomeActivity : AppCompatActivity() {
                             "You must be signed in to book an appointment"
                         )
                     } else {
-                        startActivity(Intent(this@HomeActivity, BarbersActivity::class.java))
+                        startActivity(
+                            Intent(
+                                this@HomeActivity,
+                                BarbersActivity::class.java
+                            )
+                        )
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                     }
                 }
@@ -136,11 +142,13 @@ class HomeActivity : AppCompatActivity() {
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                 }
                 R.id.showcase -> {
-                    Toast.makeText(
-                        this,
-                        "Coming Soon",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    startActivity(
+                        Intent(
+                            this@HomeActivity,
+                            ShowcaseActivity::class.java
+                        )
+                    )
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.offers -> {
@@ -183,7 +191,7 @@ class HomeActivity : AppCompatActivity() {
                         putExtra(
                             Intent.EXTRA_TEXT, "Check this website out!\n" +
                                     "The dev of this app wrote it!\n" +
-                                    "https://brianjr03.github.io"
+                                    DEV_WEBSITE_URL
                         )
                         type = "text/plain"
                     }

@@ -42,9 +42,7 @@ class DateSelectionAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return slots.size
-    }
+    override fun getItemCount(): Int = slots.size
 
     inner class SelectDateHolder(val v: View) : RecyclerView.ViewHolder(binding.root) {
         fun bind(slot: Slot) {
@@ -77,14 +75,19 @@ class DateSelectionAdapter(
                 var isSelected = false
                 root.setOnClickListener {
                     isSelected = !isSelected
-                    val date = "\n${slot.day}, $selectedDate"
+                    val split = slot.date.split("-")
+                    val fDate =
+                        "${getMonthAbbrevFromInt(split[1].toInt())} ${split[2]}, ${split[0]}"
                     if (isSelected) {
                         repository.setAppointmentsDate(slot.date)
                         repository.setAppointmentsStartFrom(-1)
-                        sharedPrefHelper.saveApptDate(slot.date)
+                        sharedPrefHelper.apply {
+                            saveApptDate(slot.date)
+                            saveFormattedApptDate(fDate)
+                        }
                         tvDay.setTextColor(context.getColor(R.color.gold))
                         tvDayMonth.setTextColor(context.getColor(R.color.gold))
-                        tv.text = date
+                        tv.text = fDate
                     } else {
                         tvDay.setTextColor(context.getColor(R.color.white))
                         tvDayMonth.setTextColor(context.getColor(R.color.white))

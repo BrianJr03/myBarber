@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import jr.brian.mybarber.model.data.Constant.API_TOKEN
 import jr.brian.mybarber.model.data.Constant.APPT_DATE
+import jr.brian.mybarber.model.data.Constant.F_APPT_DATE
 import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
 import jr.brian.mybarber.model.data.Constant.SIGN_IN_RESPONSE
@@ -40,27 +41,21 @@ class SharedPrefHelper(context: Context) {
 
     fun saveUser(user: UserLogin) {
         editor.apply {
-            clear()
-            apply()
+            clear().apply()
             putString(SignInFragment.PHONE_NUM, user.phoneNum)
             putString(SignInFragment.PASSWORD, user.password)
             commit()
         }
     }
 
-    private fun saveObject(obj: Any, key: String) {
-        editor.putString(key, gson.toJson(obj))
-        editor.apply()
-    }
+    private fun saveObject(obj: Any, key: String) =
+        editor.putString(key, gson.toJson(obj)).apply()
 
-    private fun getObject(type: Type, key: String): Any {
-        val json: String? = encryptedSharedPrefs.getString(key, null)
-        return gson.fromJson(json, type)
-    }
+    private fun getObject(type: Type, key: String): Any =
+        gson.fromJson(encryptedSharedPrefs.getString(key, null), type)
 
-    fun saveSignInResponse(signInResponse: SignInResponse) {
+    fun saveSignInResponse(signInResponse: SignInResponse) =
         saveObject(signInResponse, SIGN_IN_RESPONSE)
-    }
 
     fun getSignInResponse(): SignInResponse {
         return getObject(
@@ -69,17 +64,11 @@ class SharedPrefHelper(context: Context) {
         ) as SignInResponse
     }
 
-    fun saveApiToken(token: String) {
-        saveObject(token, API_TOKEN)
-    }
+    fun saveApiToken(token: String) = saveObject(token, API_TOKEN)
 
-    fun getApiToken(): String {
-        return encryptedSharedPrefs.getString(API_TOKEN, null).toString()
-    }
+    fun getApiToken(): String = encryptedSharedPrefs.getString(API_TOKEN, null).toString()
 
-    fun saveSelectedBarber(barber: Barber) {
-        saveObject(barber, SELECTED_BARBER)
-    }
+    fun saveSelectedBarber(barber: Barber) = saveObject(barber, SELECTED_BARBER)
 
     fun getSelectedBarber(): Barber {
         return getObject(
@@ -88,9 +77,7 @@ class SharedPrefHelper(context: Context) {
         ) as Barber
     }
 
-    fun saveListOfServices(list: ArrayList<BarberService>) {
-        saveObject(list, SELECTED_SERVICES)
-    }
+    fun saveListOfServices(list: ArrayList<BarberService>) = saveObject(list, SELECTED_SERVICES)
 
     @Suppress("UNCHECKED_CAST")
     fun getBarberServices(): ArrayList<BarberService> {
@@ -100,9 +87,7 @@ class SharedPrefHelper(context: Context) {
         ) as ArrayList<BarberService>
     }
 
-    fun saveListOfTimeSlots(list: ArrayList<String>) {
-        saveObject(list, TIME_SLOTS)
-    }
+    fun saveListOfTimeSlots(list: ArrayList<String>) = saveObject(list, TIME_SLOTS)
 
     @Suppress("UNCHECKED_CAST")
     fun getTimeSlots(): ArrayList<String> {
@@ -112,9 +97,7 @@ class SharedPrefHelper(context: Context) {
         ) as ArrayList<String>
     }
 
-    fun saveApptDate(date: String) {
-        saveObject(date, APPT_DATE)
-    }
+    fun saveApptDate(date: String) = saveObject(date, APPT_DATE)
 
     fun getApptDate(): String {
         return getObject(
@@ -123,17 +106,16 @@ class SharedPrefHelper(context: Context) {
         ) as String
     }
 
-    fun removeData(key: String) {
-        encryptedSharedPrefs
-            .edit()
-            .remove(key)
-            .apply()
+    fun saveFormattedApptDate(date: String) = saveObject(date, F_APPT_DATE)
+
+    fun getFormattedApptDate(): String {
+        return getObject(
+            type = object : TypeToken<String>() {}.type,
+            key = F_APPT_DATE
+        ) as String
     }
 
-    fun signOut() {
-        editor.apply {
-            clear()
-            apply()
-        }
-    }
+    fun removeData(key: String) = encryptedSharedPrefs.edit().remove(key).apply()
+
+    fun signOut() = editor.clear().apply()
 }

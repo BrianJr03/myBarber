@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import jr.brian.mybarber.R
-import jr.brian.mybarber.view.activities.home.HomeActivity
+import jr.brian.mybarber.view.activities.appointment.BookingSummaryActivity
 
 @SuppressLint("MissingFirebaseInstanceTokenRefresh")
 class FcmService : FirebaseMessagingService() {
@@ -35,7 +35,7 @@ class FcmService : FirebaseMessagingService() {
         message: String?,
         apptNo: String?
     ) {
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, BookingSummaryActivity::class.java)
         val channelId = "notification_channel"
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(

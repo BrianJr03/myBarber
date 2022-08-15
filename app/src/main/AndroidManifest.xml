@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="jr.brian.mybarber">
 
-   <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyBarber"
         tools:targetApi="31">
+        <activity
+            android:name=".view.activities.ShowcaseActivity"
+            android:exported="false" />
         <activity
             android:name=".view.activities.appointment.ApptDetailsActivity"
             android:exported="false" />
@@ -86,6 +89,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <service
             android:name=".model.data.remote.firebase.FcmService"
             android:exported="true"

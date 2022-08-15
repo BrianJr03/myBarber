@@ -16,6 +16,10 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/compare_arrows_24.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/fact_check_48.xml" value="0.1345" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/github_48.xml" value="0.1035" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/ic_boy.xml" value="0.2595" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/ic_girl.xml" value="0.2595" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/ic_man.xml" value="0.2595" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/ic_woman.xml" value="0.2595" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/info_24.xml" value="0.129" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/info_36.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/drawable/linkedin_48.xml" value="0.1035" />
@@ -57,6 +61,7 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_offers.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_official_looks.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_service.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_showcase.xml" value="0.33" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_start_up.xml" value="0.16" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/activity_time_selection.xml" value="0.22" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/barber_card.xml" value="0.25" />
@@ -68,7 +73,8 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/fragment_haircut_home.xml" value="0.25" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/fragment_sign_in.xml" value="0.18157181571815717" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/fragment_sign_up.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/haircut_home_image.xml" value="0.14" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/haircut_home_image.xml" value="0.12" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/haircut_showcase_image.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/nav_header.xml" value="0.2" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/notification.xml" value="0.25" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/myBarber/app/src/main/res/layout/service_card.xml" value="0.20416666666666666" />

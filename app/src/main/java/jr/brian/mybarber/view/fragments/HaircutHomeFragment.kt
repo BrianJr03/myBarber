@@ -14,14 +14,14 @@ import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_4
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_5
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_6
 import jr.brian.mybarber.model.data.Constant.HAIRCUT_PL_7
-import jr.brian.mybarber.model.data.home.HaircutHomeImage
+import jr.brian.mybarber.model.data.home.HaircutImage
 import jr.brian.mybarber.view.adapters.home.HaircutHomeImageAdapter
 
 class HaircutHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHaircutHomeBinding
     private lateinit var homeImageAdapter: HaircutHomeImageAdapter
-    private lateinit var cuts: ArrayList<HaircutHomeImage>
+    private lateinit var cuts: ArrayList<HaircutImage>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,14 +61,14 @@ class HaircutHomeFragment : Fragment() {
     }
 
     private fun initData() {
-        cuts = ArrayList<HaircutHomeImage>().apply {
-            add(HaircutHomeImage(HAIRCUT_PL_1))
-            add(HaircutHomeImage(HAIRCUT_PL_2))
-            add(HaircutHomeImage(HAIRCUT_PL_3))
-            add(HaircutHomeImage(HAIRCUT_PL_4))
-            add(HaircutHomeImage(HAIRCUT_PL_5))
-            add(HaircutHomeImage(HAIRCUT_PL_6))
-            add(HaircutHomeImage(HAIRCUT_PL_7))
+        cuts = ArrayList<HaircutImage>().apply {
+            add(HaircutImage(HAIRCUT_PL_1))
+            add(HaircutImage(HAIRCUT_PL_2))
+            add(HaircutImage(HAIRCUT_PL_3))
+            add(HaircutImage(HAIRCUT_PL_4))
+            add(HaircutImage(HAIRCUT_PL_5))
+            add(HaircutImage(HAIRCUT_PL_6))
+            add(HaircutImage(HAIRCUT_PL_7))
         }
     }
 }
