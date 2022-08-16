@@ -110,7 +110,7 @@ class BookingSummaryActivity : AppCompatActivity() {
             binding.apply {
                 apptDuration.text = getString(R.string.appt_duration, duration)
                 apptCost.text = getString(R.string.total_cost_details, cost)
-                apptDate.text = sharedPrefHelper.getApptDate()
+                apptDate.text = sharedPrefHelper.getFormattedApptDate()
             }
         }
         setAdapter()
