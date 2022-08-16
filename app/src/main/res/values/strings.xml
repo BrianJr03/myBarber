@@ -91,7 +91,7 @@
     <string name="view_coupons">View Coupons</string>
     <string name="appt_num">Appointment Number: 233</string>
     <string name="reschedule">Reschedule</string>
-    <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber at arrival</string>
+    <string name="appt_instructions">Share the QR Code or Appt Number\nwith your barber upon arrival</string>
     <string name="appt_details">Appointment Details</string>
     <string name="pl_day_month">08 Aug</string>
     <string name="no_time_selected">No Time Selected</string>

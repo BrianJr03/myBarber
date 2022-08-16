@@ -327,6 +327,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
+        appDatabase.dao().clear()
         sharedPrefHelper.signOut()
         startActivity(Intent(this, MainActivity::class.java))
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left)

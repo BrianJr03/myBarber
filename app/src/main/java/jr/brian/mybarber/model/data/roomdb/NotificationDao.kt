@@ -13,4 +13,7 @@ interface NotificationDao {
 
     @Delete
     fun deleteNotification(notification: Noti)
+
+    @Query("DELETE FROM notifications")
+    fun clear()
 }
