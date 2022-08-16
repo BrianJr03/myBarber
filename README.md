@@ -68,7 +68,7 @@ Instructions for how to install Android Studio and Android SDK can be found [her
  - Offers Screen
  - Hair Care Products screen
  - User Ratings screen
- - Notifications
+ - FCM Notifications
 
 ## Issues
  - When an appointment is booked, a user will not recieve a push notification from FCM.
