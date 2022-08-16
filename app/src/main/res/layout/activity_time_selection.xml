@@ -65,6 +65,17 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.11" />
 
+        <TextView
+            android:id="@+id/select_num_slots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_1_time_slot_s"
+            android:textColor="@color/blueish_idk"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView_date_select"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_date_select"
             android:layout_width="match_parent"
@@ -126,6 +137,7 @@
             android:text="@string/no_time_selected"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/fab_cancel" />
@@ -137,6 +149,7 @@
             android:text="@string/no_date_selected"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/fab_cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

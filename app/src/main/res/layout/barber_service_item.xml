@@ -34,6 +34,7 @@
             android:shadowColor="@color/white"
             android:text="@string/service_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@id/service_image"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,17 +45,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:contentDescription="@string/close"
             app:layout_constraintStart_toEndOf="@id/service_image"
             app:layout_constraintTop_toBottomOf="@id/tv_service_name"
-            app:srcCompat="@drawable/clock_24"
-            android:contentDescription="@string/close" />
+            app:srcCompat="@drawable/clock_24" />
 
         <TextView
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="10dp"
             android:text="@string/_45_min"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -65,8 +66,8 @@
             android:id="@+id/tv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_100"
             android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/_100"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/tv_duration_icon"

@@ -27,9 +27,6 @@ class ApptDetailsActivity : AppCompatActivity() {
         services = ArrayList()
         setContentView(binding.root)
         binding.apply {
-            detailsBackArrow.setOnClickListener {
-                cancelAppt()
-            }
             var isInFirstPosition = true
             playScrollBtn.setOnClickListener {
                 isInFirstPosition = if (isInFirstPosition) {
@@ -46,9 +43,6 @@ class ApptDetailsActivity : AppCompatActivity() {
                     "Coming Soon",
                     Toast.LENGTH_LONG
                 ).show()
-            }
-            fabCancel.setOnClickListener {
-                cancelAppt()
             }
             fabConfirm.setOnClickListener {
                 sharedPrefHelper.apply {
@@ -115,11 +109,6 @@ class ApptDetailsActivity : AppCompatActivity() {
 
     private fun cancelAppt() {
         cancelAppt(this) {
-            Toast.makeText(
-                this,
-                "Appointment has been canceled",
-                Toast.LENGTH_LONG
-            ).show()
             sharedPrefHelper.apply {
                 removeData(Constant.APPT_DATE)
                 removeData(Constant.SELECTED_BARBER)
@@ -129,10 +118,6 @@ class ApptDetailsActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        overridePendingTransition(
-            R.anim.slide_in_left,
-            R.anim.slide_out_left
-        )
+        cancelAppt()
     }
 }

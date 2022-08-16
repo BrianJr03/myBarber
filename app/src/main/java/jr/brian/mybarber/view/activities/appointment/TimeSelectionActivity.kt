@@ -39,6 +39,8 @@ class TimeSelectionActivity : AppCompatActivity() {
         setupViewModel()
         setupObservers()
         binding.apply {
+            val numOfSlots = sharedPrefHelper.getBarberServices().size
+            selectNumSlots.text = getString(R.string.select_1_time_slot_s, numOfSlots)
             srLayout.setOnRefreshListener {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {

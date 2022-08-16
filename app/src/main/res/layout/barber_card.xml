@@ -20,6 +20,7 @@
             android:layout_marginStart="@dimen/_10dp"
             android:layout_marginTop="@dimen/_10dp"
             android:text="@string/pl_barber_name"
+            android:textColor="@color/white"
             android:textSize="@dimen/_20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
@@ -50,9 +51,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/barber_image"
-            android:layout_margin="@dimen/_10dp"
             android:layout_width="@dimen/_70dp"
             android:layout_height="@dimen/_70dp"
+            android:layout_margin="@dimen/_10dp"
             android:src="@drawable/profile_pl_80"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_start"

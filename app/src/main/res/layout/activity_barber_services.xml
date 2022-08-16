@@ -108,6 +108,28 @@
             app:layout_constraintTop_toTopOf="@id/guideline3"
             app:rippleColor="@color/teal_200" />
 
+        <TextView
+            android:id="@+id/selected_barber_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_barber"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fab_changeBarber" />
+
+        <TextView
+            android:id="@+id/selected_barber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pl_barber_name"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintBottom_toBottomOf="@id/fab_changeBarber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"

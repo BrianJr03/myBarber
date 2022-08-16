@@ -75,7 +75,7 @@ class TimeSelectionAdapter(
                             selectedTimeSlots.remove(this.text.toString())
                             sharedPrefHelper.saveListOfTimeSlots(selectedTimeSlots)
                             setTextColor(context.getColor(R.color.white))
-                            tv.text = context.getString(R.string.select_time)
+                            tv.text = context.getString(R.string.no_time_selected)
                         }
                     } else {
                         openDialog(

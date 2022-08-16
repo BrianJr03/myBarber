@@ -103,10 +103,12 @@
     <string name="appt_duration">"%1$d Minutes"</string>
 
     <string name="appt_start_time">"Starting at %1$s"</string>
-    <string name="services_cost">"%1$d"</string>
+    <string name="services_cost">"$%1$d"</string>
     <string name="services_duration">"%1$d MIN"</string>
     <string name="mens">Mens</string>
     <string name="womens">Womens</string>
     <string name="childrens">Childrens</string>
+    <string name="selected_barber">Selected Barber</string>
+    <string name="select_1_time_slot_s">Select %1$d time slot(s)</string>
 
 </resources>

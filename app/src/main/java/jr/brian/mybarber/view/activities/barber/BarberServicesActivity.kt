@@ -37,6 +37,7 @@ class BarberServicesActivity : AppCompatActivity() {
         setupObservers()
         viewModel.getBarberServices()
         binding.apply {
+            selectedBarber.text = sharedPrefHelper.getSelectedBarber().barberName
             srLayout.setOnRefreshListener {
                 Handler(Looper.getMainLooper()).postDelayed({
                     if (srLayout.isRefreshing) {
@@ -90,7 +91,6 @@ class BarberServicesActivity : AppCompatActivity() {
                 )
             }
         }
-
     }
 
     private fun setAdapter() {

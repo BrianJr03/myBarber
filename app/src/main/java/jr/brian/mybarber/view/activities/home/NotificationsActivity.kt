@@ -47,7 +47,7 @@ class NotificationsActivity : AppCompatActivity() {
 
     private fun fetchNotifications() {
         notifications.apply {
-            for (i in appDatabase.dao().getNotifications()) {
+            for (i in appDatabase.dao().getNotifications().asReversed()) {
                 add(i)
             }
         }

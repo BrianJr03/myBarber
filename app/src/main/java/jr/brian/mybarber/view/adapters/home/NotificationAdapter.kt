@@ -47,7 +47,7 @@ class NotificationAdapter(
             val title = v.findViewById<TextView>(R.id.noti_title)
             val date = v.findViewById<TextView>(R.id.noti_date)
             title.text = notification.title
-            date.text = notification.date
+            date.text = notification.date.split(" @ ")[0]
         }
     }
 }

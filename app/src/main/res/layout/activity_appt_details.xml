@@ -13,19 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.11" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/details_back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10dp"
-        android:background="@color/transparent_bg_color"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_baseline_close_24"
-        app:layout_constraintBottom_toBottomOf="@id/appt_details_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/appt_details_tv" />
-
     <TextView
         android:id="@+id/appt_details_tv"
         android:layout_width="wrap_content"
@@ -149,18 +136,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="419dp" />
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20dp"
-        android:backgroundTint="@color/blueish_idk"
-        app:icon="@drawable/close_10"
-        app:iconTint="?android:colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/teal_200" />
-
     <TextView
         android:id="@+id/reschedule_tv"
         android:layout_width="wrap_content"
@@ -170,10 +145,11 @@
         android:text="@string/reschedule"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_20sp"
-        app:layout_constraintBottom_toBottomOf="@id/fab_cancel"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/fab_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fab_cancel" />
+        app:layout_constraintTop_toTopOf="@id/fab_confirm" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_confirm"

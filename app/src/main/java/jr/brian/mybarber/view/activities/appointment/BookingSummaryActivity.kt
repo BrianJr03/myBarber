@@ -24,6 +24,7 @@ import jr.brian.mybarber.model.data.notification.Noti
 import jr.brian.mybarber.model.data.roomdb.AppDatabase
 import jr.brian.mybarber.model.data.services.BarberService
 import jr.brian.mybarber.model.util.cancelAppt
+import jr.brian.mybarber.view.activities.home.NotificationsActivity
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
@@ -128,7 +129,7 @@ class BookingSummaryActivity : AppCompatActivity() {
 
         notiStr =
             "Appt Date: ${sharedPrefHelper.getFormattedApptDate()}" +
-                    "\nStarting at $firstSlot, Ending at $lastSlot"
+                    "\n\nStarting at $firstSlot\nEnding at $lastSlot"
 
         binding.apply {
             selectedBarberName.text = selectedBarber.barberName
@@ -181,7 +182,9 @@ class BookingSummaryActivity : AppCompatActivity() {
         private lateinit var notificationBuilder: Notification.Builder
 
         fun sendApptNotification() {
-            val intent = Intent(this@BookingSummaryActivity, ApptDetailsActivity::class.java)
+            val intent = Intent(
+                this@BookingSummaryActivity, NotificationsActivity::class.java
+            )
             val pendingIntent =
                 PendingIntent.getActivity(
                     this@BookingSummaryActivity,
@@ -191,7 +194,9 @@ class BookingSummaryActivity : AppCompatActivity() {
                 )
             getNotificationChannel()
             val title = "Appointment Booked!"
-            notificationBuilder = Notification.Builder(this@BookingSummaryActivity, channelId)
+            notificationBuilder = Notification.Builder(
+                this@BookingSummaryActivity, channelId
+            )
                 .setContentTitle(title)
                 .setContentText(notiStr)
                 .setSmallIcon(R.drawable.cut_24)
@@ -216,7 +221,7 @@ class BookingSummaryActivity : AppCompatActivity() {
 
         private fun currentDate(): String {
             val date = Calendar.getInstance().time
-            val formatter = SimpleDateFormat.getDateInstance()
+            val formatter = SimpleDateFormat("MMM dd, yyyy @ H:mm a", Locale.getDefault())
             return formatter.format(date)
         }
     }
