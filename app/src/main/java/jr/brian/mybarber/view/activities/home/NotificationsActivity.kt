@@ -9,19 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.ActivityNotificationsBinding
-import jr.brian.mybarber.model.data.notification.Notification
+import jr.brian.mybarber.model.data.notification.Noti
+import jr.brian.mybarber.model.data.roomdb.AppDatabase
 import jr.brian.mybarber.view.adapters.home.NotificationAdapter
 
 class NotificationsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotificationsBinding
     private lateinit var notificationAdapter: NotificationAdapter
-    private lateinit var notifications: ArrayList<Notification>
+    private var notifications = ArrayList<Noti>()
+    private lateinit var appDatabase: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationsBinding.inflate(layoutInflater)
+        appDatabase = AppDatabase.getInstance(applicationContext)!!
         setContentView(binding.root)
-        initDummyData()
+        fetchNotifications()
         setAdapter()
         binding.apply {
             notiBackArrow.setOnClickListener {
@@ -38,6 +41,14 @@ class NotificationsActivity : AppCompatActivity() {
                 notiCount.text = notifications.size.toString()
             } else {
                 notiCount.text = notifications.size.toString()
+            }
+        }
+    }
+
+    private fun fetchNotifications() {
+        notifications.apply {
+            for (i in appDatabase.dao().getNotifications()) {
+                add(i)
             }
         }
     }
@@ -59,15 +70,7 @@ class NotificationsActivity : AppCompatActivity() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val pos = viewHolder.adapterPosition
-                    notifications.removeAt(pos)
-                    notificationAdapter.notifyItemRemoved(pos)
-                    binding.notiCount.text = notifications.size.toString()
-                    Toast.makeText(
-                        this@NotificationsActivity,
-                        "Notification Deleted",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
+                    handleDelete(pos)
                 }
             }).attachToRecyclerView(notificationRecyclerView)
 
@@ -82,32 +85,30 @@ class NotificationsActivity : AppCompatActivity() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val pos = viewHolder.adapterPosition
-                    notifications.removeAt(pos)
-                    notificationAdapter.notifyItemRemoved(pos)
-                    binding.notiCount.text = notifications.size.toString()
-                    Toast.makeText(
-                        this@NotificationsActivity,
-                        "Notification Deleted",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
+                    handleDelete(pos)
                 }
             }).attachToRecyclerView(notificationRecyclerView)
         }
     }
 
-    private fun initDummyData() {
-        notifications = ArrayList()
-        notifications.apply {
-            for (i in 1..7) {
-                add(
-                    Notification(
-                        body = "Notification $i",
-                        date = "7/$i/2022",
-                    )
-                )
+    private fun handleDelete(pos: Int) {
+        appDatabase.dao().deleteNotification(notifications[pos])
+        notifications.removeAt(pos)
+        notificationAdapter.notifyItemRemoved(pos)
+        when {
+            notifications.isEmpty() -> binding.apply {
+                binding.notiBell.setImageResource(R.drawable.notifications_none_36)
+                errorIcon.visibility = View.VISIBLE
+                errorText.visibility = View.VISIBLE
             }
         }
+        binding.notiCount.text = notifications.size.toString()
+        Toast.makeText(
+            this@NotificationsActivity,
+            "Notification Deleted",
+            Toast.LENGTH_LONG
+        )
+            .show()
     }
 
     override fun onBackPressed() {

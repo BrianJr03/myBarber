@@ -20,11 +20,15 @@ import jr.brian.mybarber.model.data.Constant.SELECTED_BARBER
 import jr.brian.mybarber.model.data.Constant.SELECTED_SERVICES
 import jr.brian.mybarber.model.data.Repository
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
+import jr.brian.mybarber.model.data.notification.Noti
+import jr.brian.mybarber.model.data.roomdb.AppDatabase
 import jr.brian.mybarber.model.data.services.BarberService
-import jr.brian.mybarber.model.util.startHomeActivity
+import jr.brian.mybarber.model.util.cancelAppt
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
 import jr.brian.mybarber.viewmodel.appointment.AppointmentViewModel
 import jr.brian.mybarber.viewmodel.appointment.ApptVMFactory
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BookingSummaryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookingSummaryBinding
@@ -32,6 +36,7 @@ class BookingSummaryActivity : AppCompatActivity() {
     private lateinit var services: ArrayList<BarberService>
     private lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var viewModel: AppointmentViewModel
+    private lateinit var appDatabase: AppDatabase
 
     private val map = HashMap<String, Any>()
 
@@ -40,6 +45,7 @@ class BookingSummaryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookingSummaryBinding.inflate(layoutInflater)
+        appDatabase = AppDatabase.getInstance(applicationContext)!!
         sharedPrefHelper = SharedPrefHelper(this)
         services = ArrayList()
         setContentView(binding.root)
@@ -48,11 +54,7 @@ class BookingSummaryActivity : AppCompatActivity() {
         val t = sharedPrefHelper.getApiToken()
         binding.apply {
             summaryBackArrow.setOnClickListener {
-                super.onBackPressed()
-                overridePendingTransition(
-                    R.anim.slide_in_left,
-                    R.anim.slide_out_left
-                )
+                cancelAppt()
             }
             viewCouponsTv.setOnClickListener {
                 Toast.makeText(
@@ -62,15 +64,7 @@ class BookingSummaryActivity : AppCompatActivity() {
                 ).show()
             }
             fabCancel.setOnClickListener {
-                sharedPrefHelper.apply {
-                    removeData(APPT_DATE)
-                    removeData(SELECTED_BARBER)
-                    removeData(SELECTED_SERVICES)
-                }
-                startHomeActivity(
-                    this@BookingSummaryActivity,
-                    this@BookingSummaryActivity
-                )
+                cancelAppt()
             }
             fabConfirm.setOnClickListener {
                 val apiToken: String = t.substring(1, t.length - 1)
@@ -162,6 +156,16 @@ class BookingSummaryActivity : AppCompatActivity() {
         map["sendSms"] = "true"
     }
 
+    private fun cancelAppt() {
+        cancelAppt(this) {
+            sharedPrefHelper.apply {
+                removeData(APPT_DATE)
+                removeData(SELECTED_BARBER)
+                removeData(SELECTED_SERVICES)
+            }
+        }
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(
@@ -175,6 +179,26 @@ class BookingSummaryActivity : AppCompatActivity() {
         private lateinit var notificationChannel: NotificationChannel
         private lateinit var notificationManager: NotificationManager
         private lateinit var notificationBuilder: Notification.Builder
+
+        fun sendApptNotification() {
+            val intent = Intent(this@BookingSummaryActivity, ApptDetailsActivity::class.java)
+            val pendingIntent =
+                PendingIntent.getActivity(
+                    this@BookingSummaryActivity,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE
+                )
+            getNotificationChannel()
+            val title = "Appointment Booked!"
+            notificationBuilder = Notification.Builder(this@BookingSummaryActivity, channelId)
+                .setContentTitle(title)
+                .setContentText(notiStr)
+                .setSmallIcon(R.drawable.cut_24)
+                .setContentIntent(pendingIntent)
+            notificationManager.notify(1, notificationBuilder.build())
+            appDatabase.dao().insertNotification(Noti(title, notiStr, currentDate()))
+        }
 
         private fun getNotificationChannel() {
             notificationManager =
@@ -190,22 +214,10 @@ class BookingSummaryActivity : AppCompatActivity() {
             }
         }
 
-        fun sendApptNotification() {
-            val intent = Intent(this@BookingSummaryActivity, ApptDetailsActivity::class.java)
-            val pendingIntent =
-                PendingIntent.getActivity(
-                    this@BookingSummaryActivity,
-                    0,
-                    intent,
-                    PendingIntent.FLAG_IMMUTABLE
-                )
-            getNotificationChannel()
-            notificationBuilder = Notification.Builder(this@BookingSummaryActivity, channelId)
-                .setContentTitle("Appointment Booked!")
-                .setContentText(notiStr)
-                .setSmallIcon(R.drawable.cut_24)
-                .setContentIntent(pendingIntent)
-            notificationManager.notify(1, notificationBuilder.build())
+        private fun currentDate(): String {
+            val date = Calendar.getInstance().time
+            val formatter = SimpleDateFormat.getDateInstance()
+            return formatter.format(date)
         }
     }
 }

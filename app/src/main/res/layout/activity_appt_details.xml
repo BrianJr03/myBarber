@@ -21,7 +21,7 @@
         android:background="@color/transparent_bg_color"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/arrow_back_36"
+        android:src="@drawable/ic_baseline_close_24"
         app:layout_constraintBottom_toBottomOf="@id/appt_details_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/appt_details_tv" />

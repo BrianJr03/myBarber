@@ -25,6 +25,7 @@ import jr.brian.mybarber.databinding.ActivityHomeBinding
 import jr.brian.mybarber.databinding.NavHeaderBinding
 import jr.brian.mybarber.model.data.Constant.DEV_WEBSITE_URL
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
+import jr.brian.mybarber.model.data.roomdb.AppDatabase
 import jr.brian.mybarber.model.util.openDialog
 import jr.brian.mybarber.model.util.replaceFragment
 import jr.brian.mybarber.view.activities.AboutActivity
@@ -45,12 +46,14 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var sharedPrefHelper: SharedPrefHelper
+    private lateinit var appDatabase: AppDatabase
 
     private lateinit var header: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        appDatabase = AppDatabase.getInstance(applicationContext)!!
         binding.navView.inflateHeaderView(R.layout.nav_header)
         navHeaderBinding = NavHeaderBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -65,14 +68,19 @@ class HomeActivity : AppCompatActivity() {
         initFAB()
         binding.apply {
             homeTv.isSelected = true
-            notificationsBtn.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this@HomeActivity,
-                        NotificationsActivity::class.java
+            notificationsBtn.apply {
+                if (appDatabase.dao().getNotifications().isEmpty()) {
+                    setImageResource(R.drawable.notifications_none_36)
+                }
+                setOnClickListener {
+                    startActivity(
+                        Intent(
+                            this@HomeActivity,
+                            NotificationsActivity::class.java
+                        )
                     )
-                )
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
+                }
             }
         }
         initDrawer()

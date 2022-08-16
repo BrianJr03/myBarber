@@ -10,6 +10,7 @@ import jr.brian.mybarber.databinding.ActivityApptDetailsBinding
 import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.model.data.local.SharedPrefHelper
 import jr.brian.mybarber.model.data.services.BarberService
+import jr.brian.mybarber.model.util.cancelAppt
 import jr.brian.mybarber.model.util.startHomeActivity
 import jr.brian.mybarber.view.adapters.services.SummaryServiceAdapter
 
@@ -27,11 +28,7 @@ class ApptDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             detailsBackArrow.setOnClickListener {
-                super.onBackPressed()
-                overridePendingTransition(
-                    R.anim.slide_in_left,
-                    R.anim.slide_out_left
-                )
+                cancelAppt()
             }
             var isInFirstPosition = true
             playScrollBtn.setOnClickListener {
@@ -51,20 +48,7 @@ class ApptDetailsActivity : AppCompatActivity() {
                 ).show()
             }
             fabCancel.setOnClickListener {
-                Toast.makeText(
-                    this@ApptDetailsActivity,
-                    "Appointment has been canceled",
-                    Toast.LENGTH_LONG
-                ).show()
-                sharedPrefHelper.apply {
-                    removeData(Constant.APPT_DATE)
-                    removeData(Constant.SELECTED_BARBER)
-                    removeData(Constant.SELECTED_SERVICES)
-                }
-                startHomeActivity(
-                    this@ApptDetailsActivity,
-                    this@ApptDetailsActivity
-                )
+                cancelAppt()
             }
             fabConfirm.setOnClickListener {
                 sharedPrefHelper.apply {
@@ -126,6 +110,21 @@ class ApptDetailsActivity : AppCompatActivity() {
             Glide.with(this@ApptDetailsActivity)
                 .load(Constant.BASE_IMAGE_URL + selectedBarber.profilePic)
                 .into(barberImage)
+        }
+    }
+
+    private fun cancelAppt() {
+        cancelAppt(this) {
+            Toast.makeText(
+                this,
+                "Appointment has been canceled",
+                Toast.LENGTH_LONG
+            ).show()
+            sharedPrefHelper.apply {
+                removeData(Constant.APPT_DATE)
+                removeData(Constant.SELECTED_BARBER)
+                removeData(Constant.SELECTED_SERVICES)
+            }
         }
     }
 

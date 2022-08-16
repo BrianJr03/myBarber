@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import jr.brian.mybarber.R
+import jr.brian.mybarber.model.data.Constant
 import jr.brian.mybarber.view.activities.home.HomeActivity
 
 fun AppCompatActivity.replaceFragment(containerId: Int, fragment: Fragment) {
@@ -52,4 +53,12 @@ fun openDialog(context: Context, title: String, iconId: Int, msg: String) {
         .setIcon(iconId)
         .setMessage(msg)
         .show()
+}
+
+ fun cancelAppt(context: Context, action: () -> Unit) {
+    action()
+    startHomeActivity(
+        context,
+        context as AppCompatActivity
+    )
 }

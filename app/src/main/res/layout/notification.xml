@@ -14,7 +14,7 @@
         android:background="@drawable/card_color_selector">
 
         <TextView
-            android:id="@+id/noti_body"
+            android:id="@+id/noti_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pl_notification"

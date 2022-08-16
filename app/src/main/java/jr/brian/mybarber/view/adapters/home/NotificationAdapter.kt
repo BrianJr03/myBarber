@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.mybarber.R
 import jr.brian.mybarber.databinding.NotificationBinding
-import jr.brian.mybarber.model.data.notification.Notification
+import jr.brian.mybarber.model.data.notification.Noti
 import jr.brian.mybarber.model.util.openDialog
 
 class NotificationAdapter(
     private val context: Context,
-    private val notifications: List<Notification>
+    private val notifications: List<Noti>
 ) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
@@ -36,17 +36,17 @@ class NotificationAdapter(
                     context,
                     "Notification",
                     R.drawable.notifications_none_36,
-                    "${notification.body}\n\n${notification.date}"
+                    "${notification.body}\n\nReceived on ${notification.date}"
                 )
             }
         }
     }
 
     inner class NotificationViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
-        fun bind(notification: Notification) {
-            val body = v.findViewById<TextView>(R.id.noti_body)
+        fun bind(notification: Noti) {
+            val title = v.findViewById<TextView>(R.id.noti_title)
             val date = v.findViewById<TextView>(R.id.noti_date)
-            body.text = notification.body
+            title.text = notification.title
             date.text = notification.date
         }
     }
