@@ -1,4 +1,4 @@
-# myShop
+# myBarber
 
 A simple barber app built with Kotlin. 
 
